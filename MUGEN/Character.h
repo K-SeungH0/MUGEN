@@ -1,8 +1,9 @@
 #pragma once
 #include "Mugen.h"
+#include "GameObject.h"
 
 class Image;
-class Character
+class Character : public GameObject
 {
 private:
 	enum class Direction
@@ -40,5 +41,11 @@ private:
 		map<int, CharacterAttackInfo> mAtkRc;
 		POINTFLOAT offsetPos;
 	};
+
+public:
+	virtual void Init() override;
+	virtual void Release() override;
+	virtual void Update() override;
+	virtual void Render(HDC hdc) override;
 };
 

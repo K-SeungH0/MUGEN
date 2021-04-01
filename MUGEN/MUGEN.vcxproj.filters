@@ -13,5 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\MEGEN">
+      <UniqueIdentifier>{eaf0dbb6-f783-437b-8317-e74829915a4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine">
+      <UniqueIdentifier>{cf64f26b-fc79-4905-9b0c-f1d3fdbd9fd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Engine\Object">
+      <UniqueIdentifier>{3cba7497-a14c-4696-86b8-05bee7b3df0d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.h">
+      <Filter>소스 파일\Engine\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mugen.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

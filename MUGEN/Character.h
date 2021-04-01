@@ -5,7 +5,7 @@
 class Image;
 class Character : public GameObject
 {
-private:
+protected:
 	enum class DIRECTION
 	{
 		LEFT,

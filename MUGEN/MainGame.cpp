@@ -1,5 +1,6 @@
 #include "MainGame.h"
 #include "Image.h"
+#include "King.h"
 
 HRESULT MainGame::Init()
 {
@@ -46,7 +47,7 @@ void MainGame::Render(HDC hdc)
 	
 }
 
-HRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
 	PAINTSTRUCT ps;

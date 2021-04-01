@@ -2,6 +2,7 @@
 #include "Mugen.h"
 
 class Image;
+class King;
 class MainGame
 {
 private:
@@ -9,13 +10,15 @@ private:
 	HWND hTimer;
 	Image* backgroundCanvas;
 	HDC hBackgroundDC;
-
+	
+	// 캐릭터 추가
+	King* king;
 public:
 	HRESULT Init();
 	void Release();
 	void Update();
 	void Render(HDC hdc);
 
-	HRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
+	LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 };
 

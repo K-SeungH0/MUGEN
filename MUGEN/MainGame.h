@@ -1,14 +1,20 @@
 #pragma once
 #include "Mugen.h"
+#include "Image.h"
+#include "DIO.h"
 
-class Image;
 class MainGame
 {
 private:
+	HDC hdc;
+	PAINTSTRUCT ps;
+
 	bool isInitialize = false;
 	HWND hTimer;
 	Image* backgroundCanvas;
-	HDC hBackgroundDC;
+	Image* bgImg;
+
+	Character* lpDIO;
 
 public:
 	HRESULT Init();
@@ -16,6 +22,6 @@ public:
 	void Update();
 	void Render(HDC hdc);
 
-	HRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
+	LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 };
 

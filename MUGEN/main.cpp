@@ -5,9 +5,10 @@ HINSTANCE g_hInstance;
 HWND g_hWnd;
 LPSTR g_lpszClass = (LPSTR)TEXT("=== Mugen ===");
 
+bool isDebugMode;
 MainGame g_mainGame;
 
-HRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdParam, int nCmdShow);
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdParam, int nCmdShow)
@@ -18,8 +19,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-	wndClass.hCursor = LoadCursor(g_hInstance, IDC_ARROW);
-	wndClass.hIcon = LoadIcon(g_hInstance, IDI_APPLICATION);
+	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wndClass.hInstance = g_hInstance;
 	wndClass.lpfnWndProc = WndProc;
 	wndClass.lpszClassName = g_lpszClass;
@@ -50,7 +51,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 	return message.wParam;
 }
 
-HRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	return g_mainGame.WndProc(hWnd, iMessage, wParam, lParam);
 }

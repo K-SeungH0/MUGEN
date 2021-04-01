@@ -13,7 +13,7 @@ HRESULT Image::Init(int width, int height)
 	lpImageInfo->height = height;
 	lpImageInfo->loadType = IMAGE_LOAD_TYPE::EMPTY;
 
-	this->isTransparent = FALSE;
+	this->isTransparent = false;
 	this->transColor = RGB(0, 0, 0);
 
 	ReleaseDC(g_hWnd, hdc);
@@ -72,8 +72,8 @@ HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int m
 	lpImageInfo->maxFrameX = maxFrameX;
 	lpImageInfo->maxFrameY = maxFrameY;
 
-	this->isTransparent = FALSE;
-	this->transColor = RGB(0, 0, 0);
+	this->isTransparent = isTransparent;
+	this->transColor = transColor;
 
 	ReleaseDC(g_hWnd, hdc);
 

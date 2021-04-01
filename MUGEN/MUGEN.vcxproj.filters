@@ -54,6 +54,9 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClCompile>
+    <ClCompile Include="DIO.cpp">
+      <Filter>소스 파일\MEGEN\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\Engine\Object">
       <UniqueIdentifier>{3cba7497-a14c-4696-86b8-05bee7b3df0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Engine\Manager">
+      <UniqueIdentifier>{a0738320-fee8-42e6-8a95-09fee16c51fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +36,12 @@
     <ClCompile Include="GameObject.h">
       <Filter>소스 파일\Engine\Object</Filter>
     </ClCompile>
+    <ClInclude Include="KeyManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -41,5 +50,8 @@
     <ClInclude Include="MainGame.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

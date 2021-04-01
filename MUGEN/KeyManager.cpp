@@ -1,6 +1,4 @@
-
 #include "KeyManager.h"
-//#include "config"
 
 HRESULT KeyManager::Init()
 {
@@ -11,10 +9,9 @@ HRESULT KeyManager::Init()
 
 void KeyManager::Release()
 {
-	ReleaseSingleton();
 }
 
-bool KeyManager::IsInceKeyDown(int key)
+bool KeyManager::IsOnceKeyDown(int key)
 {
 	if (GetAsyncKeyState(key) & 0x8000)
 	{

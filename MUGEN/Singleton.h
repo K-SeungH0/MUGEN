@@ -1,39 +1,39 @@
-
 #pragma once
 
 template <typename T>
 class Singleton
 {
 protected:
-	static T* instance;
+	static T* lpInstance;
 
 	Singleton() {};
 	~Singleton() {};
 
 public:
-	static T* Getsingleton();
+	static T* GetLpInstance();
 	void ReleaseSingleton();
 };
 
 template <typename T>
-T* Singleton<T>::instance = nullptr;
+T* Singleton<T>::lpInstance = nullptr;
 
 template<typename T>
-inline T* Singleton<T>::Getsingleton()
+inline T* Singleton<T>::GetLpInstance()
 {
-	if (instance == nullptr)
+	if (lpInstance == nullptr)
 	{
-		instance = new T;
+		lpInstance = new T;
 	}
-	return instance;
+	return lpInstance;
 }
 
 template<typename T>
 inline void Singleton<T>::ReleaseSingleton()
 {
-	if (instance)
+	if (lpInstance)
 	{
-		delete instance;
-		instance = nullptr;
+		lpInstance->Release();
+		delete lpInstance;
+		lpInstance = nullptr;
 	}
 }

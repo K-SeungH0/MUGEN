@@ -1,5 +1,5 @@
 #pragma once
-#include "config.h"
+#include "Mugen.h"
 
 class Image
 {
@@ -55,8 +55,8 @@ private:
 
 public:
 	HRESULT Init(int width, int height);
-	HRESULT Init(string fileName, int width, int height, bool isTransparent = FALSE, COLORREF transColor = FALSE);
-	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, bool isTransparent = FALSE, COLORREF transColor = FALSE);
+	HRESULT Init(string fileName, int width, int height, bool isTransparent = FALSE, COLORREF transColor = RGB(0, 0, 0));
+	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, bool isTransparent = FALSE, COLORREF transColor = RGB(0, 0, 0));
 
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex);

@@ -25,6 +25,12 @@
     <Filter Include="소스 파일\Engine\Manager">
       <UniqueIdentifier>{a0738320-fee8-42e6-8a95-09fee16c51fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\Character">
+      <UniqueIdentifier>{2c1afb11-e7b2-440a-bc05-78ac1e10cb7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\Character\Default">
+      <UniqueIdentifier>{ae711dfd-623f-4ddf-a5f3-1b18ec5d06cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,6 +48,12 @@
     <ClInclude Include="Singleton.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
+    <ClCompile Include="Image.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\MEGEN\Character\Default</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -53,24 +65,11 @@
     <ClCompile Include="KeyManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Character.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="config.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Character.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
+    <ClInclude Include="Character.h">
+      <Filter>소스 파일\MEGEN\Character\Default</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

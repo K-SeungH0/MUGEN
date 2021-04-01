@@ -32,12 +32,20 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 
 	ShowWindow(g_hWnd, nCmdShow);
 
+	if (FAILED(g_mainGame.Init()))
+	{
+		MessageBox(g_hWnd, "메인게임 생성에 실패했습니다.", "Error", MB_OK);
+		return 0;
+	}
+
 	MSG message;
 	while (GetMessage(&message, g_hWnd, 0, 0))
 	{
 		TranslateMessage(&message);
 		DispatchMessage(&message);
 	}
+
+	g_mainGame.Release();
 
 	return message.wParam;
 }

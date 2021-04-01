@@ -1,5 +1,5 @@
 #pragma once
-#include "config.h"
+#include "Mugen.h"
 
 class Image;
 class Character
@@ -26,7 +26,6 @@ private:
 		int bottom;
 		int damage;
 	};
-	
 
 	Direction dir;
 	CharacterAttackInfo charAtkInfo;

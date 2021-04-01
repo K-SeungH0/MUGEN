@@ -1,18 +1,43 @@
 #include "MainGame.h"
+#include "Image.h"
 
 HRESULT MainGame::Init()
 {
 	hTimer = (HWND)SetTimer(g_hWnd, NULL, 10, NULL);
+
+	backgroundCanvas = new Image();
+	backgroundCanvas->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+	hBackgroundDC = backgroundCanvas->GetMemDC();
+
+	KeyManager::GetLpInstance()->Init();
+
 	isInitialize = true;
 	return S_OK;
 }
 
 void MainGame::Release()
 {
+	backgroundCanvas->Release();
+	delete backgroundCanvas;
+
+	KeyManager::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
 {
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown('W'))
+	{
+		MessageBox(g_hWnd, "Once Key Down", "KeyDown", MB_OK);
+	}
+	if (KeyManager::GetLpInstance()->IsOnceKeyUp('D'))
+	{
+		MessageBox(g_hWnd, "Once Key Up", "KeyUp", MB_OK);
+	}
+	if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_SPACE))
+	{
+		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
+	}
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 

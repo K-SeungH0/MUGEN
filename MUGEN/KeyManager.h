@@ -1,8 +1,7 @@
-
 #pragma once
 #include "Singleton.h"
-#include  <bitset>	   //config 작성후 제거
-#include <windows.h>   //config 작성후 제거
+#include <windows.h>
+#include <bitset>
 
 #define MAX_KEY_COUNT	256
 
@@ -18,7 +17,7 @@ public:
 	HRESULT Init();
 	void Release();
 
-	bool IsInceKeyDown(int key);
+	bool IsOnceKeyDown(int key);
 	bool IsOnceKeyUp(int key);
 	bool IsStayKeyDown(int key);
 

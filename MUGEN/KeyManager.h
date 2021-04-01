@@ -1,3 +1,4 @@
+
 #pragma once
 #include "Singleton.h"
 #include  <bitset>	   //config 작성후 제거
@@ -7,7 +8,7 @@
 
 using namespace std;
 
-class KeyManeger : public Singleton<KeyManeger>
+class KeyManager : public Singleton<KeyManager>
 {
 private:
 	bitset<MAX_KEY_COUNT>	keyUp;

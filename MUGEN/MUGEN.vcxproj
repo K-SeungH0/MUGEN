@@ -126,8 +126,11 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="KeyManager.h" />
+    <ClInclude Include="Singleton.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Image.cpp" />
   </ItemGroup>

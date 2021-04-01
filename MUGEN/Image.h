@@ -9,25 +9,20 @@ public:
 		RESOURCE,
 		FILE,
 		EMPTY,
-		END
+		NONE
 	};
 
 	typedef struct tagImageInfo
 	{
+		IMAGE_LOAD_TYPE loadType;
 		DWORD resID;
 		HDC hMemDC;
-		HBITMAP hBitmap;
-		HBITMAP hOldBit;
 		int width;
 		int height;
-		IMAGE_LOAD_TYPE loadType;
-
 		int maxFrameX;
 		int maxFrameY;
-		int frameWidth;
-		int frameHeight;
-		int currentFrameX;
-		int currentFrameY;
+		HBITMAP hBitmap;
+		HBITMAP hOldBit;
 
 		tagImageInfo()
 		{
@@ -37,19 +32,15 @@ public:
 			hOldBit = NULL;
 			width = 0;
 			height = 0;
-			loadType = IMAGE_LOAD_TYPE::EMPTY;
+			loadType = IMAGE_LOAD_TYPE::NONE;
 
 			maxFrameX = 0;
 			maxFrameY = 0;
-			frameWidth = 0;
-			frameHeight = 0;
-			currentFrameX = 0;
-			currentFrameY = 0;
 		};
 	}	IMAGE_INFO, *LPIMAGE_INFO;
 
 private:
-	LPIMAGE_INFO imageInfo;
+	LPIMAGE_INFO lpImageInfo;
 	bool isTransparent;
 	COLORREF transColor;
 
@@ -63,10 +54,10 @@ public:
 
 	void Release();
 
-	HDC GetMemDC()
+	inline HDC GetMemDC()
 	{
-		if (this->imageInfo)
-			return this->imageInfo->hMemDC;
+		if (this->lpImageInfo)
+			return this->lpImageInfo->hMemDC;
 		return NULL;
 	}
 };

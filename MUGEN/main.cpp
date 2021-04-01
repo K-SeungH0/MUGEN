@@ -39,7 +39,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 	}
 
 	MSG message;
-	while (GetMessage(&message, g_hWnd, 0, 0))
+	while (GetMessage(&message, 0, 0, 0))
 	{
 		TranslateMessage(&message);
 		DispatchMessage(&message);

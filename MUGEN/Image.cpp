@@ -4,21 +4,21 @@ HRESULT Image::Init(int width, int height)
 {
 	HDC hdc = GetDC(g_hWnd);
 
-	imageInfo = new IMAGE_INFO();
-	imageInfo->resID = 0;
-	imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	imageInfo->hBitmap = CreateCompatibleBitmap(hdc, width, height);
-	imageInfo->hOldBit = (HBITMAP)SelectObject(imageInfo->hMemDC, imageInfo->hBitmap);
-	imageInfo->width = width;
-	imageInfo->height = height;
-	imageInfo->loadType = IMAGE_LOAD_TYPE::EMPTY;
+	lpImageInfo = new IMAGE_INFO();
+	lpImageInfo->resID = 0;
+	lpImageInfo->hMemDC = CreateCompatibleDC(hdc);
+	lpImageInfo->hBitmap = CreateCompatibleBitmap(hdc, width, height);
+	lpImageInfo->hOldBit = (HBITMAP)SelectObject(lpImageInfo->hMemDC, lpImageInfo->hBitmap);
+	lpImageInfo->width = width;
+	lpImageInfo->height = height;
+	lpImageInfo->loadType = IMAGE_LOAD_TYPE::EMPTY;
 
 	this->isTransparent = FALSE;
-	this->transColor = FALSE;
+	this->transColor = RGB(0, 0, 0);
 
 	ReleaseDC(g_hWnd, hdc);
 
-	if (imageInfo->hBitmap)
+	if (lpImageInfo->hBitmap == NULL)
 	{
 		Release();
 		return	E_FAIL;
@@ -31,21 +31,21 @@ HRESULT Image::Init(string fileName, int width, int height, bool isTransparent, 
 {
 	HDC hdc = GetDC(g_hWnd);
 
-	imageInfo = new IMAGE_INFO();
-	imageInfo->resID = 0;
-	imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	imageInfo->hBitmap = (HBITMAP)LoadImage(g_hInstance, fileName.c_str(), IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
-	imageInfo->hOldBit = (HBITMAP)SelectObject(imageInfo->hMemDC, imageInfo->hBitmap);
-	imageInfo->width = width;
-	imageInfo->height = height;
-	imageInfo->loadType = IMAGE_LOAD_TYPE::FILE;
+	lpImageInfo = new IMAGE_INFO();
+	lpImageInfo->resID = 0;
+	lpImageInfo->hMemDC = CreateCompatibleDC(hdc);
+	lpImageInfo->hBitmap = (HBITMAP)LoadImage(g_hInstance, fileName.c_str(), IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
+	lpImageInfo->hOldBit = (HBITMAP)SelectObject(lpImageInfo->hMemDC, lpImageInfo->hBitmap);
+	lpImageInfo->width = width;
+	lpImageInfo->height = height;
+	lpImageInfo->loadType = IMAGE_LOAD_TYPE::FILE;
 
 	this->isTransparent = isTransparent;
 	this->transColor = transColor;
 
 	ReleaseDC(g_hWnd, hdc);
 
-	if (imageInfo->hBitmap)
+	if (lpImageInfo->hBitmap == NULL)
 	{
 		Release();
 		return	E_FAIL;
@@ -58,30 +58,26 @@ HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int m
 {
 	HDC hdc = GetDC(g_hWnd);
 
-	imageInfo = new IMAGE_INFO();
-	imageInfo->resID = 0;
-	imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	imageInfo->hBitmap =
+	lpImageInfo = new IMAGE_INFO();
+	lpImageInfo->resID = 0;
+	lpImageInfo->hMemDC = CreateCompatibleDC(hdc);
+	lpImageInfo->hBitmap =
 		(HBITMAP)LoadImage(g_hInstance, fileName.c_str(), IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
-	imageInfo->hOldBit =
-		(HBITMAP)SelectObject(imageInfo->hMemDC, imageInfo->hBitmap);
-	imageInfo->width = width;
-	imageInfo->height = height;
-	imageInfo->loadType = IMAGE_LOAD_TYPE::FILE;
+	lpImageInfo->hOldBit =
+		(HBITMAP)SelectObject(lpImageInfo->hMemDC, lpImageInfo->hBitmap);
+	lpImageInfo->width = width / maxFrameX;
+	lpImageInfo->height = height / maxFrameY;
+	lpImageInfo->loadType = IMAGE_LOAD_TYPE::FILE;
 
-	imageInfo->maxFrameX = maxFrameX;
-	imageInfo->maxFrameY = maxFrameY;
-	imageInfo->frameWidth = width / maxFrameX;
-	imageInfo->frameHeight = height / maxFrameY;
-	imageInfo->currentFrameX = 0;
-	imageInfo->currentFrameY = 0;
+	lpImageInfo->maxFrameX = maxFrameX;
+	lpImageInfo->maxFrameY = maxFrameY;
 
 	this->isTransparent = FALSE;
-	this->transColor = FALSE;
+	this->transColor = RGB(0, 0, 0);
 
 	ReleaseDC(g_hWnd, hdc);
 
-	if (imageInfo->hBitmap)
+	if (lpImageInfo->hBitmap == NULL)
 	{
 		Release();
 		return	E_FAIL;
@@ -97,10 +93,10 @@ void Image::Render(HDC hdc, int destX, int destY)
 		GdiTransparentBlt(
 			hdc,
 			destX, destY,
-			imageInfo->width, imageInfo->height,
-			imageInfo->hMemDC,
+			lpImageInfo->width, lpImageInfo->height,
+			lpImageInfo->hMemDC,
 			0, 0,
-			imageInfo->width, imageInfo->height,
+			lpImageInfo->width, lpImageInfo->height,
 			transColor
 		);
 	}
@@ -109,9 +105,9 @@ void Image::Render(HDC hdc, int destX, int destY)
 		BitBlt(
 			hdc,
 			destX, destY,
-			imageInfo->width,
-			imageInfo->height,
-			imageInfo->hMemDC,
+			lpImageInfo->width,
+			lpImageInfo->height,
+			lpImageInfo->hMemDC,
 			0, 0,
 			SRCCOPY
 		);
@@ -120,18 +116,16 @@ void Image::Render(HDC hdc, int destX, int destY)
 
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
-	imageInfo->currentFrameX = frameIndex;
-
 	if (isTransparent)
 	{
 		GdiTransparentBlt(
 			hdc,
 			destX, destY,
-			imageInfo->frameWidth, imageInfo->frameHeight,
-			imageInfo->hMemDC,
-			imageInfo->frameWidth * imageInfo->currentFrameX,
-			imageInfo->frameHeight * imageInfo->currentFrameY,
-			imageInfo->frameWidth, imageInfo->frameHeight,
+			lpImageInfo->width, lpImageInfo->height,
+			lpImageInfo->hMemDC,
+			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+			lpImageInfo->width, lpImageInfo->height,
 			transColor
 		);
 	}
@@ -140,11 +134,11 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 		BitBlt(
 			hdc,
 			destX, destY,
-			imageInfo->frameWidth,
-			imageInfo->frameHeight,
-			imageInfo->hMemDC,
-			imageInfo->frameWidth * imageInfo->currentFrameX,
-			imageInfo->frameHeight * imageInfo->currentFrameY,
+			lpImageInfo->width,
+			lpImageInfo->height,
+			lpImageInfo->hMemDC,
+			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
 			SRCCOPY
 		);
 	}
@@ -152,13 +146,13 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 
 void Image::Release()
 {
-	if (imageInfo)
+	if (lpImageInfo)
 	{
-		SelectObject(imageInfo->hMemDC, imageInfo->hOldBit);
-		DeleteObject(imageInfo->hBitmap);
-		DeleteDC(imageInfo->hMemDC);
+		SelectObject(lpImageInfo->hMemDC, lpImageInfo->hOldBit);
+		DeleteObject(lpImageInfo->hBitmap);
+		DeleteDC(lpImageInfo->hMemDC);
 
-		delete imageInfo;
-		imageInfo = nullptr;
+		delete lpImageInfo;
+		lpImageInfo = nullptr;
 	}
 }

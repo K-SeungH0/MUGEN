@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.h" />
+    <ClCompile Include="King.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="King.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
   </ItemGroup>

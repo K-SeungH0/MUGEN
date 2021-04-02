@@ -12,6 +12,9 @@ HRESULT MainGame::Init()
 
 	KeyManager::GetLpInstance()->Init();
 
+	king = new King();
+	king->Init();
+
 	isInitialize = true;
 	return S_OK;
 }
@@ -39,12 +42,14 @@ void MainGame::Update()
 		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
 	}
 
+	king->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-	
+	king->Render(hdc);
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

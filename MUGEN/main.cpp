@@ -5,6 +5,7 @@ HINSTANCE g_hInstance;
 HWND g_hWnd;
 LPSTR g_lpszClass = (LPSTR)TEXT("=== Mugen ===");
 
+bool isDebugMode;
 MainGame g_mainGame;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
@@ -18,8 +19,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-	wndClass.hCursor = LoadCursor(g_hInstance, IDC_ARROW);
-	wndClass.hIcon = LoadIcon(g_hInstance, IDI_APPLICATION);
+	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wndClass.hInstance = g_hInstance;
 	wndClass.lpfnWndProc = WndProc;
 	wndClass.lpszClassName = g_lpszClass;

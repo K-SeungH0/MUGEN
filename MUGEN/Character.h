@@ -8,8 +8,8 @@ class Character : public GameObject
 protected:
 	enum class DIRECTION
 	{
-		LEFT,
 		RIGHT,
+		LEFT,
 		NONE
 	};
 	enum class CHARACTER_STATE
@@ -43,10 +43,13 @@ protected:
 		map<int, AttackInfo> mAtkInfo;
 	};
 
+
 	// 바라보는 방향
 	DIRECTION dir;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
+	int elapsedTime;
+	int frame;
 	// 캐릭터 체력
 	int hp;
 	int preHp;

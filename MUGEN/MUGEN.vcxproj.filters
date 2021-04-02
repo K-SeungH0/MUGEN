@@ -57,8 +57,13 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="King.cpp">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
+=======
+    <ClCompile Include="DIO.cpp">
+      <Filter>소스 파일\MEGEN\Character</Filter>
+>>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +82,13 @@
     <ClInclude Include="Character.h">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
+=======
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character</Filter>
+>>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
     </ClInclude>
   </ItemGroup>
 </Project>

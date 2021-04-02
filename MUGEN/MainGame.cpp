@@ -21,6 +21,9 @@ HRESULT MainGame::Init()
 	lpKING = new King();
 	lpKING->Init();
 
+	lpChang = new Chang();
+	lpChang->Init();
+
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -37,6 +40,9 @@ void MainGame::Release()
 	bgImg->Release();
 	delete bgImg;
 
+	lpChang->Release();
+	delete lpChang;
+
 	backgroundCanvas->Release();
 	delete backgroundCanvas;
 
@@ -45,18 +51,7 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	if (KeyManager::GetLpInstance()->IsOnceKeyDown('W'))
-	{
-		MessageBox(g_hWnd, "Once Key Down", "KeyDown", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsOnceKeyUp('D'))
-	{
-		MessageBox(g_hWnd, "Once Key Up", "KeyUp", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_SPACE))
-	{
-		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
-	}
+	lpChang->Update();
 
 	lpKING->Update();
 

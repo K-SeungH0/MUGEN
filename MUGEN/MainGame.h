@@ -4,7 +4,7 @@
 #include "DIO.h"
 class Image;
 class King;
-
+#include "Chang.h"
 class MainGame
 {
 private:
@@ -21,6 +21,9 @@ private:
 	Image* bgImg;
 
 	Character* lpDIO;
+
+
+	Character* lpChang;
 
 public:
 	HRESULT Init();

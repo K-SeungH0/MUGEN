@@ -46,6 +46,8 @@ protected:
 
 	// 바라보는 방향
 	DIRECTION dir;
+	int elapsedTime;
+	int frame;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
 	int elapsedTime;

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ColliderManager.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DIO.cpp" />
     <ClCompile Include="Chang.cpp" />
     <ClCompile Include="GameObject.h" />
@@ -27,6 +29,8 @@
     <ClCompile Include="MainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColliderManager.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="King.h" />
     <ClInclude Include="DIO.h" />
     <ClInclude Include="Chang.h" />

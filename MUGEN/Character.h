@@ -5,13 +5,15 @@
 class Image;
 class Character : public GameObject
 {
-protected:
+public:
 	enum class DIRECTION
 	{
 		RIGHT,
 		LEFT,
 		NONE
 	};
+
+protected:
 	enum class CHARACTER_STATE
 	{
 		IDLE,
@@ -43,7 +45,7 @@ protected:
 		map<int, AttackInfo> mAtkInfo;
 	};
 
-
+	PLAYER_TYPE type = PLAYER_TYPE::NONE;
 	// 바라보는 방향
 	DIRECTION dir;
 	// 캐릭터 상태
@@ -53,6 +55,8 @@ protected:
 	// 캐릭터 체력
 	int hp;
 	int preHp;
+	// 캐릭터 스피드
+	int moveSpeed;
 	// 캐릭터 위치
 	POINTFLOAT pos;
 	// 캐릭터 이름
@@ -68,7 +72,11 @@ public:
 	virtual void Render(HDC hdc) override;
 
 	void Hit(int damage);
+	void Move(DIRECTION direction);
+	void NormalAttack();
+	void StrongAttack();
 
+	inline void SetType(PLAYER_TYPE type) { this->type = type; }
 	inline bool IsAlive() { return state != CHARACTER_STATE::DEATH; }
 };
 

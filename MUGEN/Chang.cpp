@@ -23,12 +23,12 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/RightChang_IDLE.bmp", 3960, 532, 6, 1, true, RGB(255, 0, 255));
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = new Image();
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT]->Init("Image/Character/LeftChang_IDLE.bmp", 3960, 532, 6, 1, true, RGB(255, 0, 255));
-	
+	motions[(int)CHARACTER_STATE::IDLE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::IDLE].offsetPos, 66, 120);
 
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = new Image();
-	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/RightChang_MOVE.bmp", 3960, 532, 6, 1, true, RGB(255, 0, 255));
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/RightChang_MOVE.bmp", 3960, 532, 10, 1, true, RGB(255, 0, 255));
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = new Image();
-	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT]->Init("Image/Character/LeftChang_MOVE.bmp", 3960, 532, 6, 1, true, RGB(255, 0, 255));
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT]->Init("Image/Character/LeftChang_MOVE.bmp", 3960, 532, 10, 1, true, RGB(255, 0, 255));
 	frame = 0;
 	elapsedTime = 0;
 
@@ -66,5 +66,5 @@ void Chang::Update()
 
 void Chang::Render(HDC hdc)
 {
-
+	motions[(int)CHARACTER_STATE::IDLE].lpImages[0]->Render(hdc, 100, 100);
 }

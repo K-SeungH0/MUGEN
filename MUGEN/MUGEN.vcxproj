@@ -19,17 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DIO.cpp" />
     <ClCompile Include="Chang.cpp" />
+    <ClCompile Include="DIO.cpp" />
     <ClCompile Include="GameObject.h" />
-    <ClCompile Include="King.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="King.h" />
-    <ClInclude Include="DIO.h" />
     <ClInclude Include="Chang.h" />
+    <ClInclude Include="DIO.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
   </ItemGroup>

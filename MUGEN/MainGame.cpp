@@ -67,7 +67,10 @@ void MainGame::Render(HDC hdc)
 	lpBgImg->Render(hBackDC);
 
 	lpKING->Render(hBackDC);
+
 	lpDIO->Render(hBackDC);
+
+	lpChang->Render(hBackDC);
 
 	lpBuffer->Render(hdc);
 }

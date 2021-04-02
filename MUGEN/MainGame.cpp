@@ -1,5 +1,4 @@
 #include "MainGame.h"
-#include "Image.h"
 
 HRESULT MainGame::Init()
 {
@@ -11,12 +10,19 @@ HRESULT MainGame::Init()
 
 	KeyManager::GetLpInstance()->Init();
 
+	lpChang = new Chang();
+	lpChang->Init();
+
 	isInitialize = true;
+	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
 }
 
 void MainGame::Release()
 {
+	lpChang->Release();
+	delete lpChang;
+
 	backgroundCanvas->Release();
 	delete backgroundCanvas;
 
@@ -25,28 +31,20 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	if (KeyManager::GetLpInstance()->IsOnceKeyDown('W'))
-	{
-		MessageBox(g_hWnd, "Once Key Down", "KeyDown", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsOnceKeyUp('D'))
-	{
-		MessageBox(g_hWnd, "Once Key Up", "KeyUp", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_SPACE))
-	{
-		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
-	}
+	lpChang->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
+	HDC hBackDC = backgroundCanvas->GetMemDC();
+
+	lpChang->Render(hBackDC);
 	
 }
 
-HRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
+LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
 	HDC hdc;
 	PAINTSTRUCT ps;

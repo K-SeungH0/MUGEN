@@ -5,7 +5,7 @@
 class Image;
 class Character : public GameObject
 {
-private:
+protected:
 	enum class DIRECTION
 	{
 		LEFT,
@@ -45,6 +45,8 @@ private:
 
 	// 바라보는 방향
 	DIRECTION dir;
+	int elapsedTime;
+	int frame;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
 	// 캐릭터 체력

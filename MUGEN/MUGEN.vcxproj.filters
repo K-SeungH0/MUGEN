@@ -31,6 +31,9 @@
     <Filter Include="소스 파일\MEGEN\Character\Default">
       <UniqueIdentifier>{ae711dfd-623f-4ddf-a5f3-1b18ec5d06cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\Character\Chang">
+      <UniqueIdentifier>{2d3cbd1a-587c-4082-aaf1-31d106f62caf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClCompile>
+    <ClCompile Include="Chang.cpp">
+      <Filter>소스 파일\MEGEN\Character\Chang</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Chang.h">
+      <Filter>소스 파일\MEGEN\Character\Chang</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

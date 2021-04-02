@@ -37,6 +37,9 @@
     <Filter Include="소스 파일\MEGEN\Character\Chang">
       <UniqueIdentifier>{2d3cbd1a-587c-4082-aaf1-31d106f62caf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\Character\DIO">
+      <UniqueIdentifier>{32abb052-6bd5-40c9-a9a0-b290475463d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,12 +65,12 @@
     </ClCompile>
     <ClCompile Include="King.cpp">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
-  </ClCompile>
-    <ClCompile Include="DIO.cpp">
-      <Filter>소스 파일\MEGEN\Character</Filter>
     </ClCompile>
     <ClCompile Include="Chang.cpp">
       <Filter>소스 파일\MEGEN\Character\Chang</Filter>
+    </ClCompile>
+    <ClCompile Include="DIO.cpp">
+      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,11 +92,11 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
-    <ClInclude Include="DIO.h">
-      <Filter>소스 파일\MEGEN\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Chang.h">
       <Filter>소스 파일\MEGEN\Character\Chang</Filter>
+    </ClInclude>
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

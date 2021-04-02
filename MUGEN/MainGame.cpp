@@ -67,12 +67,12 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-	lpKING->Render(hdc);
 
 	HDC hBackDC = backgroundCanvas->GetMemDC();
 	bgImg->Render(hBackDC);
 
 	lpDIO->Render(hBackDC);
+	lpKING->Render(hBackDC);
 
 	backgroundCanvas->Render(hdc);
 }

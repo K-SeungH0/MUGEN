@@ -26,11 +26,8 @@
     <ClCompile Include="MainGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="King.h" />
-=======
     <ClInclude Include="DIO.h" />
->>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
   </ItemGroup>
@@ -57,7 +54,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">

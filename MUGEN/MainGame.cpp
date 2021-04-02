@@ -1,10 +1,7 @@
 #include "MainGame.h"
-<<<<<<< HEAD
 #include "Image.h"
 #include "King.h"
-=======
 #include "DIO.h"
->>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
 
 HRESULT MainGame::Init()
 {
@@ -21,8 +18,8 @@ HRESULT MainGame::Init()
 	lpDIO = new DIO();
 	lpDIO->Init();
 
-	king = new King();
-	king->Init();
+	lpKING = new King();
+	lpKING->Init();
 
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
@@ -33,6 +30,9 @@ void MainGame::Release()
 {
 	lpDIO->Release();
 	delete lpDIO;
+
+	lpKING->Release();
+	delete lpKING;
 
 	bgImg->Release();
 	delete bgImg;
@@ -45,7 +45,6 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-<<<<<<< HEAD
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('W'))
 	{
 		MessageBox(g_hWnd, "Once Key Down", "KeyDown", MB_OK);
@@ -59,26 +58,23 @@ void MainGame::Update()
 		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
 	}
 
-	king->Update();
+	lpKING->Update();
 
-=======
 	lpDIO->Update();
->>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-<<<<<<< HEAD
-	king->Render(hdc);
-=======
+	lpKING->Render(hdc);
+
 	HDC hBackDC = backgroundCanvas->GetMemDC();
 	bgImg->Render(hBackDC);
 
 	lpDIO->Render(hBackDC);
 
 	backgroundCanvas->Render(hdc);
->>>>>>> f687fac708cc3330e4230ef1025398cc2d8b5ae6
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

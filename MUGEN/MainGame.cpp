@@ -1,16 +1,17 @@
 #include "MainGame.h"
 #include "Image.h"
 #include "King.h"
+#include "Chang.h"
 #include "DIO.h"
 
 HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
 	
-	backgroundCanvas = new Image();
-	backgroundCanvas->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
-	bgImg = new Image();
-	if (FAILED(bgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
+	lpBuffer = new Image();
+	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+	lpBgImg = new Image();
+	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
 		MessageBox(g_hWnd, "배경로드 실패", "Error", MB_OK);
 	}
@@ -37,14 +38,14 @@ void MainGame::Release()
 	lpKING->Release();
 	delete lpKING;
 
-	bgImg->Release();
-	delete bgImg;
+	lpBgImg->Release();
+	delete lpBgImg;
 
 	lpChang->Release();
 	delete lpChang;
 
-	backgroundCanvas->Release();
-	delete backgroundCanvas;
+	lpBuffer->Release();
+	delete lpBuffer;
 
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 }
@@ -62,14 +63,13 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
-	lpKING->Render(hdc);
+	HDC hBackDC = lpBuffer->GetMemDC();
+	lpBgImg->Render(hBackDC);
 
-	HDC hBackDC = backgroundCanvas->GetMemDC();
-	bgImg->Render(hBackDC);
-
+	lpKING->Render(hBackDC);
 	lpDIO->Render(hBackDC);
 
-	backgroundCanvas->Render(hdc);
+	lpBuffer->Render(hdc);
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

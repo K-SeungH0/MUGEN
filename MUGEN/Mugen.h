@@ -14,6 +14,8 @@ extern bool isDebugMode;
 extern HINSTANCE g_hInstance;
 extern HWND g_hWnd;
 
+extern bool isDebugMode;
+
 using namespace std;
 
 inline RECT GetRectOffset(POINTFLOAT pos, POINTFLOAT offset, int width, int height)

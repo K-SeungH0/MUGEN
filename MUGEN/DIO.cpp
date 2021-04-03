@@ -26,8 +26,8 @@ void DIO::Init()
 	// Init 모션별 초기화
 	// IDLE
 	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos = { -33, -120 };
-	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_IDLE", 0);
-	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_IDLE", 0);
+	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_IDLE");
+	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_IDLE");
 	motions[(int)CHARACTER_STATE::IDLE].offsetHitPos = { -25, -120 };
 	motions[(int)CHARACTER_STATE::IDLE].width = 50;
 	motions[(int)CHARACTER_STATE::IDLE].height = 120;
@@ -35,15 +35,15 @@ void DIO::Init()
 
 	// MOVE
 	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_MOVE", 0);
-	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_MOVE", 0);
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_MOVE");
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_MOVE");
 	motions[(int)CHARACTER_STATE::MOVE].offsetHitPos = { -25, -115 };
 	motions[(int)CHARACTER_STATE::MOVE].width = 50;
 	motions[(int)CHARACTER_STATE::MOVE].height = 115;
 	motions[(int)CHARACTER_STATE::MOVE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::MOVE].offsetHitPos, 50, 115);
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_MOVE", 0);
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_MOVE", 0);
+	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_MOVE");
+	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_MOVE");
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetHitPos = { -25, -115 };
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].width = 50;
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].height = 115;
@@ -51,8 +51,8 @@ void DIO::Init()
 
 	// HIT
 	motions[(int)CHARACTER_STATE::HIT].offsetDrawPos = { -47, -128 };
-	motions[(int)CHARACTER_STATE::HIT].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_HIT2", 0);
-	motions[(int)CHARACTER_STATE::HIT].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_HIT2", 0);
+	motions[(int)CHARACTER_STATE::HIT].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_HIT2");
+	motions[(int)CHARACTER_STATE::HIT].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_HIT2");
 	motions[(int)CHARACTER_STATE::HIT].offsetHitPos = { -25, -115 };
 	motions[(int)CHARACTER_STATE::HIT].width = 100;
 	motions[(int)CHARACTER_STATE::HIT].height = 115;
@@ -60,8 +60,8 @@ void DIO::Init()
 
 	// ATTACK_WEAK
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos = { -30, -110 };
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_WEAK", 0);
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_WEAK", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_WEAK");
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_WEAK");
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos = { -33, -110 };
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].width = 66;
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].height = 110;
@@ -71,8 +71,8 @@ void DIO::Init()
 
 	// ATTACK_STRONG
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos = { -36, -117 };
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_STRONG", 0);
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_STRONG", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_STRONG");
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_STRONG");
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos = { -33, -112 };
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].width = 66;
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].height = 112;
@@ -83,8 +83,8 @@ void DIO::Init()
 
 	// ATTACK_KICK
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos = { -95, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_KICK", 0);
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_KICK", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_KICK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_ATTACK_KICK");
+	motions[(int)CHARACTER_STATE::ATTACK_KICK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_ATTACK_KICK");
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetHitPos = { -33, -112 };
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].width = 66;
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].height = 112;
@@ -95,8 +95,8 @@ void DIO::Init()
 
 	// 가드
 	motions[(int)CHARACTER_STATE::GUARD].offsetDrawPos = { -36, -117 };
-	motions[(int)CHARACTER_STATE::GUARD].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_GUARD", 0);
-	motions[(int)CHARACTER_STATE::GUARD].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_GUARD", 0);
+	motions[(int)CHARACTER_STATE::GUARD].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_GUARD");
+	motions[(int)CHARACTER_STATE::GUARD].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_GUARD");
 	motions[(int)CHARACTER_STATE::GUARD].offsetHitPos = { -25, -115 };
 	motions[(int)CHARACTER_STATE::GUARD].width = 50;
 	motions[(int)CHARACTER_STATE::GUARD].height = 115;
@@ -104,8 +104,8 @@ void DIO::Init()
 
 	// 죽음
 	motions[(int)CHARACTER_STATE::DEATH].offsetDrawPos = { -80, -108 };
-	motions[(int)CHARACTER_STATE::DEATH].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_DEATH", 0);
-	motions[(int)CHARACTER_STATE::DEATH].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_DEATH", 0);
+	motions[(int)CHARACTER_STATE::DEATH].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("DIO_RIGHT_DEATH");
+	motions[(int)CHARACTER_STATE::DEATH].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("DIO_LEFT_DEATH");
 	motions[(int)CHARACTER_STATE::DEATH].offsetHitPos = { -80, -112 };
 	motions[(int)CHARACTER_STATE::DEATH].width = 152;
 	motions[(int)CHARACTER_STATE::DEATH].height = 108;

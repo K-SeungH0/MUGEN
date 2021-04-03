@@ -25,6 +25,7 @@
     <ClCompile Include="King.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chang.h" />
@@ -32,6 +33,7 @@
     <ClInclude Include="King.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

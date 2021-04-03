@@ -26,7 +26,7 @@ void Chang::Init()
 	
 	
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = new Image();
-	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/Chang/LeftChang_Move.bmp", 6600, 531, 11, 1, true, RGB(255, 0, 255));
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/Chang/LeftChang_Move.bmp", 7260, 531, 11, 1, true, RGB(255, 0, 255));
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = new Image();
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT]->Init("Image/Character/Chang/RightChang_Move.bmp", 6600, 531, 10, 1, true, RGB(255, 0, 255));
 	
@@ -62,11 +62,27 @@ void Chang::Update()
 			state = CHARACTER_STATE::MOVE;
 			pos.x -= 5;
 		}
+		if (KeyManager::GetLpInstance()->IsOnceKeyDown(VK_LEFT))
+		{
+			frame = 0;
+		}
+		if (KeyManager::GetLpInstance()->IsOnceKeyUp(VK_LEFT))
+		{
+			frame = 0;
+		}
 		if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_RIGHT))
 		{
 			dir = DIRECTION::RIGHT;
 			state = CHARACTER_STATE::MOVE;
 			pos.x += 5;
+		}
+		if (KeyManager::GetLpInstance()->IsOnceKeyDown(VK_RIGHT))
+		{
+			frame = 0;
+		}
+		if (KeyManager::GetLpInstance()->IsOnceKeyUp(VK_RIGHT))
+		{
+			frame = 0;
 		}
 		if (KeyManager::GetLpInstance()->IsOnceKeyDown('X'))
 		{
@@ -79,36 +95,51 @@ void Chang::Update()
 			state = CHARACTER_STATE::ATTACK_WEAK;
 		}
 	}
-
-	if (elapsedTime++ % 10 == 0)
+	elapsedTime++;
+	if (elapsedTime % 6 == 0)
 	{
-		if ((int)state == 3 && frame != 11)
+		if ((int)state == 3 && frame != 11) //강손
 		{
 			++frame;
 		}
 		else if ((int)state == 3)
 		{
+			frame = 0;
 			state = CHARACTER_STATE::IDLE;
 		}
-		if ((int)state == 2 && frame != 4)
+		if ((int)state == 2 && frame != 4) //약손
 		{
 			++frame;
 		}
 		else if ((int)state == 2)
 		{
+			frame = 0;
 			state = CHARACTER_STATE::IDLE;
 		}
-		if ((int)state == 1)
+	}
+	if (elapsedTime % 10 == 0)
+	{
+
+		if ((int)state == 1 && frame != 9) // 움직임
 		{
-			++frame %= 10;
+			++frame;
 		}
-		if ((int)state == 0)
+		else if ((int)state == 1)
 		{
-			++frame %= 5;
+			frame = 0;
+		}
+		if ((int)state == 0 && frame != 5) // 정지
+		{
+			++frame;
+		}
+		else if ((int)state == 0)
+		{
+			frame = 0;
 		}
 	}
-
 }
+
+
 
 
 

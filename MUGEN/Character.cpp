@@ -123,6 +123,5 @@ void Character::RangeAttack()
 {
 	state = CHARACTER_STATE::IDLE;
 	// 애니메이션 플레이
-
 	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
 }

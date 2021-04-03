@@ -21,6 +21,7 @@ public:
 		int height;
 		int maxFrameX;
 		int maxFrameY;
+		int currentFrame;
 		HBITMAP hBitmap;
 		HBITMAP hOldBit;
 
@@ -36,6 +37,7 @@ public:
 
 			maxFrameX = 0;
 			maxFrameY = 0;
+			currentFrame = 0;
 		};
 	}	IMAGE_INFO, *LPIMAGE_INFO;
 
@@ -43,6 +45,7 @@ private:
 	LPIMAGE_INFO lpImageInfo;
 	bool isTransparent;
 	COLORREF transColor;
+	int elapsedTime;
 
 public:
 	HRESULT Init(int width, int height);
@@ -53,6 +56,8 @@ public:
 	void Render(HDC hdc, int destX, int destY, int frameIndex);
 
 	void Release();
+
+	inline LPIMAGE_INFO GetImageInfo() { return this->lpImageInfo; }
 
 	inline HDC GetMemDC()
 	{

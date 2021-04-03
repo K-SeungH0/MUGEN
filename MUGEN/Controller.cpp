@@ -120,6 +120,7 @@ void Controller::CommandInput(SKILL_KIND kind)
 	elapsedTime = 0;
 	if (!lpmCommands)
 	{
+		// 현재 입력된 명령이 없음
 		if (skills[(int)kind].lpfnCmd) skills[(int)kind].lpfnCmd(*lpCharacter);
 		if (!mCommands[kind].mCombo.empty())
 		{
@@ -130,8 +131,14 @@ void Controller::CommandInput(SKILL_KIND kind)
 	{
 		if (lpmCommands->find(kind) != lpmCommands->end())
 		{
+			// 다음 콤보가 존재하면 스킬 실행
 			if ((*lpmCommands)[kind].skill->lpfnCmd)
 				(*lpmCommands)[kind].skill->lpfnCmd(*lpCharacter);
+
+			if ((*lpmCommands)[kind].mCombo.empty())
+			{
+				lpmCommands = nullptr;
+			}
 		}
 		else
 		{

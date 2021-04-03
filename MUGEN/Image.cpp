@@ -95,6 +95,35 @@ void Image::Render(HDC hdc, int destX, int destY)
 			destX, destY,
 			lpImageInfo->width, lpImageInfo->height,
 			lpImageInfo->hMemDC,
+			lpImageInfo->width * (lpImageInfo->currentFrame % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (lpImageInfo->currentFrame / lpImageInfo->maxFrameX),
+			lpImageInfo->width, lpImageInfo->height,
+			transColor
+		);
+	}
+	else
+	{
+		BitBlt(
+			hdc,
+			destX, destY,
+			lpImageInfo->width,
+			lpImageInfo->height,
+			lpImageInfo->hMemDC,
+			0, 0,
+			SRCCOPY
+		);
+	}
+}
+/*
+void Image::Render(HDC hdc, int destX, int destY)
+{
+	if (isTransparent)
+	{
+		GdiTransparentBlt(
+			hdc,
+			destX, destY,
+			lpImageInfo->width, lpImageInfo->height,
+			lpImageInfo->hMemDC,
 			0, 0,
 			lpImageInfo->width, lpImageInfo->height,
 			transColor
@@ -113,6 +142,7 @@ void Image::Render(HDC hdc, int destX, int destY)
 		);
 	}
 }
+*/
 
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
@@ -123,8 +153,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 			destX, destY,
 			lpImageInfo->width, lpImageInfo->height,
 			lpImageInfo->hMemDC,
-			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
-			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+			lpImageInfo->width * (lpImageInfo->currentFrame % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (lpImageInfo->currentFrame / lpImageInfo->maxFrameX),
 			lpImageInfo->width, lpImageInfo->height,
 			transColor
 		);

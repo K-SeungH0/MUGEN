@@ -8,4 +8,3 @@ public:
 	void Update() final;
 	void Render(HDC hdc) final;
 };
-

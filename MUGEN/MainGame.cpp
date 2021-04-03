@@ -9,9 +9,11 @@ HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
+	ImageManager::GetLpInstance()->Init();
 	
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
@@ -58,6 +60,7 @@ void MainGame::Release()
 	delete lpBuffer;
 
 	KeyManager::GetLpInstance()->ReleaseSingleton();
+	ImageManager::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
@@ -84,12 +87,16 @@ void MainGame::Update()
 void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
-	lpBgImg->Render(hBackDC);
 
+	lpBgImg->Render(hBackDC);
 
 	lpPlayer1->Render(hBackDC);
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	//lpPlayer2->Render(hBackDC);
+	//lpKING->Render(hBackDC);
+	//lpDIO->Render(hBackDC);
+
+	lpChang->Render(hBackDC);
 
 	lpBuffer->Render(hdc);
 }

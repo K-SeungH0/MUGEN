@@ -22,7 +22,7 @@ void DIO::Init()
 	pos = { 100, WINSIZE_HEIGHT - 100 };
 	// 캐릭터 이름
 	// /Image/Character/캐릭터이름/*.bmp
-	string name = "DIO";
+	name = "DIO";
 	// Init 모션별 초기화
 	// IDLE
 	motions[(int)CHARACTER_STATE::IDLE].offsetPos = { -33, -120 };

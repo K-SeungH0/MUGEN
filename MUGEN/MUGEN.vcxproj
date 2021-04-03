@@ -21,33 +21,37 @@
   <ItemGroup>
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Controller.cpp" />
-    <ClCompile Include="DIO.cpp" />
     <ClCompile Include="Chang.cpp" />
+    <ClCompile Include="DIO.cpp" />
     <ClCompile Include="GameObject.h" />
+    <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Controller.h" />
-    <ClInclude Include="King.h" />
     <ClInclude Include="DIO.h" />
+    <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Chang.h" />
+    <ClInclude Include="King.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D72EAA12-E09F-4D30-AC85-5A8107AF1E54}</ProjectGuid>
     <RootNamespace>MUGEN</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

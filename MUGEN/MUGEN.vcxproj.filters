@@ -63,14 +63,20 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClCompile>
-    <ClCompile Include="King.cpp">
-      <Filter>소스 파일\MEGEN\Character\King</Filter>
+    <ClCompile Include="DIO.cpp">
+      <Filter>소스 파일\MEGEN\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="DIO.cpp">
+      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClCompile>
     <ClCompile Include="Chang.cpp">
       <Filter>소스 파일\MEGEN\Character\Chang</Filter>
     </ClCompile>
-    <ClCompile Include="DIO.cpp">
-      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
+    <ClCompile Include="King.cpp">
+      <Filter>소스 파일\MEGEN\Character\King</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="ImageManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
@@ -89,17 +95,26 @@
     <ClInclude Include="Image.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>소스 파일\MEGEN\Character\Default</Filter>
-    </ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
+    </ClInclude>
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
+    </ClInclude>
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character</Filter>
     </ClInclude>
     <ClInclude Include="Chang.h">
       <Filter>소스 파일\MEGEN\Character\Chang</Filter>
     </ClInclude>
-    <ClInclude Include="DIO.h">
-      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
+    <ClInclude Include="Character.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="King.h">
+      <Filter>소스 파일\MEGEN\Character\King</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ImageManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>

@@ -21,7 +21,7 @@ void King::Init()
 
 void King::Release()
 {
-	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT]->Release();
+	//motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT]->Release();
 	lpImage->Release();
 }
 

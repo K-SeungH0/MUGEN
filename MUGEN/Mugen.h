@@ -11,6 +11,7 @@
 #include "KeyManager.h"
 #include "ImageManager.h"
 
+extern bool isDebugMode;
 extern HINSTANCE g_hInstance;
 extern HWND g_hWnd;
 

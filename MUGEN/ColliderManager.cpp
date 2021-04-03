@@ -60,7 +60,6 @@ void ColliderManager::Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int heig
 {
 	Collider collider;
 	collider.type = COLLIDER_TYPE::MOVEMENT;
-	collider.imageId = 0;
 	collider.damage = 10;
 	collider.width = width;
 	collider.height = height;
@@ -75,7 +74,6 @@ void ColliderManager::Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int he
 {
 	Collider collider;
 	collider.type = COLLIDER_TYPE::STATIC;
-	collider.imageId = 0;
 	collider.damage = 10;
 	collider.width = width;
 	collider.height = height;

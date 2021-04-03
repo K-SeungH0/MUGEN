@@ -7,18 +7,6 @@ void Character::Init()
 
 void Character::Release()
 {
-	// 이미지에대한 해제는 ImageManager가 일괄적으로 해주는 부분이기에 현재는 임시
-	//for (int i = 0; i < (int)DIRECTION::NONE; ++i)
-	//{
-	//	for (int k = 0; k < (int)CHARACTER_STATE::NONE; ++k)
-	//	{
-	//		if (motions[k].lpImages[i])
-	//		{
-	//			motions[k].lpImages[i]->Release();
-	//			delete[] motions[k].lpImages;
-	//		}
-	//	}
-	//}
 }
 
 void Character::Update()
@@ -26,12 +14,12 @@ void Character::Update()
 	if (!IsAlive())
 	{
 		// 죽었을때 마지막 프레임에서 멈추기
-		if (frame == 12) return;
+		if (frame == motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame) return;
 	}
 
-	if (elapsedTime++ % 10 == 0)
+	if (elapsedTime++ % motions[(int)state].motionSpeed == 0)
 	{
-		++frame %= 13;
+		++frame %= motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame;
 
 		if (motions[(int)state].mAtkInfo.find(frame) != motions[(int)state].mAtkInfo.end())
 		{
@@ -73,16 +61,7 @@ void Character::Render(HDC hdc)
 		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10);
 	}
 
-	POINTFLOAT drawPos = { 0, 0 };
-	switch (dir)
-	{
-	case Character::DIRECTION::RIGHT:
-		drawPos = { pos.x + motions[(int)state].offsetDrawPos.x, pos.y + motions[(int)state].offsetDrawPos.y };
-		break;
-	case Character::DIRECTION::LEFT:
-		drawPos = { pos.x + motions[(int)state].offsetDrawPos.x /* - 이미지 사이즈 */, pos.y + motions[(int)state].offsetDrawPos.y };
-		break;
-	}
+	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetDrawPos[(int)dir].x, pos.y + motions[(int)state].offsetDrawPos[(int)dir].y };
 	if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 

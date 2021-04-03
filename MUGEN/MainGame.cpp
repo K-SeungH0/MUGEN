@@ -62,6 +62,8 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
+	if (g_hWnd != GetForegroundWindow()) return;
+
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{
 		isDebugMode = !isDebugMode;

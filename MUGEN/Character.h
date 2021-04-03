@@ -16,8 +16,11 @@ public:
 	{
 		IDLE,
 		MOVE,
+		MOVE_GUARD,
 		ATTACK_WEAK,
+		ATTACK_NORMAL,
 		ATTACK_STRONG,
+		ATTACK_RANGE,
 		HIT,
 		DEATH,
 		NONE
@@ -84,6 +87,8 @@ public:
 
 	void Hit(int damage);
 	void Move(DIRECTION direction);
+	void LeftMove();
+	void RightMove();
 	void NormalAttack();
 	void StrongAttack();
 	void RangeAttack();

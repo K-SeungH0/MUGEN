@@ -91,19 +91,38 @@ void Character::Move(DIRECTION direction)
 	// 애니메이션 플레이
 }
 
+void Character::LeftMove()
+{
+	pos.x -= moveSpeed;
+	state = CHARACTER_STATE::MOVE;
+}
+
+void Character::RightMove()
+{
+	pos.x += moveSpeed;
+	state = CHARACTER_STATE::MOVE;
+}
+
 void Character::NormalAttack()
 {
-	state = CHARACTER_STATE::ATTACK_WEAK;
+	state = CHARACTER_STATE::IDLE;
 	// 애니메이션 플레이
+
+	MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::StrongAttack()
 {
-	state = CHARACTER_STATE::ATTACK_STRONG;
+	state = CHARACTER_STATE::IDLE;
 	// 애니메이션 플레이
+
+	MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::RangeAttack()
 {
+	state = CHARACTER_STATE::IDLE;
+	// 애니메이션 플레이
 
+	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
 }

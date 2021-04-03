@@ -116,10 +116,10 @@ void Character::RightMove()
 
 void Character::NormalAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_NORMAL;
 	// 애니메이션 플레이
 
-	MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
+
 }
 
 void Character::StrongAttack()
@@ -132,7 +132,7 @@ void Character::StrongAttack()
 
 void Character::RangeAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_RANGE;
 	// 애니메이션 플레이
-	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
+
 }

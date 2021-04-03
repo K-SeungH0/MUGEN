@@ -28,27 +28,27 @@ void Controller::Release()
 
 void Controller::Update()
 {
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::LEFT]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::LEFT]))
 	{
 		CommandInput(SKILL_KIND::LEFT);
 	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::RIGHT]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::RIGHT]))
 	{
 		CommandInput(SKILL_KIND::RIGHT);
 	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::DOWN]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::DOWN]))
 	{
 		CommandInput(SKILL_KIND::DOWN);
 	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::UP]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::UP]))
 	{
 		CommandInput(SKILL_KIND::UP);
 	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::ATTACK_NORMAL]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::ATTACK_NORMAL]))
 	{
 		CommandInput(SKILL_KIND::ATTACK_NORMAL);
 	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::ATTACK_STRONG]))
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::ATTACK_STRONG]))
 	{
 		CommandInput(SKILL_KIND::ATTACK_STRONG);
 	}

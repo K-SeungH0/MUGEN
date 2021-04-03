@@ -14,5 +14,5 @@ public:
 	void Release();
 	void Update();
 	// »ç¿ë¹ý : ex) Play("KING_LEFT_IDLE")
-	Image* Play(string key, int frame);
+	Image* GetImage(string key, int frame);
 };

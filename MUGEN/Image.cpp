@@ -54,7 +54,7 @@ HRESULT Image::Init(string fileName, int width, int height, bool isTransparent, 
 	return S_OK;
 }
 
-HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, bool isTransparent, COLORREF transColor)
+HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, int maxFrame, bool isTransparent, COLORREF transColor)
 {
 	HDC hdc = GetDC(g_hWnd);
 
@@ -71,6 +71,7 @@ HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int m
 
 	lpImageInfo->maxFrameX = maxFrameX;
 	lpImageInfo->maxFrameY = maxFrameY;
+	lpImageInfo->maxFrame = maxFrame;
 
 	this->isTransparent = isTransparent;
 	this->transColor = transColor;
@@ -95,35 +96,6 @@ void Image::Render(HDC hdc, int destX, int destY)
 			destX, destY,
 			lpImageInfo->width, lpImageInfo->height,
 			lpImageInfo->hMemDC,
-			lpImageInfo->width * (lpImageInfo->currentFrame % lpImageInfo->maxFrameX),
-			lpImageInfo->height * (lpImageInfo->currentFrame / lpImageInfo->maxFrameX),
-			lpImageInfo->width, lpImageInfo->height,
-			transColor
-		);
-	}
-	else
-	{
-		BitBlt(
-			hdc,
-			destX, destY,
-			lpImageInfo->width,
-			lpImageInfo->height,
-			lpImageInfo->hMemDC,
-			0, 0,
-			SRCCOPY
-		);
-	}
-}
-/*
-void Image::Render(HDC hdc, int destX, int destY)
-{
-	if (isTransparent)
-	{
-		GdiTransparentBlt(
-			hdc,
-			destX, destY,
-			lpImageInfo->width, lpImageInfo->height,
-			lpImageInfo->hMemDC,
 			0, 0,
 			lpImageInfo->width, lpImageInfo->height,
 			transColor
@@ -142,10 +114,10 @@ void Image::Render(HDC hdc, int destX, int destY)
 		);
 	}
 }
-*/
 
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
+
 	if (isTransparent)
 	{
 		GdiTransparentBlt(

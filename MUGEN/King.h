@@ -3,8 +3,8 @@
 class King : public Character
 {
 public:
+	King();
+	~King();
+
 	void Init() final;
-	void Release() final;
-	void Update() final;
-	void Render(HDC hdc) final;
 };

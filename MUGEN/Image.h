@@ -21,7 +21,7 @@ public:
 		int height;
 		int maxFrameX;
 		int maxFrameY;
-		int currentFrame;
+		int maxFrame;
 		HBITMAP hBitmap;
 		HBITMAP hOldBit;
 
@@ -37,7 +37,7 @@ public:
 
 			maxFrameX = 0;
 			maxFrameY = 0;
-			currentFrame = 0;
+			maxFrame = 0;
 		};
 	}	IMAGE_INFO, *LPIMAGE_INFO;
 
@@ -50,7 +50,7 @@ private:
 public:
 	HRESULT Init(int width, int height);
 	HRESULT Init(string fileName, int width, int height, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
-	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
+	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, int maxFrame, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
 
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex);

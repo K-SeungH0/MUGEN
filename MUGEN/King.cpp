@@ -1,6 +1,14 @@
 #include "King.h"
 #include "Image.h"
 
+King::King()
+{
+}
+
+King::~King()
+{
+}
+
 void King::Init()
 {
 	dir = DIRECTION::LEFT;
@@ -13,70 +21,33 @@ void King::Init()
 
 	pos = { WINSIZE_WIDTH / 2, WINSIZE_HEIGHT / 2};
 
-	name = "KING";
-	lpImage = new Image();
-	auto del_RGB = RGB(140, 206, 156);
-}
+	motions[(int)CHARACTER_STATE::IDLE].offsetHitPos = { 0, 0 };
+	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("KING_RIGHT_IDLE", 0);
+	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("KING_LEFT_IDLE", 0);
+	motions[(int)CHARACTER_STATE::IDLE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::IDLE].offsetHitPos, 50, 120);
 
-void King::Release()
-{
-	//motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT]->Release();
-	lpImage->Release();
-}
+	motions[(int)CHARACTER_STATE::MOVE].offsetHitPos = { 10, 0 };
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("KING_RIGHT_MOVE", 0);
+	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("KING_LEFT_MOVE", 0);
+	motions[(int)CHARACTER_STATE::MOVE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::MOVE].offsetHitPos, 50, 120);
+	
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos = { -30, 0 };
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("KING_RIGHT_STRONGPUNCH", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("KING_LEFT_STRONGPUNCH", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos, 50, 120);
 
-void King::Update()
-{
-	switch (state)
-	{
-	case Character::CHARACTER_STATE::IDLE:
-		if(dir == Character::DIRECTION::LEFT)
-			lpImage = ImageManager::GetLpInstance()->Play("KING_LEFT_SKILL", frame);
-		else
-			lpImage = ImageManager::GetLpInstance()->Play("KING_RIGHT_IDLE", frame);
-		break;
-	case Character::CHARACTER_STATE::MOVE:
-		if (dir == Character::DIRECTION::LEFT)
-			lpImage = ImageManager::GetLpInstance()->Play("KING_LEFT_MOVE", frame);
-		else
-			lpImage = ImageManager::GetLpInstance()->Play("KING_RIGHT_MOVE", frame);
-		break;
-	case Character::CHARACTER_STATE::ATTACK_WEAK:
-		break;
-	case Character::CHARACTER_STATE::ATTACK_STRONG:
-		break;
-	case Character::CHARACTER_STATE::HIT:
-		break;
-	case Character::CHARACTER_STATE::DEATH:
-		break;
-	case Character::CHARACTER_STATE::NONE:
-		break;
-	}
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos = { -30, 0 };
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("KING_RIGHT_WEAKPUNCH", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("KING_LEFT_WEAKPUNCH", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos, 50, 120);
 
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_LEFT))
-	{
-		dir = DIRECTION::LEFT;
-		state = CHARACTER_STATE::MOVE;
-		pos.x -= 2;
-	}
-	else if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_RIGHT))
-	{
-		dir = DIRECTION::LEFT;
-		state = CHARACTER_STATE::MOVE;
-		pos.x += 2;
-	}
-	else
-	{
-		dir = DIRECTION::LEFT;
-		state = CHARACTER_STATE::IDLE;
-	}
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos = { -30, 0 };
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("KING_RIGHT_SKILL", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("KING_LEFT_SKILL", 0);
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos, 50, 120);
 
-	if (elapsedTime++ % 10 == 0)
-	{
-		++frame %= lpImage->GetImageInfo()->maxFrameX;
-	}
-}
+	elapsedTime = 0;
+	frame = 0;
 
-void King::Render(HDC hdc)
-{
-	lpImage->Render(hdc, pos.x, pos.y);
+	moveSpeed = 5;
 }

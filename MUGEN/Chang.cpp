@@ -19,7 +19,8 @@ void Chang::Init()
 	pos = { 100,  500 };
 	name = "Chang Koehan";
 
-	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_Idle");
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_Idle");
 	motions[(int)CHARACTER_STATE::IDLE].offsetHitPos = { -47, -125 };
@@ -27,14 +28,16 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::IDLE].height = 126;
 
 	// MOVE
-	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_Move");
 	motions[(int)CHARACTER_STATE::MOVE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_Move");
 	motions[(int)CHARACTER_STATE::MOVE].offsetHitPos = { -54, -125 };
 	motions[(int)CHARACTER_STATE::MOVE].width = 70;
 	motions[(int)CHARACTER_STATE::MOVE].height = 126;
 
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_BackMove");
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_BackMove");
 	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetHitPos = { -47, -125 };
@@ -46,7 +49,8 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::RANGE, {120,-90}, 40, 40, 10 }));
 
 	// ATTACK_STRONG
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_RightPunch");
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_RightPunch");
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos = { -47, -125 };
@@ -54,7 +58,8 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].height = 126;
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos, 0, 0);
 
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_LeftPunch");
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_LeftPunch");
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos = { -47, -125 };
@@ -62,7 +67,8 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].height = 126;
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos, 0, 0);
 
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos[(int)DIRECTION::RIGHT] = { 327, 394 };
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos[(int)DIRECTION::LEFT] = { 327, 394 };
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_RangeAttack");
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].lpImages[(int)DIRECTION::LEFT] = ImageManager::GetLpInstance()->GetImage("LeftChang_RangeAttack");
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos = { -47, -125 };

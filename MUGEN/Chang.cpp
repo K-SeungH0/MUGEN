@@ -15,7 +15,6 @@ void Chang::Init()
 	dir = DIRECTION::LEFT;
 	state = CHARACTER_STATE::IDLE;
 	hp = 100;
-	preHp = 100;
 	pos = { -300,  300 };
 	name = "Chang Koehan";
 	motions[(int)CHARACTER_STATE::IDLE].offsetPos = { 100,100 };

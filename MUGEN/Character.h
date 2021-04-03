@@ -5,7 +5,7 @@
 class Image;
 class Character : public GameObject
 {
-protected:
+public:
 	enum class DIRECTION
 	{
 		RIGHT,
@@ -16,23 +16,38 @@ protected:
 	{
 		IDLE,
 		MOVE,
+		MOVE_GUARD,
 		ATTACK_WEAK,
+		ATTACK_NORMAL,
 		ATTACK_STRONG,
+		ATTACK_RANGE,
 		HIT,
 		DEATH,
 		NONE
 	};
+
+protected:
+	enum class ATTACK_TYPE
+	{
+		MELEE,
+		RANGE,
+		NONE
+	};
+
 	struct AttackInfo
 	{
-		// 공격판정
-		RECT rc;
+		ATTACK_TYPE type;
+		// 공격위치(중점)
+		// 오른쪽을 바라보는 기준으로 설정
+		POINTFLOAT offsetPos;
+		int width;
+		int height;
 		// 데미지
 		int damage;
 	};
-
 	struct MotionInfo
 	{
-		// 출력할 이미지의 상대위치
+		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
 		// IMAGE RENDER StartX = pos.x + offsetPos.x
 		POINTFLOAT offsetPos;
 		// 이미지
@@ -43,16 +58,19 @@ protected:
 		map<int, AttackInfo> mAtkInfo;
 	};
 
+	// 애니메이션 처리를 위한 변수
+	int elapsedTime;
+	int frame;
 
+	PLAYER_TYPE type = PLAYER_TYPE::NONE;
 	// 바라보는 방향
 	DIRECTION dir;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
-	int elapsedTime;
-	int frame;
 	// 캐릭터 체력
 	int hp;
-	int preHp;
+	// 캐릭터 스피드
+	int moveSpeed;
 	// 캐릭터 위치
 	POINTFLOAT pos;
 	// 캐릭터 이름
@@ -72,7 +90,15 @@ public:
 	virtual void Render(HDC hdc) override;
 
 	void Hit(int damage);
+	void Move(DIRECTION direction);
+	void LeftMove();
+	void RightMove();
+	void NormalAttack();
+	void StrongAttack();
+	void RangeAttack();
 
+	inline void SetType(PLAYER_TYPE type) { this->type = type; }
 	inline bool IsAlive() { return state != CHARACTER_STATE::DEATH; }
+	inline int GetHp() { return hp; }
 };
 

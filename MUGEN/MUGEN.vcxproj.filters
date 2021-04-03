@@ -40,6 +40,9 @@
     <Filter Include="소스 파일\MEGEN\Character\DIO">
       <UniqueIdentifier>{32abb052-6bd5-40c9-a9a0-b290475463d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\Controller">
+      <UniqueIdentifier>{c899b8ed-e547-440d-b870-6c2769489cf6}</UniqueIdentifier>
+	</Filter>
     <Filter Include="소스 파일\MEGEN\UI">
       <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
     </Filter>
@@ -81,6 +84,12 @@
     <ClCompile Include="UI.cpp">
       <Filter>소스 파일\MEGEN\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>소스 파일\MEGEN\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -110,6 +119,12 @@
     <ClInclude Include="DIO.h">
       <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>소스 파일\MEGEN\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+	</ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>

@@ -3,12 +3,14 @@
 #include "King.h"
 #include "Chang.h"
 #include "DIO.h"
+#include "Controller.h"
 
 HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
+	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
-
+	
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
@@ -26,6 +28,14 @@ HRESULT MainGame::Init()
 
 	lpChang = new Chang();
 	lpChang->Init();
+
+	lpPlayer1 = new Controller();
+	lpPlayer1->Init();
+	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
+
+	lpPlayer2 = new Controller();
+	lpPlayer2->Init();
+	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
@@ -55,11 +65,21 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	lpChang->Update();
+	if (g_hWnd != GetForegroundWindow()) return;
 
-	lpKING->Update();
+	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
+	{
+		isDebugMode = !isDebugMode;
+	}
 
-	lpDIO->Update();
+	ColliderManager::GetLpInstance()->Update();
+
+	//lpChang->Update();
+	//lpKING->Update();
+	//lpDIO->Update();
+
+	lpPlayer1->Update();
+	//lpPlayer2->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -70,9 +90,11 @@ void MainGame::Render(HDC hdc)
 
 	lpBgImg->Render(hBackDC);
 
-	lpKING->Render(hBackDC);
-
-	lpDIO->Render(hBackDC);
+	lpPlayer1->Render(hBackDC);
+	ColliderManager::GetLpInstance()->Render(hBackDC);
+	//lpPlayer2->Render(hBackDC);
+	//lpKING->Render(hBackDC);
+	//lpDIO->Render(hBackDC);
 
 	lpChang->Render(hBackDC);
 

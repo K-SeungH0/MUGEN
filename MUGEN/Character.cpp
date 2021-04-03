@@ -54,7 +54,7 @@ void Character::Update()
 		}
 	}
 
-	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetPos, 79, 115);
+	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
 
 void Character::Render(HDC hdc)
@@ -63,9 +63,20 @@ void Character::Render(HDC hdc)
 	{
 		RECT rc;
 		Rectangle(hdc, motions[(int)state].hitRc.left, motions[(int)state].hitRc.top, motions[(int)state].hitRc.right, motions[(int)state].hitRc.bottom);
+
+		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10);
 	}
 
-	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetPos.x, pos.y + motions[(int)state].offsetPos.y };
+	POINTFLOAT drawPos;
+	switch (dir)
+	{
+	case Character::DIRECTION::RIGHT:
+		drawPos = { pos.x + motions[(int)state].offsetDrawPos.x, pos.y + motions[(int)state].offsetDrawPos.y };
+		break;
+	case Character::DIRECTION::LEFT:
+		drawPos = { pos.x - motions[(int)state].offsetDrawPos.x, pos.y - motions[(int)state].offsetDrawPos.y };
+		break;
+	}
 	if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 
@@ -113,10 +124,10 @@ void Character::NormalAttack()
 
 void Character::StrongAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_STRONG;
 	// 애니메이션 플레이
 
-	MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
+	//MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::RangeAttack()

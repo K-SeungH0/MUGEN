@@ -11,8 +11,9 @@ public:
 		RIGHT,
 		DOWN,
 		UP,
-		ATTACK_NORMAL,
+		ATTACK_WEAK,
 		ATTACK_STRONG,
+		ATTACK_KICK,
 		ATTACK_RANGE,
 		NONE
 	};
@@ -29,9 +30,9 @@ public:
 	};
 
 private:
-	PLAYER_TYPE type;
-	int elapsedTime;
-	Character* lpCharacter;
+	PLAYER_TYPE type = PLAYER_TYPE::NONE;
+	int elapsedTime = 0;
+	Character* lpCharacter =  nullptr;
 
 	map<SKILL_KIND, Command>* lpmCommands = nullptr;
 
@@ -55,6 +56,8 @@ public:
 
 	void SetController(PLAYER_TYPE type, Character* lpCharacter);
 
+	inline PLAYER_TYPE GetPlayerType() { return type; }
+	inline Character* GetLpCharacter() { return lpCharacter; }
 private:
 	void CommandInput(SKILL_KIND kind);
 };

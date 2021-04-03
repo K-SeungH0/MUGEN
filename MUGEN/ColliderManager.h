@@ -49,12 +49,10 @@ public:
 	void Render(HDC hdc);
 
 	// 움직이는 충돌체 생성
-	void Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian);
+	void Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian, int damage = 0);
 	// 정적 충돌체 생성
-	void Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height);
+	void Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, int damage = 0);
 
-	// 본인의 히트박스와 타격 콜백함수를 넘겨주고 맞았다면 타격함수 실행
-	// 하나라도 맞았다면 true
-	bool IsCollision(PLAYER_TYPE type, RECT selfHitBox, function<void(int)> lpfnHit = nullptr);
+	inline list<Collider>& GetLstColliders(PLAYER_TYPE type) { return mLstColliders[type]; }
 };
 

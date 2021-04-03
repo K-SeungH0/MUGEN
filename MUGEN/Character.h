@@ -17,9 +17,10 @@ public:
 		IDLE,
 		MOVE,
 		MOVE_GUARD,
+		GUARD,
 		ATTACK_WEAK,
-		ATTACK_NORMAL,
 		ATTACK_STRONG,
+		ATTACK_KICK,
 		ATTACK_RANGE,
 		HIT,
 		DEATH,
@@ -96,15 +97,21 @@ public:
 	virtual void Render(HDC hdc) override;
 
 	void Hit(int damage);
-	void Move(DIRECTION direction);
+	void Guard();
+
 	void LeftMove();
 	void RightMove();
-	void NormalAttack();
+	void WeakAttack();
 	void StrongAttack();
+	void KickAttack();
 	void RangeAttack();
 
+	inline void SetPos(POINTFLOAT pos) { this->pos = pos; }
 	inline void SetType(PLAYER_TYPE type) { this->type = type; }
+	inline void SetDirection(DIRECTION dir) { this->dir = dir; }
 	inline bool IsAlive() { return state != CHARACTER_STATE::DEATH; }
 	inline int GetHp() { return hp; }
+	inline RECT GetHitRect() { return motions[(int)state].hitRc; }
+	inline PLAYER_TYPE GetPlayerType() { return type; }
 };
 

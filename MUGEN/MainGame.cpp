@@ -31,7 +31,7 @@ HRESULT MainGame::Init()
 
 	lpPlayer1 = new Controller();
 	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
+	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
 
 	lpPlayer2 = new Controller();
 	lpPlayer2->Init();

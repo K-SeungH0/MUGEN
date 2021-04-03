@@ -25,7 +25,7 @@ void Character::Update()
 {
 	if (elapsedTime++ % 10 == 0)
 	{
-		++frame %= 6;
+		++frame %= motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame;
 
 		if (motions[(int)state].mAtkInfo.find(frame) != motions[(int)state].mAtkInfo.end())
 		{
@@ -66,7 +66,9 @@ void Character::Render(HDC hdc)
 	}
 
 	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetPos.x, pos.y + motions[(int)state].offsetPos.y };
-	if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
+	if(state == CHARACTER_STATE::ATTACK_STRONG)
+		motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
+	else if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 
 void Character::Hit(int damage)
@@ -105,23 +107,30 @@ void Character::RightMove()
 
 void Character::NormalAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_WEAK;
+	//state = CHARACTER_STATE::IDLE;
 	// 애니메이션 플레이
+	frame = 0;
+	elapsedTime = 1;
 
-	MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
+//	MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::StrongAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_STRONG;
+	//state = CHARACTER_STATE::IDLE;
 	// 애니메이션 플레이
-
-	MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
+	frame = 0;
+	elapsedTime = 1;
+//	MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::RangeAttack()
 {
-	state = CHARACTER_STATE::IDLE;
+	state = CHARACTER_STATE::ATTACK_RANGE;
 	// 애니메이션 플레이
-	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
+	frame = 0;
+
+//	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
 }

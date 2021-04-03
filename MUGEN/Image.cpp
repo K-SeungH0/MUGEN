@@ -72,6 +72,7 @@ HRESULT Image::Init(string fileName, int width, int height, int maxFrameX, int m
 	lpImageInfo->maxFrameX = maxFrameX;
 	lpImageInfo->maxFrameY = maxFrameY;
 	lpImageInfo->maxFrame = maxFrame;
+
 	this->isTransparent = isTransparent;
 	this->transColor = transColor;
 
@@ -116,6 +117,7 @@ void Image::Render(HDC hdc, int destX, int destY)
 
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
+
 	if (isTransparent)
 	{
 		GdiTransparentBlt(

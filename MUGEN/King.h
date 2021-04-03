@@ -3,5 +3,8 @@
 class King : public Character
 {
 public:
+	King();
+	~King();
+
 	void Init() final;
 };

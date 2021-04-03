@@ -40,6 +40,9 @@
     <Filter Include="소스 파일\MEGEN\Character\DIO">
       <UniqueIdentifier>{32abb052-6bd5-40c9-a9a0-b290475463d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\UI">
+      <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,11 +63,11 @@
     <ClCompile Include="Image.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
-    </ClCompile>
-    <ClCompile Include="DIO.cpp">
-      <Filter>소스 파일\MEGEN\Character</Filter>
     </ClCompile>
     <ClCompile Include="DIO.cpp">
       <Filter>소스 파일\MEGEN\Character\DIO</Filter>
@@ -76,10 +79,7 @@
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageManager.cpp">
-      <Filter>소스 파일\Engine\Manager</Filter>
+      <Filter>소스 파일\MEGEN\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,29 +95,23 @@
     <ClInclude Include="Image.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="King.h">
-      <Filter>소스 파일\MEGEN\Character\King</Filter>
-    </ClInclude>
-    <ClInclude Include="DIO.h">
-      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
-    </ClInclude>
-    <ClInclude Include="DIO.h">
-      <Filter>소스 파일\MEGEN\Character</Filter>
+    <ClInclude Include="ImageManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Chang.h">
       <Filter>소스 파일\MEGEN\Character\Chang</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\MEGEN\Character\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>소스 파일\MEGEN\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DIO.h">
+      <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageManager.h">
-      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

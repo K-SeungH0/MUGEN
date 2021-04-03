@@ -1,16 +1,19 @@
 #include "MainGame.h"
 #include "Image.h"
 #include "King.h"
+#include "Chang.h"
 #include "DIO.h"
 
 HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
-	
-	backgroundCanvas = new Image();
-	backgroundCanvas->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
-	bgImg = new Image();
-	if (FAILED(bgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
+	ImageManager::GetLpInstance()->Init();
+
+	lpBuffer = new Image();
+	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+
+	lpBgImg = new Image();
+	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
 		MessageBox(g_hWnd, "배경로드 실패", "Error", MB_OK);
 	}
@@ -20,6 +23,9 @@ HRESULT MainGame::Init()
 
 	lpKING = new King();
 	lpKING->Init();
+
+	lpChang = new Chang();
+	lpChang->Init();
 
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
@@ -34,29 +40,22 @@ void MainGame::Release()
 	lpKING->Release();
 	delete lpKING;
 
-	bgImg->Release();
-	delete bgImg;
+	lpBgImg->Release();
+	delete lpBgImg;
 
-	backgroundCanvas->Release();
-	delete backgroundCanvas;
+	lpChang->Release();
+	delete lpChang;
+
+	lpBuffer->Release();
+	delete lpBuffer;
 
 	KeyManager::GetLpInstance()->ReleaseSingleton();
+	ImageManager::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
 {
-	if (KeyManager::GetLpInstance()->IsOnceKeyDown('W'))
-	{
-		MessageBox(g_hWnd, "Once Key Down", "KeyDown", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsOnceKeyUp('D'))
-	{
-		MessageBox(g_hWnd, "Once Key Up", "KeyUp", MB_OK);
-	}
-	if (KeyManager::GetLpInstance()->IsStayKeyDown(VK_SPACE))
-	{
-		MessageBox(g_hWnd, "Stay Key Down", "StayKeyDown", MB_OK);
-	}
+	lpChang->Update();
 
 	lpKING->Update();
 
@@ -67,14 +66,15 @@ void MainGame::Update()
 
 void MainGame::Render(HDC hdc)
 {
+	HDC hBackDC = lpBuffer->GetMemDC();
 
-	HDC hBackDC = backgroundCanvas->GetMemDC();
-	bgImg->Render(hBackDC);
+	lpBgImg->Render(hBackDC);
 
-	lpDIO->Render(hBackDC);
 	lpKING->Render(hBackDC);
 
-	backgroundCanvas->Render(hdc);
+	lpDIO->Render(hBackDC);
+
+	lpBuffer->Render(hdc);
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

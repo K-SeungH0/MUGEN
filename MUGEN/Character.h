@@ -58,6 +58,10 @@ protected:
 	// 캐릭터 이름
 	// /Image/Character/캐릭터이름/*.bmp
 	string name;
+
+	// Render용 image
+	Image* lpImage;
+
 	// Init 모션별 초기화
 	MotionInfo motions[(int)CHARACTER_STATE::NONE];
 

@@ -1,10 +1,8 @@
 #pragma once
 #include "Mugen.h"
-#include "Image.h"
-#include "DIO.h"
-class Image;
-class King;
 
+class Image;
+class Character;
 class MainGame
 {
 private:
@@ -13,14 +11,14 @@ private:
 
 	bool isInitialize = false;
 	HWND hTimer;
-	Image* backgroundCanvas;
-	HDC hBackgroundDC;
-	
+
+	Image* lpBuffer;
+	Image* lpBgImg;
+
 	// 캐릭터 추가
 	Character* lpKING;
-	Image* bgImg;
-
 	Character* lpDIO;
+	Character* lpChang;
 
 public:
 	HRESULT Init();

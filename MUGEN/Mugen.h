@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "KeyManager.h"
+#include "ImageManager.h"
 
 extern HINSTANCE g_hInstance;
 extern HWND g_hWnd;

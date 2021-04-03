@@ -153,8 +153,8 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 			destX, destY,
 			lpImageInfo->width, lpImageInfo->height,
 			lpImageInfo->hMemDC,
-			lpImageInfo->width * (lpImageInfo->currentFrame % lpImageInfo->maxFrameX),
-			lpImageInfo->height * (lpImageInfo->currentFrame / lpImageInfo->maxFrameX),
+			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
 			lpImageInfo->width, lpImageInfo->height,
 			transColor
 		);

@@ -75,6 +75,7 @@ void MainGame::Update()
 	ColliderManager::GetLpInstance()->Update();
 	lpPlayer1->Update();
 
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -87,6 +88,8 @@ void MainGame::Render(HDC hdc)
 	lpPlayer1->Render(hBackDC);
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 
+	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 	lpBuffer->Render(hdc);
 }
 

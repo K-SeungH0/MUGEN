@@ -48,12 +48,18 @@ protected:
 	struct MotionInfo
 	{
 		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
-		// IMAGE RENDER StartX = pos.x + offsetPos.x
-		POINTFLOAT offsetPos;
+		// IMAGE RENDER StartX = pos.x + offsetDrawPos.x
+		POINTFLOAT offsetDrawPos;
 		// 이미지
 		Image* lpImages[(int)DIRECTION::NONE];
+
+		// 히트박스 정보
+		POINTFLOAT offsetHitPos;
+		int width;
+		int height;
 		// 나의 피격 판정
 		RECT hitRc;
+
 		// 프레임, 히트판정/데미지
 		map<int, AttackInfo> mAtkInfo;
 	};

@@ -7,9 +7,6 @@ public:
 	Chang();
 	~Chang();
 
-	void Init();
-	void Release();
-	void Update();
-	void Render(HDC hdc);
+	virtual void Init() override;
 };
 

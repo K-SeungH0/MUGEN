@@ -55,6 +55,24 @@ HRESULT ImageManager::Init()
 	this->mImage["DIO_LEFT_MOVE"]->Init("Image/Character/DIO/DIO_LEFT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_MOVE", new Image()));
 	this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
+
+	//this->mImage.insert(make_pair("DIO_LEFT_HIT", new Image()));
+	//this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
+	//this->mImage.insert(make_pair("DIO_RIGHT_HIT", new Image()));
+	//this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
+	//this->mImage.insert(make_pair("DIO_LEFT_HIT2", new Image()));
+	//this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
+	//this->mImage.insert(make_pair("DIO_RIGHT_HIT2", new Image()));
+	//this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, true, RGB(255, 0, 255));
+	//
+	this->mImage.insert(make_pair("DIO_LEFT_ATTACK_STRONG", new Image()));
+	this->mImage["DIO_LEFT_ATTACK_STRONG"]->Init("Image/Character/DIO/DIO_LEFT_ATTACK_STRONG.bmp", 360, 560, 2, 5, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_RIGHT_ATTACK_STRONG", new Image()));
+	this->mImage["DIO_RIGHT_ATTACK_STRONG"]->Init("Image/Character/DIO/DIO_RIGHT_ATTACK_STRONG.bmp", 360, 560, 2, 5, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_LEFT_GUARD", new Image()));
+	this->mImage["DIO_LEFT_GUARD"]->Init("Image/Character/DIO/DIO_LEFT_GUARD.bmp", 142, 117, 2, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_RIGHT_GUARD", new Image()));
+	this->mImage["DIO_RIGHT_GUARD"]->Init("Image/Character/DIO/DIO_RIGHT_GUARD.bmp", 142, 117, 2, 1, true, RGB(255, 0, 255));
 #pragma endregion
 
 #pragma region Chang Image Load

@@ -50,9 +50,11 @@ protected:
 	{
 		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
 		// IMAGE RENDER StartX = pos.x + offsetDrawPos.x
-		POINTFLOAT offsetDrawPos;
+		POINTFLOAT offsetDrawPos[(int)DIRECTION::NONE];
 		// 이미지
 		Image* lpImages[(int)DIRECTION::NONE];
+		// 애니메이션 속도 클수록 느림 1 ~ 100
+		int motionSpeed = 10;
 
 		// 히트박스 정보
 		POINTFLOAT offsetHitPos;

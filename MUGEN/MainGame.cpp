@@ -74,6 +74,7 @@ void MainGame::Update()
 
 	ColliderManager::GetLpInstance()->Update();
 	lpPlayer1->Update();
+	lpPlayer2->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -85,6 +86,7 @@ void MainGame::Render(HDC hdc)
 	lpBgImg->Render(hBackDC);
 
 	lpPlayer1->Render(hBackDC);
+	lpPlayer2->Render(hBackDC);
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 
 	lpBuffer->Render(hdc);

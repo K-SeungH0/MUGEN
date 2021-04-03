@@ -23,7 +23,7 @@ HRESULT MainGame::Init()
 	lpDIO = new DIO();
 	lpDIO->Init();
 
-	lpKING = new King();
+	lpKING = new DIO();
 	lpKING->Init();
 
 	lpChang = new Chang();
@@ -73,8 +73,12 @@ void MainGame::Update()
 	}
 
 	ColliderManager::GetLpInstance()->Update();
+
 	lpPlayer1->Update();
 	lpPlayer2->Update();
+
+	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
+	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -87,8 +91,12 @@ void MainGame::Render(HDC hdc)
 
 	lpPlayer1->Render(hBackDC);
 	lpPlayer2->Render(hBackDC);
+
+	// Ãæµ¹Ã¼ ·»´õ
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 
+	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 	lpBuffer->Render(hdc);
 }
 
@@ -111,4 +119,33 @@ LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam
 	}
 
 	return DefWindowProc(hWnd, iMessage, wParam, lParam);
+}
+
+bool MainGame::IsCollision(Character* attacker, Character* defender)
+{
+	bool isCollision = false;
+	RECT playerRect, targetRect;
+
+	playerRect = defender->GetHitRect();
+	auto& lstColliders = ColliderManager::GetLpInstance()->GetLstColliders(attacker->GetPlayerType());
+	for (auto it = lstColliders.begin(); it != lstColliders.end();)
+	{
+		targetRect = { (int)(it->pos.x - it->width / 2), (int)(it->pos.y - it->height / 2), (int)(it->pos.x + it->width / 2), (int)(it->pos.y + it->height / 2) };
+		if (CollisionRect(playerRect, targetRect))
+		{
+			isCollision = true;
+			defender->Hit(it->damage);
+			if (isDebugMode && it->type == ColliderManager::COLLIDER_TYPE::STATIC)
+			{
+				++it;
+			}
+			else
+			{
+				it = lstColliders.erase(it);
+			}
+		}
+		else ++it;
+	}
+
+	return isCollision;
 }

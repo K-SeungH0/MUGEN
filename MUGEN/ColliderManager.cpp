@@ -1,5 +1,5 @@
-//#include "ColliderManager.h"
 #include "Mugen.h"
+#include "ColliderManager.h"
 
 ColliderManager::ColliderManager()
 {
@@ -56,11 +56,11 @@ void ColliderManager::Render(HDC hdc)
 	}
 }
 
-void ColliderManager::Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian)
+void ColliderManager::Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian, int damage)
 {
 	Collider collider;
 	collider.type = COLLIDER_TYPE::MOVEMENT;
-	collider.damage = 10;
+	collider.damage = damage;
 	collider.width = width;
 	collider.height = height;
 	collider.pos = pos;
@@ -70,11 +70,11 @@ void ColliderManager::Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int heig
 	mLstColliders[type].push_back(collider);
 }
 
-void ColliderManager::Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height)
+void ColliderManager::Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, int damage)
 {
 	Collider collider;
 	collider.type = COLLIDER_TYPE::STATIC;
-	collider.damage = 10;
+	collider.damage = damage;
 	collider.width = width;
 	collider.height = height;
 	collider.pos = pos;
@@ -82,22 +82,4 @@ void ColliderManager::Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int he
 	collider.radian = 0;
 
 	mLstColliders[type].push_back(collider);
-}
-
-bool ColliderManager::IsCollision(PLAYER_TYPE target, RECT selfHitBox, function<void(int)> lpfnHit)
-{
-	bool isCollision = false;
-	RECT targetRect;
-	list<Collider>& lstColliders = mLstColliders[target];
-	for (auto it = lstColliders.begin(); it != lstColliders.end();++it)
-	{
-		targetRect = { (int)(it->pos.x - it->width / 2), (int)(it->pos.y - it->height / 2), (int)(it->pos.x + it->width / 2), (int)(it->pos.y + it->height / 2) };
-		if (CollisionRect(selfHitBox, targetRect))
-		{
-			isCollision = true;
-			if (lpfnHit) lpfnHit(it->damage);
-		}
-	}
-
-	return isCollision;
 }

@@ -3,6 +3,7 @@
 
 class Image;
 class Character;
+class Controller;
 class MainGame
 {
 private:
@@ -19,6 +20,9 @@ private:
 	Character* lpKING;
 	Character* lpDIO;
 	Character* lpChang;
+
+	Controller* lpPlayer1;
+	Controller* lpPlayer2;
 
 public:
 	HRESULT Init();

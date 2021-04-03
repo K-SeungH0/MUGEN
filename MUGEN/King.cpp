@@ -10,7 +10,6 @@ void King::Init()
 	frame = 0;
 
 	hp = 100;
-	preHp = 100;
 
 	pos = { WINSIZE_WIDTH / 2, WINSIZE_HEIGHT / 2};
 

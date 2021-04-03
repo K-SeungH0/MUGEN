@@ -23,9 +23,15 @@ void Character::Release()
 
 void Character::Update()
 {
+	if (!IsAlive())
+	{
+		// 죽었을때 마지막 프레임에서 멈추기
+		if (frame == 12) return;
+	}
+
 	if (elapsedTime++ % 10 == 0)
 	{
-		++frame %= 6;
+		++frame %= 13;
 
 		if (motions[(int)state].mAtkInfo.find(frame) != motions[(int)state].mAtkInfo.end())
 		{
@@ -54,7 +60,7 @@ void Character::Update()
 		}
 	}
 
-	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetPos, 79, 115);
+	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
 
 void Character::Render(HDC hdc)
@@ -63,65 +69,115 @@ void Character::Render(HDC hdc)
 	{
 		RECT rc;
 		Rectangle(hdc, motions[(int)state].hitRc.left, motions[(int)state].hitRc.top, motions[(int)state].hitRc.right, motions[(int)state].hitRc.bottom);
+
+		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10);
 	}
 
-	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetPos.x, pos.y + motions[(int)state].offsetPos.y };
+	POINTFLOAT drawPos = { 0, 0 };
+	switch (dir)
+	{
+	case Character::DIRECTION::RIGHT:
+		drawPos = { pos.x + motions[(int)state].offsetDrawPos.x, pos.y + motions[(int)state].offsetDrawPos.y };
+		break;
+	case Character::DIRECTION::LEFT:
+		drawPos = { pos.x + motions[(int)state].offsetDrawPos.x /* - 이미지 사이즈 */, pos.y + motions[(int)state].offsetDrawPos.y };
+		break;
+	}
 	if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 
 void Character::Hit(int damage)
 {
-	hp -= 0;
-	if (hp < 0) hp = 0;
+	elapsedTime = 0;
+	frame = 0;
+
+	if (state != CHARACTER_STATE::MOVE_GUARD && state != CHARACTER_STATE::GUARD)
+		state = CHARACTER_STATE::HIT;
+	else
+		state = CHARACTER_STATE::GUARD;
+
+	if (state != CHARACTER_STATE::GUARD) hp -= damage;
+	else
+	{
+		damage *= 0.1f;
+		if (damage <= 0) damage = 1;
+		hp -= damage;
+	}
+	
+	if (hp <= 0)
+	{
+		hp = 0;
+		state = CHARACTER_STATE::DEATH;
+	}
 }
 
-void Character::Move(DIRECTION direction)
+void Character::Guard()
 {
-	dir = direction;
-	switch (direction)
-	{
-	case Character::DIRECTION::RIGHT:
-		pos.x += moveSpeed;
-		break;
-	case Character::DIRECTION::LEFT:
-		pos.x -= moveSpeed;
-		break;
-	}
-	state = CHARACTER_STATE::MOVE;
-	// 애니메이션 플레이
+	frame = 0;
+	elapsedTime = 0;
+	state = CHARACTER_STATE::GUARD;
 }
 
 void Character::LeftMove()
 {
-	pos.x -= moveSpeed;
-	state = CHARACTER_STATE::MOVE;
+	switch (state)
+	{
+	case Character::CHARACTER_STATE::IDLE:
+	case Character::CHARACTER_STATE::MOVE:
+	case Character::CHARACTER_STATE::MOVE_GUARD:
+		pos.x -= moveSpeed;
+		if (pos.x < 0) pos.x = 0;
+		if (dir != DIRECTION::RIGHT) state = CHARACTER_STATE::MOVE_GUARD;
+		else state = CHARACTER_STATE::MOVE;
+		break;
+	}
 }
 
 void Character::RightMove()
 {
-	pos.x += moveSpeed;
-	state = CHARACTER_STATE::MOVE;
+	switch (state)
+	{
+	case Character::CHARACTER_STATE::IDLE:
+	case Character::CHARACTER_STATE::MOVE:
+	case Character::CHARACTER_STATE::MOVE_GUARD:
+		pos.x += moveSpeed;
+		if (pos.x > WINSIZE_WIDTH) pos.x = WINSIZE_WIDTH;
+		if (dir == DIRECTION::LEFT) state = CHARACTER_STATE::MOVE_GUARD;
+		else state = CHARACTER_STATE::MOVE;
+		break;
+	}
 }
 
-void Character::NormalAttack()
+void Character::WeakAttack()
 {
-	state = CHARACTER_STATE::IDLE;
-	// 애니메이션 플레이
+	frame = 0;
+	elapsedTime = 0;
+	state = CHARACTER_STATE::ATTACK_WEAK;
 
-	MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
+	//MessageBox(g_hWnd, "일반 공격 커멘드 입력", "커멘드", MB_OK);
 }
 
 void Character::StrongAttack()
 {
-	state = CHARACTER_STATE::IDLE;
-	// 애니메이션 플레이
+	frame = 0;
+	elapsedTime = 0;
+	state = CHARACTER_STATE::ATTACK_STRONG;
 
-	MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
+	//MessageBox(g_hWnd, "강한 공격 커멘드 입력", "커멘드", MB_OK);
+}
+
+void Character::KickAttack()
+{
+	frame = 0;
+	elapsedTime = 0;
+	state = CHARACTER_STATE::ATTACK_KICK;
 }
 
 void Character::RangeAttack()
 {
+	frame = 0;
+	elapsedTime = 0;
 	state = CHARACTER_STATE::IDLE;
-	// 애니메이션 플레이
-	MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
+
+	//MessageBox(g_hWnd, "원거리 공격 커멘드 입력", "커멘드", MB_OK);
 }

@@ -17,7 +17,7 @@ void Chang::Init()
 	hp = 100;
 	pos = { -300,  300 };
 	name = "Chang Koehan";
-	motions[(int)CHARACTER_STATE::IDLE].offsetPos = { 100,100 };
+	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos = { 100,100 };
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT] = new Image();
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::RIGHT]->Init("Image/Character/Chang/LeftChang_Idle.bmp", 3960, 532, 6, 1, true, RGB(255, 0, 255));
 	motions[(int)CHARACTER_STATE::IDLE].lpImages[(int)DIRECTION::LEFT] = new Image();

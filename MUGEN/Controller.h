@@ -14,6 +14,7 @@ public:
 	struct Command
 	{
 		COMMAND_KIND kind;
+		function<void(void)> lpfnCmd;
 	};
 
 private:

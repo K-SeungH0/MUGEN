@@ -27,23 +27,30 @@ void Character::Update()
 	{
 		++frame %= 6;
 
-		switch (state)
+		if (motions[(int)state].mAtkInfo.find(frame) != motions[(int)state].mAtkInfo.end())
 		{
-		case Character::CHARACTER_STATE::MOVE:
-			if (frame == 3)
+			// 공격할 위치가 존재 하다면 공격!
+			POINTFLOAT atkPos;
+			switch (motions[(int)state].mAtkInfo[frame].type)
 			{
-				ColliderManager::GetLpInstance()->Fire(type, pos, 50, 50, 5, 0);
-				//ColliderManager::GetLpInstance()->Create(type, pos, 400, 400);
+			case ATTACK_TYPE::MELEE:
+				if (dir == DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+				else atkPos = { pos.x + motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+				ColliderManager::GetLpInstance()->Create(type, atkPos, motions[(int)state].mAtkInfo[frame].width, motions[(int)state].mAtkInfo[frame].height);
+				break;
+			case ATTACK_TYPE::RANGE:
+				if (dir == DIRECTION::LEFT)
+				{
+					atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+					ColliderManager::GetLpInstance()->Fire(type, atkPos, motions[(int)state].mAtkInfo[frame].width, motions[(int)state].mAtkInfo[frame].height, 5, PI);
+				}
+				else
+				{
+					atkPos = { pos.x + motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+					ColliderManager::GetLpInstance()->Fire(type, atkPos, motions[(int)state].mAtkInfo[frame].width, motions[(int)state].mAtkInfo[frame].height, 5, 0);
+				}
+				break;
 			}
-			break;
-		case Character::CHARACTER_STATE::ATTACK_WEAK:
-			break;
-		case Character::CHARACTER_STATE::ATTACK_STRONG:
-			break;
-		case Character::CHARACTER_STATE::HIT:
-			break;
-		case Character::CHARACTER_STATE::DEATH:
-			break;
 		}
 	}
 
@@ -64,6 +71,8 @@ void Character::Render(HDC hdc)
 
 void Character::Hit(int damage)
 {
+	hp -= 0;
+	if (hp < 0) hp = 0;
 }
 
 void Character::Move(DIRECTION direction)
@@ -79,14 +88,22 @@ void Character::Move(DIRECTION direction)
 		break;
 	}
 	state = CHARACTER_STATE::MOVE;
+	// 애니메이션 플레이
 }
 
 void Character::NormalAttack()
 {
 	state = CHARACTER_STATE::ATTACK_WEAK;
+	// 애니메이션 플레이
 }
 
 void Character::StrongAttack()
 {
 	state = CHARACTER_STATE::ATTACK_STRONG;
+	// 애니메이션 플레이
+}
+
+void Character::RangeAttack()
+{
+
 }

@@ -73,13 +73,7 @@ void MainGame::Update()
 	}
 
 	ColliderManager::GetLpInstance()->Update();
-
-	//lpChang->Update();
-	//lpKING->Update();
-	//lpDIO->Update();
-
 	lpPlayer1->Update();
-	//lpPlayer2->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);
 }
@@ -92,11 +86,6 @@ void MainGame::Render(HDC hdc)
 
 	lpPlayer1->Render(hBackDC);
 	ColliderManager::GetLpInstance()->Render(hBackDC);
-	//lpPlayer2->Render(hBackDC);
-	//lpKING->Render(hBackDC);
-	//lpDIO->Render(hBackDC);
-
-	lpChang->Render(hBackDC);
 
 	lpBuffer->Render(hdc);
 }

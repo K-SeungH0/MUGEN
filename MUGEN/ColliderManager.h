@@ -27,7 +27,8 @@ public:
 	struct Collider
 	{
 		COLLIDER_TYPE type;
-		int imageId;
+		string imageKey;
+		string hitEffectKey;
 		int damage;
 		int width;
 		int height;

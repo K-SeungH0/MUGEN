@@ -23,7 +23,7 @@ HRESULT MainGame::Init()
 	lpDIO = new DIO();
 	lpDIO->Init();
 
-	lpKING = new DIO();
+	lpKING = new King();
 	lpKING->Init();
 
 	lpChang = new Chang();
@@ -31,7 +31,7 @@ HRESULT MainGame::Init()
 
 	lpPlayer1 = new Controller();
 	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
+	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
 
 	lpPlayer2 = new Controller();
 	lpPlayer2->Init();
@@ -50,11 +50,11 @@ void MainGame::Release()
 	lpKING->Release();
 	delete lpKING;
 
-	lpBgImg->Release();
-	delete lpBgImg;
-
 	lpChang->Release();
 	delete lpChang;
+
+	lpBgImg->Release();
+	delete lpBgImg;
 
 	lpBuffer->Release();
 	delete lpBuffer;

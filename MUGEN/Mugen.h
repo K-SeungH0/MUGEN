@@ -32,21 +32,13 @@ enum class PLAYER_TYPE
 
 inline bool CollisionRect(RECT self, RECT other)
 {
-	if ((self.left < other.left && other.left < self.right && self.top < other.top && other.top < self.bottom)
-		|| (self.left < other.left && other.left < self.right && self.top < other.bottom && other.bottom < self.bottom)
-		|| (self.left < other.right && other.right < self.right && self.top < other.top && other.top < self.bottom)
-		|| (self.left < other.right && other.right < self.right && self.top < other.bottom && other.bottom < self.bottom))
+	if (other.right < self.left || other.bottom < self.top
+		|| other.left > self.right || other.top > self.bottom)
 	{
-		return true;
+		return false;
 	}
 
-	if ((self.left < other.left && other.right < self.right && self.top > other.top && other.bottom > self.bottom)
-		|| (other.left < self.left && self.right < other.right && other.top > self.top && self.bottom > other.bottom))
-	{
-		return true;
-	}
-
-	return false;
+	return true;
 }
 
 inline RECT GetRectOffset(POINTFLOAT pos, POINTFLOAT offset, int width, int height)

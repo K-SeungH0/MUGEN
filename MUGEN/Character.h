@@ -45,13 +45,15 @@ protected:
 		int height;
 		// 데미지
 		int damage;
+		string imageKey;
+		string hitEffectKey;
 	};
 	struct MotionInfo
 	{
 		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
 		// IMAGE RENDER StartX = pos.x + offsetDrawPos.x
 		POINTFLOAT offsetDrawPos[(int)DIRECTION::NONE];
-		// 이미지
+		// 이미지밖으로 빼고
 		Image* lpImages[(int)DIRECTION::NONE];
 		// 애니메이션 속도 클수록 느림 1 ~ 100
 		int motionSpeed = 10;
@@ -60,7 +62,7 @@ protected:
 		POINTFLOAT offsetHitPos;
 		int width;
 		int height;
-		// 나의 피격 판정
+		// 나의 피격 판정 밖으로 빼고
 		RECT hitRc;
 
 		// 프레임, 히트판정/데미지
@@ -70,6 +72,7 @@ protected:
 	// 애니메이션 처리를 위한 변수
 	int elapsedTime;
 	int frame;
+	int priority;
 
 	PLAYER_TYPE type = PLAYER_TYPE::NONE;
 	// 바라보는 방향
@@ -98,15 +101,18 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
+	void Stay();
 	void Hit(int damage);
 	void Guard();
 
-	void LeftMove();
-	void RightMove();
-	void WeakAttack();
-	void StrongAttack();
-	void KickAttack();
-	void RangeAttack();
+	void LeftMove(int priority);
+	void RightMove(int priority);
+	void WeakAttack(int priority);
+	void StrongAttack(int priority);
+	void KickAttack(int priority);
+	void RangeAttack(int priority);
+
+	void Translate(POINTFLOAT delta);
 
 	inline void SetPos(POINTFLOAT pos) { this->pos = pos; }
 	inline void SetType(PLAYER_TYPE type) { this->type = type; }

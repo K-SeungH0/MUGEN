@@ -77,6 +77,19 @@ void MainGame::Update()
 	lpPlayer1->Update();
 	lpPlayer2->Update();
 
+	// 캐릭터의 위치 조정
+	// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
+	RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
+	RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
+	if (CollisionRect(player1Rect, player2Rect))
+	{
+		// 충돌
+		// 겹쳐진 만큼 이동시켜야한다
+		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
+		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+	}
+
 	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
 	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
 
@@ -124,7 +137,7 @@ LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam
 bool MainGame::IsCollision(Character* attacker, Character* defender)
 {
 	bool isCollision = false;
-	RECT playerRect, targetRect;
+	RECT playerRect = {}, targetRect = {};
 
 	playerRect = defender->GetHitRect();
 	auto& lstColliders = ColliderManager::GetLpInstance()->GetLstColliders(attacker->GetPlayerType());

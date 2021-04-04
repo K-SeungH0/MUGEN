@@ -64,41 +64,44 @@ HRESULT ImageManager::Init()
 	this->mImage["DIO_LEFT_HIT2"]->Init("Image/Character/DIO/DIO_LEFT_HIT2.bmp", 188, 128, 2, 1, 2, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_HIT2", new Image()));
 	this->mImage["DIO_RIGHT_HIT2"]->Init("Image/Character/DIO/DIO_RIGHT_HIT2.bmp", 188, 128, 2, 1, 2, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_ATTACK_WEAK", new Image()));
 	this->mImage["DIO_LEFT_ATTACK_WEAK"]->Init("Image/Character/DIO/DIO_LEFT_ATTACK_WEAK.bmp", 230, 110, 2, 1, 2, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_ATTACK_WEAK", new Image()));
 	this->mImage["DIO_RIGHT_ATTACK_WEAK"]->Init("Image/Character/DIO/DIO_RIGHT_ATTACK_WEAK.bmp", 230, 110, 2, 1, 2, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_ATTACK_STRONG", new Image()));
 	this->mImage["DIO_LEFT_ATTACK_STRONG"]->Init("Image/Character/DIO/DIO_LEFT_ATTACK_STRONG.bmp", 474, 472, 3, 4, 10, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_ATTACK_STRONG", new Image()));
 	this->mImage["DIO_RIGHT_ATTACK_STRONG"]->Init("Image/Character/DIO/DIO_RIGHT_ATTACK_STRONG.bmp", 474, 472, 3, 4, 10, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_ATTACK_KICK", new Image()));
 	this->mImage["DIO_LEFT_ATTACK_KICK"]->Init("Image/Character/DIO/DIO_LEFT_ATTACK_KICK.bmp", 360, 560, 2, 5, 9, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_ATTACK_KICK", new Image()));
 	this->mImage["DIO_RIGHT_ATTACK_KICK"]->Init("Image/Character/DIO/DIO_RIGHT_ATTACK_KICK.bmp", 360, 560, 2, 5, 9, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_GUARD", new Image()));
 	this->mImage["DIO_LEFT_GUARD"]->Init("Image/Character/DIO/DIO_LEFT_GUARD.bmp", 142, 117, 2, 1, 2, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_GUARD", new Image()));
 	this->mImage["DIO_RIGHT_GUARD"]->Init("Image/Character/DIO/DIO_RIGHT_GUARD.bmp", 142, 117, 2, 1, 2, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_DEATH", new Image()));
 	this->mImage["DIO_LEFT_DEATH"]->Init("Image/Character/DIO/DIO_LEFT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_DEATH", new Image()));
 	this->mImage["DIO_RIGHT_DEATH"]->Init("Image/Character/DIO/DIO_RIGHT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_IDLE", new Image()));
 	this->mImage["DIO_LEFT_IDLE"]->Init("Image/Character/DIO/DIO_LEFT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_IDLE", new Image()));
 	this->mImage["DIO_RIGHT_IDLE"]->Init("Image/Character/DIO/DIO_RIGHT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
-
 	this->mImage.insert(make_pair("DIO_LEFT_MOVE", new Image()));
 	this->mImage["DIO_LEFT_MOVE"]->Init("Image/Character/DIO/DIO_LEFT_MOVE.bmp", 316, 460, 4, 4, 16, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_MOVE", new Image()));
 	this->mImage["DIO_RIGHT_MOVE"]->Init("Image/Character/DIO/DIO_RIGHT_MOVE.bmp", 316, 460, 4, 4, 16, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_LEFT_RANGE_ATTACK", new Image()));
+	this->mImage["DIO_LEFT_RANGE_ATTACK"]->Init("Image/Character/DIO/DIO_LEFT_RANGE_ATTACK.bmp", 438, 292, 3, 2, 6, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_RIGHT_RANGE_ATTACK", new Image()));
+	this->mImage["DIO_RIGHT_RANGE_ATTACK"]->Init("Image/Character/DIO/DIO_RIGHT_RANGE_ATTACK.bmp", 438, 292, 3, 2, 6, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("DIO_LEFT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["DIO_LEFT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/DIO/DIO_LEFT_RANGE_ATTACK_COLLIDER.bmp", 208, 5, 4, 1, 4, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["DIO_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/DIO/DIO_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 208, 5, 4, 1, 4, true, RGB(255, 0, 255));
+
 #pragma endregion
 
 #pragma region Chang Image Load
@@ -133,9 +136,9 @@ HRESULT ImageManager::Init()
 	this->mImage["RightChang_RightPunch"]->Init("Image/Character/Chang/RightChang_RightPunch.bmp", 7920, 531, 12, 1, 12, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_RightKick", new Image()));
-	this->mImage["LeftChang_RightKick"]->Init("Image/Character/Chang/LeftChang_RightKick.bmp", 4620, 532, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["LeftChang_RightKick"]->Init("Image/Character/Chang/LeftChang_RightKick.bmp", 5280, 531, 8, 1, 8, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_RightKick", new Image()));
-	this->mImage["RightChang_RightKick"]->Init("Image/Character/Chang/RightChang_RightKick.bmp", 4620, 532, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["RightChang_RightKick"]->Init("Image/Character/Chang/RightChang_RightKick.bmp", 5280, 531, 8, 1, 8, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_RangeAttack", new Image()));
 	this->mImage["LeftChang_RangeAttack"]->Init("Image/Character/Chang/LeftChang_RangeAttack.bmp", 2640, 532, 4, 1, 4, true, RGB(255, 0, 255));
@@ -145,12 +148,12 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("LeftChang_Down", new Image()));
 	this->mImage["LeftChang_Down"]->Init("Image/Character/Chang/LeftChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Down", new Image()));
-	this->mImage["RightChang_RangeAttack"]->Init("Image/Character/Chang/RightChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
+	this->mImage["RightChang_Down"]->Init("Image/Character/Chang/RightChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_Hit", new Image()));
-	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Hit", new Image()));
-	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
 
 #pragma endregion
 

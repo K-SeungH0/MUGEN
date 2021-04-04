@@ -66,6 +66,7 @@ void MainGame::Release()
 void MainGame::Update()
 {
 	//if (g_hWnd != GetForegroundWindow()) return;
+	//lpKING->Update();
 
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{

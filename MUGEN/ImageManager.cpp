@@ -29,6 +29,11 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_RIGHT_HIT2", new Image()));
 	this->mImage["KING_RIGHT_HIT2"]->Init("Image/Character/KING/KING_RIGHT_HIT2.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
 
+	this->mImage.insert(make_pair("KING_LEFT_GUARD", new Image()));
+	this->mImage["KING_LEFT_GUARD"]->Init("Image/Character/KING/KING_LEFT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_GUARD", new Image()));
+	this->mImage["KING_RIGHT_GUARD"]->Init("Image/Character/KING/KING_RIGHT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
+
 	this->mImage.insert(make_pair("KING_LEFT_SKILL", new Image()));
 	this->mImage["KING_LEFT_SKILL"]->Init("Image/Character/KING/KING_LEFT_SKILL.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
 	this->mImage.insert(make_pair("KING_RIGHT_SKILL", new Image()));
@@ -154,6 +159,10 @@ HRESULT ImageManager::Init()
 	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Hit", new Image()));
 	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
+
+#pragma endregion
+
+#pragma region Effect Image Load
 
 #pragma endregion
 

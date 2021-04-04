@@ -20,7 +20,8 @@ public:
 
 	struct Skill
 	{
-		function<void(Character&)> lpfnCmd = nullptr;
+		int priority;
+		function<void(Character&, int)> lpfnCmd = nullptr;
 	};
 
 	struct Command

@@ -27,8 +27,10 @@ public:
 	struct Collider
 	{
 		COLLIDER_TYPE type;
-		//string imageKey;
-		//string hitEffectKey;
+		int elpasedTime;
+		int frame;
+		Image* lpImage;
+		string hitEffectKey;
 		int damage;
 		int width;
 		int height;
@@ -49,9 +51,9 @@ public:
 	void Render(HDC hdc);
 
 	// 框流捞绰 面倒眉 积己
-	void Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian, int damage = 0);
+	void Fire(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, float speed, float radian, string colliderKey = "", string hitEffectKey = "", int damage = 0);
 	// 沥利 面倒眉 积己
-	void Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, int damage = 0);
+	void Create(PLAYER_TYPE type, POINTFLOAT pos, int width, int height, string hitEffectKey = "", int damage = 0);
 
 	inline list<Collider>& GetLstColliders(PLAYER_TYPE type) { return mLstColliders[type]; }
 };

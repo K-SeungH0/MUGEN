@@ -7,4 +7,5 @@ public:
 	~King();
 
 	void Init() final;
+	void Update() final;
 };

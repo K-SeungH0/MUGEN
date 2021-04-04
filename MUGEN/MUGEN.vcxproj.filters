@@ -42,7 +42,7 @@
     </Filter>
     <Filter Include="소스 파일\MEGEN\Controller">
       <UniqueIdentifier>{c899b8ed-e547-440d-b870-6c2769489cf6}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="소스 파일\MEGEN\UI">
       <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
     </Filter>
@@ -90,6 +90,9 @@
     <ClCompile Include="ColliderManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -124,9 +127,12 @@
     </ClInclude>
     <ClInclude Include="ColliderManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

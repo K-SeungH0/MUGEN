@@ -17,7 +17,7 @@ void Character::Update()
 		if (frame == motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame) return;
 	}
 
-	if (elapsedTime++ % motions[(int)state].motionSpeed == 0)
+	if (elapsedTime++ % motions[(int)state].motionSpeed == 9)
 	{
 		++frame %= motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame;
 

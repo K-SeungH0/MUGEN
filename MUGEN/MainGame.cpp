@@ -23,7 +23,7 @@ HRESULT MainGame::Init()
 	lpDIO = new DIO();
 	lpDIO->Init();
 
-	lpKING = new DIO();
+	lpKING = new King();
 	lpKING->Init();
 
 	lpChang = new Chang();
@@ -66,6 +66,7 @@ void MainGame::Release()
 void MainGame::Update()
 {
 	//if (g_hWnd != GetForegroundWindow()) return;
+	//lpKING->Update();
 
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{

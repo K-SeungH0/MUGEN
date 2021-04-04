@@ -93,6 +93,9 @@
     <ClCompile Include="ColliderManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
     <ClCompile Include="GameUI.cpp">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClCompile>
@@ -133,9 +136,6 @@
     </ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
-    </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

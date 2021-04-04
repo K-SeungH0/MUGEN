@@ -116,9 +116,9 @@ HRESULT ImageManager::Init()
 	this->mImage["RightChang_Move"]->Init("Image/Character/Chang/RightChang_Move.bmp", 6600, 532, 10, 1, 10, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_BackMove", new Image()));
-	this->mImage["LeftChang_BackMove"]->Init("Image/Character/Chang/LeftChang_BackMove.bmp", 6600, 532, 10, 1, 10, true, RGB(255, 0, 255));
+	this->mImage["LeftChang_BackMove"]->Init("Image/Character/Chang/LeftChang_BackMove.bmp", 6400, 512, 10, 1, 10, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_BackMove", new Image()));
-	this->mImage["RightChang_BackMove"]->Init("Image/Character/Chang/RightChang_BackMove.bmp", 6600, 532, 10, 1, 10, true, RGB(255, 0, 255));
+	this->mImage["RightChang_BackMove"]->Init("Image/Character/Chang/RightChang_BackMove.bmp", 6400, 512, 10, 1, 10, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_LeftKick", new Image()));
 	this->mImage["LeftChang_LeftKick"]->Init("Image/Character/Chang/LeftChang_LeftKick.bmp", 1980, 532, 3, 1, 3, true, RGB(255, 0, 255));
@@ -154,6 +154,11 @@ HRESULT ImageManager::Init()
 	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Hit", new Image()));
 	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("Chang_LEFT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["Chang_LEFT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/Chang/Chang_LEFT_RANGE_ATTACK_COLLIDER.bmp", 52, 53, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Chang_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["Chang_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/Chang/Chang_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 52, 53, 1, 1, 1, true, RGB(255, 0, 255));
 
 #pragma endregion
 

@@ -85,6 +85,9 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].height = 126;
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos, 0, 0);
 
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::RANGE, {-27,-125}, 60, 30, 10, "Chang_RIGHT_RANGE_ATTACK_COLLIDER", "" }));
+	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::RANGE, {-27,-125}, 60, 30, 10, "Chang_LEFT_RANGE_ATTACK_COLLIDER", "" }));
+
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos[(int)DIRECTION::RIGHT] = { -327, -394 };
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos[(int)DIRECTION::LEFT] = { -327, -394 };
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].lpImages[(int)DIRECTION::RIGHT] = ImageManager::GetLpInstance()->GetImage("RightChang_RightKick");

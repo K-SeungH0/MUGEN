@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-class Character;
 class UI
 {
 	//virtual void Init() override;

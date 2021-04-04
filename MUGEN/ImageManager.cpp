@@ -148,7 +148,7 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("LeftChang_Down", new Image()));
 	this->mImage["LeftChang_Down"]->Init("Image/Character/Chang/LeftChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Down", new Image()));
-	this->mImage["RightChang_RangeAttack"]->Init("Image/Character/Chang/RightChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
+	this->mImage["RightChang_Down"]->Init("Image/Character/Chang/RightChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_Hit", new Image()));
 	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));

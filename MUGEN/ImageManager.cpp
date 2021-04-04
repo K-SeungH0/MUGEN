@@ -136,9 +136,9 @@ HRESULT ImageManager::Init()
 	this->mImage["RightChang_RightPunch"]->Init("Image/Character/Chang/RightChang_RightPunch.bmp", 7920, 531, 12, 1, 12, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_RightKick", new Image()));
-	this->mImage["LeftChang_RightKick"]->Init("Image/Character/Chang/LeftChang_RightKick.bmp", 4620, 532, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["LeftChang_RightKick"]->Init("Image/Character/Chang/LeftChang_RightKick.bmp", 5280, 531, 8, 1, 8, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_RightKick", new Image()));
-	this->mImage["RightChang_RightKick"]->Init("Image/Character/Chang/RightChang_RightKick.bmp", 4620, 532, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["RightChang_RightKick"]->Init("Image/Character/Chang/RightChang_RightKick.bmp", 5280, 531, 8, 1, 8, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_RangeAttack", new Image()));
 	this->mImage["LeftChang_RangeAttack"]->Init("Image/Character/Chang/LeftChang_RangeAttack.bmp", 2640, 532, 4, 1, 4, true, RGB(255, 0, 255));
@@ -151,9 +151,9 @@ HRESULT ImageManager::Init()
 	this->mImage["RightChang_Down"]->Init("Image/Character/Chang/RightChang_Down.bmp", 10560, 532, 16, 1, 16, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("LeftChang_Hit", new Image()));
-	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["LeftChang_Hit"]->Init("Image/Character/Chang/LeftChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("RightChang_Hit", new Image()));
-	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 7, 1, 7, true, RGB(255, 0, 255));
+	this->mImage["RightChang_Hit"]->Init("Image/Character/Chang/RightChang_Hit.bmp", 4480, 512, 6, 1, 6, true, RGB(255, 0, 255));
 
 #pragma endregion
 

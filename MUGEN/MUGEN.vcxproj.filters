@@ -137,5 +137,11 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

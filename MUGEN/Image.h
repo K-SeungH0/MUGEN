@@ -22,6 +22,7 @@ public:
 		int maxFrameX;
 		int maxFrameY;
 		int maxFrame;
+		int currentFrame;
 		HBITMAP hBitmap;
 		HBITMAP hOldBit;
 
@@ -38,6 +39,7 @@ public:
 			maxFrameX = 0;
 			maxFrameY = 0;
 			maxFrame = 0;
+			currentFrame = 0;
 		};
 	}	IMAGE_INFO, *LPIMAGE_INFO;
 

@@ -4,12 +4,14 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
+#include "GameUI.h"
 
 HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
+	
 	
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);

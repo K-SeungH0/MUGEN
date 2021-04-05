@@ -49,6 +49,15 @@
     <Filter Include="소스 파일\MEGEN\GameUI">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\GameUI\INGAME">
+      <UniqueIdentifier>{60bd0359-be49-45c0-84c5-65fda7b97995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameUI\SELECT">
+      <UniqueIdentifier>{263cefb6-15ec-4aba-9cbf-052ebd31f379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameUI\Default">
+      <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,6 +105,15 @@
     <ClCompile Include="GameUI.cpp">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClCompile>
+    <ClCompile Include="INGAME.cpp">
+      <Filter>소스 파일\MEGEN\GameUI\INGAME</Filter>
+    </ClCompile>
+    <ClCompile Include="SELECT.cpp">
+      <Filter>소스 파일\MEGEN\GameUI\SELECT</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\MEGEN\GameUI\Default</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -136,6 +154,15 @@
     </ClInclude>
     <ClInclude Include="GameUI.h">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="INGAME.h">
+      <Filter>소스 파일\MEGEN\GameUI\INGAME</Filter>
+    </ClInclude>
+    <ClInclude Include="SELECT.h">
+      <Filter>소스 파일\MEGEN\GameUI\SELECT</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>소스 파일\MEGEN\GameUI\Default</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

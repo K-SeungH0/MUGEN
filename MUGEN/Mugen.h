@@ -3,6 +3,7 @@
 #define WINSIZE_WIDTH 800
 #define WINSIZE_HEIGHT 600
 #define PI 3.1415926f
+#define MAX_HP 100
 
 #include <Windows.h>
 #include <string>

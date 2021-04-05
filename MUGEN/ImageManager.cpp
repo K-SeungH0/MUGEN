@@ -227,6 +227,20 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("TIME9", new Image()));
 	this->mImage["TIME9"]->Init("Image/UI/Round/9.bmp", 250, 250, 1, 1, 1, true, RGB(255, 0, 255));
 
+	this->mImage.insert(make_pair("UI_1P_Chang", new Image()));
+	this->mImage["UI_1P_Chang"]->Init("Image/UI/Player/UI_1P_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_2P_Chang", new Image()));
+	this->mImage["UI_2P_Chang"]->Init("Image/UI/Player/UI_2P_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_1P_DIO", new Image()));
+	this->mImage["UI_1P_DIO"]->Init("Image/UI/Player/UI_1P_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_2P_DIO", new Image()));
+	this->mImage["UI_2P_DIO"]->Init("Image/UI/Player/UI_2P_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_1P_KING", new Image()));
+	this->mImage["UI_1P_KING"]->Init("Image/UI/Player/UI_1P_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_2P_KING", new Image()));
+	this->mImage["UI_2P_KING"]->Init("Image/UI/Player/UI_2P_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
 
 #pragma endregion
 

@@ -4,7 +4,7 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
-#include "GameScene.h"
+#include "InGame.h"
 
 HRESULT MainGame::Init()
 {
@@ -21,6 +21,8 @@ HRESULT MainGame::Init()
 	{
 		MessageBox(g_hWnd, "배경로드 실패", "Error", MB_OK);
 	}
+
+
 
 	lpDIO = new DIO();
 	lpDIO->Init();
@@ -39,7 +41,7 @@ HRESULT MainGame::Init()
 	lpPlayer2->Init();
 	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
-	inGame = new GameScene();
+	inGame = new InGame();
 	inGame->Init();
 
 	isInitialize = true;
@@ -97,6 +99,8 @@ void MainGame::Update()
 		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 	}
+
+	inGame->Update();
 
 	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
 	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());

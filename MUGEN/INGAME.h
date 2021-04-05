@@ -4,21 +4,36 @@
 #include "Controller.h"
 #include "Singleton.h"
 
-class Ingame : public GameScene
+class InGame : public GameScene
 {
 public:
-	Ingame();
-	~Ingame();
+	InGame();
+	~InGame();
 private:
-	Image* lpHP1UIImg;
-	Image* lpHP2UIImg;
-	Image* lpHP1Img;
-	Image* lpHP2Img;
-	Image* lpDelayHP1Img;
-	Image* lpDelayHP2Img;
+	Image* Player1_HPUI;
+	Image* Player2_HPUI;
+	Image* Player1_HP;
+	Image* Player2_HP;
+	Image* Player1_DelayHP;
+	Image* Player2_DelayHP;
 	Image* lpBuffer;
 	Image* lpBgImg;
+	Image* lpKOImg;
+	Image* Time;
+	Image* Time0;
+	Image* Time1;
+	Image* Time2;
+	Image* Time3;
+	Image* Time4;
+	Image* Time5;
+	Image* Time6;
+	Image* Time7;
+	Image* Time8;
+	Image* Time9;
 
+	int elapsedTime;
+	int frame;
+	int time = 60;
 	// 캐릭터 추가
 	Character* lpKING;
 	Character* lpDIO;

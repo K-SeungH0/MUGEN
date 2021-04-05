@@ -55,6 +55,9 @@
     <Filter Include="소스 파일\MEGEN\GameScene\Default">
       <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\GameScene\GameUI">
+      <UniqueIdentifier>{62405340-07f0-4a53-a94a-897e82cfd448}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,14 +105,14 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>소스 파일\MEGEN\GameScene</Filter>
-    </ClCompile>
     <ClCompile Include="InGame.cpp">
       <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +162,7 @@
       <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
     </ClInclude>
     <ClInclude Include="GameUI.h">
-      <Filter>소스 파일\MEGEN\GameScene</Filter>
+      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

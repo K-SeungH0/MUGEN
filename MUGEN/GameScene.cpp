@@ -1,8 +1,7 @@
 #include "GameScene.h"
 
-HRESULT GameScene::Init()
+void GameScene::Init()
 {
-	return E_NOTIMPL;
 }
 
 void GameScene::Release()

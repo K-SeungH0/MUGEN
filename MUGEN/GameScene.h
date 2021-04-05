@@ -10,7 +10,7 @@ public:
 protected:
 
 public:
-	HRESULT Init();
+	void Init();
 	void Release();
 	void Update();
 	void Render(HDC hdc);

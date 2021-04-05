@@ -4,7 +4,7 @@
 class Image;
 class Character;
 class Controller;
-class GameScene;
+class InGame;
 class MainGame
 {
 private:
@@ -16,7 +16,6 @@ private:
 
 	Image* lpBuffer;
 	Image* lpBgImg;
-
 	// 캐릭터 추가
 	Character* lpKING;
 	Character* lpDIO;
@@ -25,7 +24,7 @@ private:
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
 
-	GameScene* inGame;
+	InGame* inGame;
 
 public:
 	HRESULT Init();

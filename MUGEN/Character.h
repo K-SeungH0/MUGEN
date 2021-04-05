@@ -5,8 +5,6 @@
 class Image;
 class Character : public GameObject
 {
-public:
-
 protected:
 	enum class ATTACK_TYPE
 	{
@@ -25,7 +23,7 @@ protected:
 		int height;
 		// 데미지
 		int damage;
-		string imageKey;
+		string imageKey[(int)CHARACTER_DIRECTION::NONE];
 		string hitEffectKey;
 	};
 	struct MotionInfo
@@ -71,6 +69,7 @@ protected:
 
 	// Render용 image
 	Image* lpImage;
+	RECT hitRc;
 
 	// Init 모션별 초기화
 	MotionInfo motions[(int)CHARACTER_STATE::NONE];
@@ -82,7 +81,7 @@ public:
 	virtual void Render(HDC hdc) override;
 
 	void Stay();
-	void Hit(int damage);
+	void Hit(int damage, POINTFLOAT hitPoint, string hitEffectKey);
 	void Guard();
 
 	void LeftMove(int priority);
@@ -94,12 +93,14 @@ public:
 
 	void Translate(POINTFLOAT delta);
 
+	inline void RefreshImage() { lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state)); }
 	inline void SetPos(POINTFLOAT pos) { this->pos = pos; }
 	inline void SetType(PLAYER_TYPE type) { this->type = type; }
 	inline void SetDirection(CHARACTER_DIRECTION dir) { this->dir = dir; }
 	inline bool IsAlive() { return state != CHARACTER_STATE::DEATH; }
 	inline int GetHp() { return hp; }
-	inline RECT GetHitRect() { return motions[(int)state].hitRc; }
+	inline POINTFLOAT GetPos() { return pos; }
+	inline RECT GetHitRect() { return hitRc; }
 	inline PLAYER_TYPE GetPlayerType() { return type; }
 };
 

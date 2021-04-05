@@ -23,15 +23,15 @@ HRESULT MainGame::Init()
 	lpDIO = new DIO();
 	lpDIO->Init();
 
-	lpKING = new King();
+	lpKING = new DIO();
 	lpKING->Init();
 
-	lpChang = new Chang();
-	lpChang->Init();
+	//lpChang = new Chang();
+	//lpChang->Init();
 
 	lpPlayer1 = new Controller();
 	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
+	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
 
 	lpPlayer2 = new Controller();
 	lpPlayer2->Init();
@@ -50,8 +50,8 @@ void MainGame::Release()
 	lpKING->Release();
 	delete lpKING;
 
-	lpChang->Release();
-	delete lpChang;
+	//lpChang->Release();
+	//delete lpChang;
 
 	lpBgImg->Release();
 	delete lpBgImg;
@@ -141,8 +141,11 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 {
 	bool isCollision = false;
 	RECT playerRect = {}, targetRect = {};
+	POINTFLOAT point, playerPoint;
+	float incl = 1;
 
 	playerRect = defender->GetHitRect();
+	playerPoint = { defender->GetPos().x, defender->GetPos().y - (playerRect.bottom - playerRect.top) / 2 };
 	auto& lstColliders = ColliderManager::GetLpInstance()->GetLstColliders(attacker->GetPlayerType());
 	for (auto it = lstColliders.begin(); it != lstColliders.end();)
 	{
@@ -150,7 +153,38 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 		if (CollisionRect(playerRect, targetRect))
 		{
 			isCollision = true;
-			defender->Hit(it->damage);
+
+			// 콜라이더의 원정과 해당 캐릭터의 hitRect의 중심과 선을 이어서 hitRect안에 있을때 그 지점에서 이펙트 출력
+			// KING_LEFT_RANGE_ATTACK_EFFECT
+			incl = (it->pos.y - playerPoint.y) / (it->pos.x - playerPoint.x);
+			point = { roundf(it->pos.x), incl * roundf(it->pos.x) + (it->pos.y - incl * it->pos.x) };
+			if (playerPoint.x - it->pos.x < 0)
+			{
+				for (int i = 0; point.x + i >= playerPoint.x + 0.0001f; --i)
+				{
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						// 이펙트 출력후 for문 나가기
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
+				}
+			}
+			else
+			{
+				for (int i = 0; point.x + i < playerPoint.x + 0.0001f; ++i)
+				{
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						// 이펙트 출력후 for문 나가기
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
+				}
+			}
+			/* it->hitEffectKey */
+			defender->Hit(it->damage, point, "KING_RIGHT_RANGE_ATTACK_EFFECT");
+
 			if (isDebugMode && it->type == ColliderManager::COLLIDER_TYPE::STATIC)
 			{
 				++it;

@@ -15,12 +15,12 @@ void Character::Update()
 	if (!IsAlive())
 	{
 		// 죽었을때 마지막 프레임에서 멈추기
-		if (frame + 1 == motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame) return;
+		if (frame + 1 == lpImage->GetImageInfo()->maxFrame) return;
 	}
 
 	if (++elapsedTime % motions[(int)state].motionSpeed == 0)
 	{
-		++frame %= motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame;
+		++frame %= lpImage->GetImageInfo()->maxFrame;
 		if (frame == 0)
 		{
 			// 모션이 한사이클 끝남
@@ -28,6 +28,8 @@ void Character::Update()
 			{
 			case CHARACTER_STATE::GUARD:
 				state = CHARACTER_STATE::MOVE_GUARD;
+				priority = -1;
+				lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 				break;
 			case CHARACTER_STATE::ATTACK_WEAK:
 			case CHARACTER_STATE::ATTACK_STRONG:
@@ -36,6 +38,7 @@ void Character::Update()
 			case CHARACTER_STATE::HIT:
 				state = CHARACTER_STATE::IDLE;
 				priority = -1;
+				lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 				break;
 			}
 		}
@@ -64,7 +67,7 @@ void Character::Update()
 									motions[(int)state].mAtkInfo[frame].width,
 									motions[(int)state].mAtkInfo[frame].height,
 									5, PI,
-									motions[(int)state].mAtkInfo[frame].imageKey,
+									motions[(int)state].mAtkInfo[frame].imageKey[(int)dir],
 									motions[(int)state].mAtkInfo[frame].hitEffectKey,
 									10);
 				}
@@ -76,7 +79,7 @@ void Character::Update()
 						motions[(int)state].mAtkInfo[frame].width,
 						motions[(int)state].mAtkInfo[frame].height,
 						5, 0,
-						motions[(int)state].mAtkInfo[frame].imageKey,
+						motions[(int)state].mAtkInfo[frame].imageKey[(int)dir],
 						motions[(int)state].mAtkInfo[frame].hitEffectKey,
 						10);
 				}
@@ -86,6 +89,8 @@ void Character::Update()
 	}
 
 	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
+
+	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
 
 void Character::Render(HDC hdc)
@@ -93,13 +98,13 @@ void Character::Render(HDC hdc)
 	if (isDebugMode)
 	{
 		RECT rc;
-		Rectangle(hdc, motions[(int)state].hitRc.left, motions[(int)state].hitRc.top, motions[(int)state].hitRc.right, motions[(int)state].hitRc.bottom);
+		Rectangle(hdc, hitRc.left, hitRc.top, hitRc.right, hitRc.bottom);
 
 		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10);
 	}
 
 	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetDrawPos[(int)dir].x, pos.y + motions[(int)state].offsetDrawPos[(int)dir].y };
-	if (motions[(int)state].lpImages[(int)dir]) motions[(int)state].lpImages[(int)dir]->Render(hdc, drawPos.x, drawPos.y, frame);
+	if (lpImage) lpImage->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 
 void Character::Stay()
@@ -113,11 +118,12 @@ void Character::Stay()
 		frame = 0;
 		priority = -1;
 		state = CHARACTER_STATE::IDLE;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 		break;
 	}
 }
 
-void Character::Hit(int damage)
+void Character::Hit(int damage, POINTFLOAT hitPoint, string hitEffectKey)
 {
 	if (IsAlive())
 	{
@@ -131,12 +137,17 @@ void Character::Hit(int damage)
 	else
 		state = CHARACTER_STATE::GUARD;
 
-	if (state != CHARACTER_STATE::GUARD) hp -= damage;
+	if (state != CHARACTER_STATE::GUARD)
+	{
+		hp -= damage;
+		EffectManager::GetLpInstance()->EffectRender(hitPoint, hitEffectKey);
+	}
 	else
 	{
 		damage *= 0.1f;
 		if (damage <= 0) damage = 1;
 		hp -= damage;
+		EffectManager::GetLpInstance()->EffectRender(hitPoint, "EFFECT_GUARD");
 	}
 	
 	if (hp <= 0)
@@ -144,6 +155,7 @@ void Character::Hit(int damage)
 		hp = 0;
 		state = CHARACTER_STATE::DEATH;
 	}
+	lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 }
 
 void Character::Guard()
@@ -152,6 +164,7 @@ void Character::Guard()
 	elapsedTime = 0;
 	priority = 10;
 	state = CHARACTER_STATE::GUARD;
+	lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 }
 
 void Character::LeftMove(int priority)
@@ -166,6 +179,7 @@ void Character::LeftMove(int priority)
 		if (pos.x < 0) pos.x = 0;
 		if (dir == CHARACTER_DIRECTION::RIGHT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 		break;
 	}
 }
@@ -182,6 +196,7 @@ void Character::RightMove(int priority)
 		if (pos.x > WINSIZE_WIDTH) pos.x = WINSIZE_WIDTH;
 		if (dir == CHARACTER_DIRECTION::LEFT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 		break;
 	}
 }
@@ -194,6 +209,7 @@ void Character::WeakAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_WEAK;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 	}
 }
 
@@ -205,6 +221,7 @@ void Character::StrongAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_STRONG;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 	}
 }
 
@@ -216,6 +233,7 @@ void Character::KickAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_KICK;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 	}
 }
 
@@ -227,6 +245,7 @@ void Character::RangeAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_RANGE;
+		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
 	}
 }
 
@@ -243,4 +262,5 @@ void Character::Translate(POINTFLOAT delta)
 		pos.y += delta.y;
 	}
 	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
+	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }

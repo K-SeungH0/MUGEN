@@ -99,6 +99,9 @@
     <ClCompile Include="GameUI.cpp">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -137,11 +140,14 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

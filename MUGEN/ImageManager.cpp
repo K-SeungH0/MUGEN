@@ -29,6 +29,11 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_RIGHT_HIT2", new Image()));
 	this->mImage["KING_RIGHT_HIT2"]->Init("Image/Character/KING/KING_RIGHT_HIT2.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
 
+	this->mImage.insert(make_pair("KING_LEFT_GUARD", new Image()));
+	this->mImage["KING_LEFT_GUARD"]->Init("Image/Character/KING/KING_LEFT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_GUARD", new Image()));
+	this->mImage["KING_RIGHT_GUARD"]->Init("Image/Character/KING/KING_RIGHT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
+
 	this->mImage.insert(make_pair("KING_LEFT_SKILL", new Image()));
 	this->mImage["KING_LEFT_SKILL"]->Init("Image/Character/KING/KING_LEFT_SKILL.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
 	this->mImage.insert(make_pair("KING_RIGHT_SKILL", new Image()));
@@ -53,6 +58,16 @@ HRESULT ImageManager::Init()
 	this->mImage["KING_LEFT_WEAKPUNCH"]->Init("Image/Character/KING/KING_LEFT_WEAKPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
 	this->mImage.insert(make_pair("KING_RIGHT_WEAKPUNCH", new Image()));
 	this->mImage["KING_RIGHT_WEAKPUNCH"]->Init("Image/Character/KING/KING_RIGHT_WEAKPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
+
+	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["KING_LEFT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_LEFT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
+	this->mImage["KING_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
+
+	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_EFFECT", new Image()));
+	this->mImage["KING_LEFT_RANGE_ATTACK_EFFECT"]->Init("Image/Character/KING/KING_LEFT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_EFFECT", new Image()));
+	this->mImage["KING_RIGHT_RANGE_ATTACK_EFFECT"]->Init("Image/Character/KING/KING_RIGHT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
 #pragma endregion
 
 #pragma region DIO Image Load
@@ -212,6 +227,10 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("TIME9", new Image()));
 	this->mImage["TIME9"]->Init("Image/UI/Round/9.bmp", 250, 250, 1, 1, 1, true, RGB(255, 0, 255));
 
+
+#pragma endregion
+
+#pragma region Effect Image Load
 
 #pragma endregion
 

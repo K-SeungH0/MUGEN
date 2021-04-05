@@ -102,6 +102,9 @@
     <ClCompile Include="ColliderManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
     <ClCompile Include="GameUI.cpp">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClCompile>
@@ -153,7 +156,10 @@
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
     <ClInclude Include="GameUI.h">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="INGAME.h">
       <Filter>소스 파일\MEGEN\GameUI\INGAME</Filter>

@@ -110,6 +110,9 @@ void MainGame::Render(HDC hdc)
 	// Ãæµ¹Ã¼ ·»´õ
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 
+	// ÀÌÆåÆ® ·»´õ
+	EffectManager::GetLpInstance()->Render(hBackDC);
+
 	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
 	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 	lpBuffer->Render(hdc);

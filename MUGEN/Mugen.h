@@ -14,6 +14,7 @@
 #include "KeyManager.h"
 #include "ColliderManager.h"
 #include "ImageManager.h"
+#include "EffectManager.h"
 
 extern bool isDebugMode;
 extern HINSTANCE g_hInstance;

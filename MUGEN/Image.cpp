@@ -117,7 +117,7 @@ void Image::Render(HDC hdc, int destX, int destY)
 
 void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
-
+	lpImageInfo->currentFrame = frameIndex;
 	if (isTransparent)
 	{
 		GdiTransparentBlt(

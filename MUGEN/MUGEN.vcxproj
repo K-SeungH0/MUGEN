@@ -23,6 +23,7 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Chang.cpp" />
     <ClCompile Include="DIO.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="GameObject.h" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameUI.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="DIO.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameUI.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Chang.h" />
     <ClInclude Include="INGAME.h" />
@@ -53,7 +55,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D72EAA12-E09F-4D30-AC85-5A8107AF1E54}</ProjectGuid>
     <RootNamespace>MUGEN</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

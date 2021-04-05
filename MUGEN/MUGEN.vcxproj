@@ -25,6 +25,7 @@
     <ClCompile Include="DIO.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="GameObject.h" />
+    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="King.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DIO.h" />
+    <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="ImageManager.h" />

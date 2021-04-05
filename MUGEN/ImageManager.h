@@ -18,5 +18,4 @@ public:
 	void Update();
 	// »ç¿ë¹ý : ex) Play("KING_LEFT_IDLE")
 	Image* GetImage(string key);
-	Image* GetImage(string name, CHARACTER_DIRECTION dir, CHARACTER_STATE state);
 };

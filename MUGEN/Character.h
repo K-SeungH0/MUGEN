@@ -93,7 +93,7 @@ public:
 
 	void Translate(POINTFLOAT delta);
 
-	inline void RefreshImage() { lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state)); }
+	inline void RefreshImage() { lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state)); }
 	inline void SetPos(POINTFLOAT pos) { this->pos = pos; }
 	inline void SetType(PLAYER_TYPE type) { this->type = type; }
 	inline void SetDirection(CHARACTER_DIRECTION dir) { this->dir = dir; }

@@ -114,6 +114,6 @@ void DIO::Init()
 
 	moveSpeed = 5;
 
-	lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+	lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }

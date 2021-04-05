@@ -29,7 +29,7 @@ void Character::Update()
 			case CHARACTER_STATE::GUARD:
 				state = CHARACTER_STATE::MOVE_GUARD;
 				priority = -1;
-				lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+				lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 				break;
 			case CHARACTER_STATE::ATTACK_WEAK:
 			case CHARACTER_STATE::ATTACK_STRONG:
@@ -38,7 +38,7 @@ void Character::Update()
 			case CHARACTER_STATE::HIT:
 				state = CHARACTER_STATE::IDLE;
 				priority = -1;
-				lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+				lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 				break;
 			}
 		}
@@ -118,7 +118,7 @@ void Character::Stay()
 		frame = 0;
 		priority = -1;
 		state = CHARACTER_STATE::IDLE;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 		break;
 	}
 }
@@ -155,7 +155,7 @@ void Character::Hit(int damage, POINTFLOAT hitPoint, string hitEffectKey)
 		hp = 0;
 		state = CHARACTER_STATE::DEATH;
 	}
-	lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+	lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 }
 
 void Character::Guard()
@@ -164,7 +164,7 @@ void Character::Guard()
 	elapsedTime = 0;
 	priority = 10;
 	state = CHARACTER_STATE::GUARD;
-	lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+	lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 }
 
 void Character::LeftMove(int priority)
@@ -179,7 +179,7 @@ void Character::LeftMove(int priority)
 		if (pos.x < 0) pos.x = 0;
 		if (dir == CHARACTER_DIRECTION::RIGHT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 		break;
 	}
 }
@@ -196,7 +196,7 @@ void Character::RightMove(int priority)
 		if (pos.x > WINSIZE_WIDTH) pos.x = WINSIZE_WIDTH;
 		if (dir == CHARACTER_DIRECTION::LEFT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 		break;
 	}
 }
@@ -209,7 +209,7 @@ void Character::WeakAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_WEAK;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	}
 }
 
@@ -221,7 +221,7 @@ void Character::StrongAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_STRONG;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	}
 }
 
@@ -233,7 +233,7 @@ void Character::KickAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_KICK;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	}
 }
 
@@ -245,7 +245,7 @@ void Character::RangeAttack(int priority)
 		elapsedTime = 0;
 		this->priority = priority;
 		state = CHARACTER_STATE::ATTACK_RANGE;
-		lpImage = ImageManager::GetLpInstance()->GetImage(ToString(name, dir, state));
+		lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	}
 }
 

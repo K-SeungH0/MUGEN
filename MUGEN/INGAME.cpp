@@ -1,7 +1,15 @@
-#include "INGAME.h"
+#include "Ingame.h"
 #include "Image.h"
 
-HRESULT INGAME::Init()
+Ingame::Ingame()
+{
+}
+
+Ingame::~Ingame()
+{
+}
+
+HRESULT Ingame::Init()
 {
 	lpHP1UIImg = new Image();
 	if (FAILED(lpHP1UIImg->Init("Image/UI/Player/1P_UI.bmp", 701 , 324)))
@@ -34,17 +42,24 @@ HRESULT INGAME::Init()
 		MessageBox(g_hWnd, "HPdelay로드 실패", "Error", MB_OK);
 	}
 
-
+	return S_OK;
 }
 
-void INGAME::Release()
+void Ingame::Release()
 {
 }
 
-void INGAME::Update()
+void Ingame::Update()
 {
 }
 
-void INGAME::Render(HDC hdc)
+void Ingame::Render(HDC hdc)
 {
+	HDC hBackDC = lpBuffer->GetMemDC();
+	lpHP1UIImg->Render(hBackDC);
+	lpHP2UIImg->Render(hBackDC);
+	lpHP1Img->Render(hBackDC);
+	lpHP2Img->Render(hBackDC);
+	lpDelayHP1Img->Render(hBackDC);
+	lpDelayHP2Img->Render(hBackDC);
 }

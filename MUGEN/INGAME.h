@@ -2,9 +2,13 @@
 #include "GameScene.h"
 #include "Character.h"
 #include "Controller.h"
+#include "Singleton.h"
 
-class INGAME : public GameScene
+class Ingame : public GameScene
 {
+public:
+	Ingame();
+	~Ingame();
 private:
 	Image* lpHP1UIImg;
 	Image* lpHP2UIImg;
@@ -12,7 +16,6 @@ private:
 	Image* lpHP2Img;
 	Image* lpDelayHP1Img;
 	Image* lpDelayHP2Img;
-	Image* lpBuffer;
 	Image* lpBuffer;
 	Image* lpBgImg;
 

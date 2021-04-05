@@ -4,14 +4,14 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
-#include "GameUI.h"
+#include "GameScene.h"
 
 HRESULT MainGame::Init()
 {
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
-	
+
 	
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
@@ -39,6 +39,9 @@ HRESULT MainGame::Init()
 	lpPlayer2->Init();
 	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
+	inGame = new GameScene();
+	inGame->Init();
+
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -60,6 +63,9 @@ void MainGame::Release()
 
 	lpBuffer->Release();
 	delete lpBuffer;
+
+	inGame->Release();
+	delete inGame;
 
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
@@ -106,6 +112,8 @@ void MainGame::Render(HDC hdc)
 
 	lpPlayer1->Render(hBackDC);
 	lpPlayer2->Render(hBackDC);
+
+	inGame->Render(hBackDC);
 
 	// Ãæµ¹Ã¼ ·»´õ
 	ColliderManager::GetLpInstance()->Render(hBackDC);

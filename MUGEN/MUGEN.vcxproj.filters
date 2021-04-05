@@ -46,13 +46,13 @@
     <Filter Include="소스 파일\MEGEN\UI">
       <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\GameUI">
+    <Filter Include="소스 파일\MEGEN\GameScene">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\GameUI\INGAME">
+    <Filter Include="소스 파일\MEGEN\GameScene\INGAME">
       <UniqueIdentifier>{60bd0359-be49-45c0-84c5-65fda7b97995}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\GameUI\Default">
+    <Filter Include="소스 파일\MEGEN\GameScene\Default">
       <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -103,13 +103,13 @@
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameUI.cpp">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
+      <Filter>소스 파일\MEGEN\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="INGAME.cpp">
-      <Filter>소스 파일\MEGEN\GameUI\INGAME</Filter>
+    <ClCompile Include="InGame.cpp">
+      <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>소스 파일\MEGEN\GameUI\Default</Filter>
+      <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,17 +149,17 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="INGAME.h">
-      <Filter>소스 파일\MEGEN\GameUI\INGAME</Filter>
+    <ClInclude Include="InGame.h">
+      <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>소스 파일\MEGEN\GameUI\Default</Filter>
+      <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>소스 파일\MEGEN\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

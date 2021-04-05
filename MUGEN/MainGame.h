@@ -4,6 +4,7 @@
 class Image;
 class Character;
 class Controller;
+class GameScene;
 class MainGame
 {
 private:
@@ -23,6 +24,8 @@ private:
 
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
+
+	GameScene* inGame;
 
 public:
 	HRESULT Init();

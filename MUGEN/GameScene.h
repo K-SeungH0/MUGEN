@@ -7,20 +7,13 @@ class GameScene
 {
 public:
 
-	enum class game_Background_type
-	{
-		INGAME,
-		SELECT,
-		NONE
-	};
-	;
-
-
 protected:
-	int elapsedTime;
-	game_Background_type Background;
 
 public:
+	HRESULT Init();
+	void Release();
+	void Update();
+	void Render(HDC hdc);
 
 };
 

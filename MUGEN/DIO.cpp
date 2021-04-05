@@ -1,6 +1,7 @@
 #include "Mugen.h"
 #include "DIO.h"
 #include "Image.h"
+#include <fstream>
 
 DIO::DIO()
 {
@@ -24,90 +25,80 @@ void DIO::Init()
 	// /Image/Character/캐릭터이름/*.bmp
 	name = "DIO";
 	// Init 모션별 초기화
-	// IDLE
-	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -33, -120 };
-	motions[(int)CHARACTER_STATE::IDLE].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -33, -120 };
-	motions[(int)CHARACTER_STATE::IDLE].offsetHitPos = { -25, -120 };
-	motions[(int)CHARACTER_STATE::IDLE].width = 50;
-	motions[(int)CHARACTER_STATE::IDLE].height = 120;
-	
-	// MOVE
-	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE].offsetHitPos = { -25, -115 };
-	motions[(int)CHARACTER_STATE::MOVE].width = 50;
-	motions[(int)CHARACTER_STATE::MOVE].height = 115;
-	motions[(int)CHARACTER_STATE::MOVE].motionSpeed = 6;
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -40, -115 };
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].offsetHitPos = { -25, -115 };
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].width = 50;
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].height = 115;
-	motions[(int)CHARACTER_STATE::MOVE_GUARD].motionSpeed = 6;
 
-	// HIT
-	motions[(int)CHARACTER_STATE::HIT].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -47, -128 };
-	motions[(int)CHARACTER_STATE::HIT].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -47, -128 };
-	motions[(int)CHARACTER_STATE::HIT].offsetHitPos = { -25, -115 };
-	motions[(int)CHARACTER_STATE::HIT].width = 50;
-	motions[(int)CHARACTER_STATE::HIT].height = 115;
+	// INI파일 로드
+	if (FileManager::GetLpInstance()->ReadFile("INI/" + name + ".ini"))
+	{
+		int state;
+		string group;
+		vector<float> vFloats;
+		for (int i = 0; i < (int)CHARACTER_STATE::NONE; ++i)
+		{
+			switch ((CHARACTER_STATE)i)
+			{
+			case CHARACTER_STATE::IDLE:
+				group = "IDLE";
+				break;
+			case CHARACTER_STATE::MOVE:
+				group = "MOVE";
+				break;
+			case CHARACTER_STATE::MOVE_GUARD:
+				group = "MOVE_GUARD";
+				break;
+			case CHARACTER_STATE::GUARD:
+				group = "GUARD";
+				break;
+			case CHARACTER_STATE::ATTACK_WEAK:
+				group = "ATTACK_WEAK";
+				break;
+			case CHARACTER_STATE::ATTACK_STRONG:
+				group = "ATTACK_STRONG";
+				break;
+			case CHARACTER_STATE::ATTACK_KICK:
+				group = "ATTACK_KICK";
+				break;
+			case CHARACTER_STATE::ATTACK_RANGE:
+				group = "ATTACK_RANGE";
+				break;
+			case CHARACTER_STATE::HIT:
+				group = "HIT";
+				break;
+			case CHARACTER_STATE::DEATH:
+				group = "DEATH";
+				break;
+			}
 
-	// ATTACK_WEAK
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -30, -110 };
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -85, -110 };
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos = { -33, -110 };
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].width = 66;
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].height = 110;
+			state = FileManager::GetLpInstance()->GetData<int>(group, "characterState");
+			vFloats = FileManager::GetLpInstance()->GetData<vector<float>>(group, "offsetDrawPos");
+			for (int k = 0; k < vFloats.size(); ++k)
+			{
+				if (k % 2 == 0) motions[state].offsetDrawPos[k / 2].x = vFloats[k];
+				else motions[state].offsetDrawPos[k / 2].y = vFloats[k];
+			}
+			vFloats = FileManager::GetLpInstance()->GetData<vector<float>>(group, "offsetHitPos");
+			for (int k = 0; k < vFloats.size(); ++k)
+			{
+				if (k % 2 == 0) motions[state].offsetHitPos.x = vFloats[k];
+				else motions[state].offsetHitPos.y = vFloats[k];
+			}
+			motions[state].width = FileManager::GetLpInstance()->GetData<int>(group, "width");
+			motions[state].height = FileManager::GetLpInstance()->GetData<int>(group, "height");
+			motions[state].motionSpeed = FileManager::GetLpInstance()->GetData<int>(group, "motionSpeed");
+		}
+	}
+	else
+	{
+		MessageBox(g_hWnd, "INI파일을 읽지 못하였습니다.", "Error", MB_OK);
+	}
 
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::MELEE, {75,-92}, 90, 50, 5, "", ""}));
-
-	// ATTACK_STRONG
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -36, -117 };
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -132, -117 };
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos = { -33, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].width = 66;
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].height = 112;
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].motionSpeed = 5;
-	
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(2, AttackInfo{ ATTACK_TYPE::MELEE, {107,-75}, 80, 50, 10, "", "" }));
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {92,-33}, 50, 80, 10, "", "" }));
-
-	// ATTACK_KICK
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -95, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -88, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetHitPos = { -33, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].width = 66;
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].height = 112;
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].motionSpeed = 5;
-
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {71,-91}, 50, 50, 10, "", "" }));
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::MELEE, {71,-91}, 50, 50, 10, "", "" }));
-
-	// ATTACK_RANGE
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -27, -146 };
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -121, -146 };
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos = { -33, -112 };
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].width = 66;
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].height = 112;
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].motionSpeed = 7;
-
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::RANGE, {110,-68}, 60, 30, 10, {"DIO_RIGHT_ATTACK_RANGE_COLLIDER", "DIO_LEFT_ATTACK_RANGE_COLLIDER"}, "" }));
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::RANGE, {100,-50}, 60, 30, 10, {"DIO_RIGHT_ATTACK_RANGE_COLLIDER", "DIO_LEFT_ATTACK_RANGE_COLLIDER"}, "" }));
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(5, AttackInfo{ ATTACK_TYPE::RANGE, {90,-62}, 60, 30, 10, {"DIO_RIGHT_ATTACK_RANGE_COLLIDER", "DIO_LEFT_ATTACK_RANGE_COLLIDER"}, "" }));
-
-	// 가드
-	motions[(int)CHARACTER_STATE::GUARD].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -36, -117 };
-	motions[(int)CHARACTER_STATE::GUARD].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -36, -117 };
-	motions[(int)CHARACTER_STATE::GUARD].offsetHitPos = { -25, -115 };
-	motions[(int)CHARACTER_STATE::GUARD].width = 50;
-	motions[(int)CHARACTER_STATE::GUARD].height = 115;
-
-	// 죽음
-	motions[(int)CHARACTER_STATE::DEATH].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -80, -108 };
-	motions[(int)CHARACTER_STATE::DEATH].offsetDrawPos[(int)CHARACTER_DIRECTION::LEFT] = { -66, -108 };
-	motions[(int)CHARACTER_STATE::DEATH].offsetHitPos = { -80, -112 };
-	motions[(int)CHARACTER_STATE::DEATH].width = 152;
-	motions[(int)CHARACTER_STATE::DEATH].height = 108;
 
 	elapsedTime = 0;
 	frame = 0;

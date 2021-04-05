@@ -99,12 +99,11 @@ void Character::Render(HDC hdc)
 	{
 		RECT rc;
 		Rectangle(hdc, hitRc.left, hitRc.top, hitRc.right, hitRc.bottom);
-
 		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10);
 	}
 
 	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetDrawPos[(int)dir].x, pos.y + motions[(int)state].offsetDrawPos[(int)dir].y };
-	if (lpImage) lpImage->Render(hdc, drawPos.x, drawPos.y, frame);
+	if (lpImage) lpImage->Render(hdc, true, drawPos.x, drawPos.y, frame);
 }
 
 void Character::Stay()

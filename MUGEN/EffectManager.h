@@ -19,4 +19,3 @@ public:
 	void EffectRender(POINTFLOAT pos, Image* image);
 	void EffectRender(POINTFLOAT pos, string key);
 };
-

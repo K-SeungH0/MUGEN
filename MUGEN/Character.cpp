@@ -26,14 +26,14 @@ void Character::Update()
 			// 모션이 한사이클 끝남
 			switch (state)
 			{
-			case Character::CHARACTER_STATE::GUARD:
+			case CHARACTER_STATE::GUARD:
 				state = CHARACTER_STATE::MOVE_GUARD;
 				break;
-			case Character::CHARACTER_STATE::ATTACK_WEAK:
-			case Character::CHARACTER_STATE::ATTACK_STRONG:
-			case Character::CHARACTER_STATE::ATTACK_KICK:
-			case Character::CHARACTER_STATE::ATTACK_RANGE:
-			case Character::CHARACTER_STATE::HIT:
+			case CHARACTER_STATE::ATTACK_WEAK:
+			case CHARACTER_STATE::ATTACK_STRONG:
+			case CHARACTER_STATE::ATTACK_KICK:
+			case CHARACTER_STATE::ATTACK_RANGE:
+			case CHARACTER_STATE::HIT:
 				state = CHARACTER_STATE::IDLE;
 				priority = -1;
 				break;
@@ -47,7 +47,7 @@ void Character::Update()
 			switch (motions[(int)state].mAtkInfo[frame].type)
 			{
 			case ATTACK_TYPE::MELEE:
-				if (dir == DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+				if (dir == CHARACTER_DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
 				else atkPos = { pos.x + motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
 				ColliderManager::GetLpInstance()->Create(type, atkPos,
 													motions[(int)state].mAtkInfo[frame].width,
@@ -56,7 +56,7 @@ void Character::Update()
 													10);
 				break;
 			case ATTACK_TYPE::RANGE:
-				if (dir == DIRECTION::LEFT)
+				if (dir == CHARACTER_DIRECTION::LEFT)
 				{
 					atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
 					ColliderManager::GetLpInstance()->Fire(
@@ -106,9 +106,9 @@ void Character::Stay()
 {
 	switch (state)
 	{
-	case Character::CHARACTER_STATE::MOVE:
-	case Character::CHARACTER_STATE::MOVE_GUARD:
-	case Character::CHARACTER_STATE::GUARD:
+	case CHARACTER_STATE::MOVE:
+	case CHARACTER_STATE::MOVE_GUARD:
+	case CHARACTER_STATE::GUARD:
 		elapsedTime = 0;
 		frame = 0;
 		priority = -1;
@@ -158,13 +158,13 @@ void Character::LeftMove(int priority)
 {
 	switch (state)
 	{
-	case Character::CHARACTER_STATE::IDLE:
-	case Character::CHARACTER_STATE::MOVE:
-	case Character::CHARACTER_STATE::MOVE_GUARD:
+	case CHARACTER_STATE::IDLE:
+	case CHARACTER_STATE::MOVE:
+	case CHARACTER_STATE::MOVE_GUARD:
 		pos.x -= moveSpeed;
 		this->priority = priority;
 		if (pos.x < 0) pos.x = 0;
-		if (dir == DIRECTION::RIGHT) state = CHARACTER_STATE::MOVE_GUARD;
+		if (dir == CHARACTER_DIRECTION::RIGHT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
 		break;
 	}
@@ -174,13 +174,13 @@ void Character::RightMove(int priority)
 {
 	switch (state)
 	{
-	case Character::CHARACTER_STATE::IDLE:
-	case Character::CHARACTER_STATE::MOVE:
-	case Character::CHARACTER_STATE::MOVE_GUARD:
+	case CHARACTER_STATE::IDLE:
+	case CHARACTER_STATE::MOVE:
+	case CHARACTER_STATE::MOVE_GUARD:
 		pos.x += moveSpeed;
 		this->priority = priority;
 		if (pos.x > WINSIZE_WIDTH) pos.x = WINSIZE_WIDTH;
-		if (dir == DIRECTION::LEFT) state = CHARACTER_STATE::MOVE_GUARD;
+		if (dir == CHARACTER_DIRECTION::LEFT) state = CHARACTER_STATE::MOVE_GUARD;
 		else state = CHARACTER_STATE::MOVE;
 		break;
 	}
@@ -232,7 +232,7 @@ void Character::RangeAttack(int priority)
 
 void Character::Translate(POINTFLOAT delta)
 {
-	if (dir == DIRECTION::LEFT)
+	if (dir == CHARACTER_DIRECTION::LEFT)
 	{
 		pos.x -= delta.x;
 		pos.y -= delta.y;

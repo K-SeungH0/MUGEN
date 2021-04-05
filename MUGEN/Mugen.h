@@ -30,6 +30,26 @@ enum class PLAYER_TYPE
 	P2,
 	NONE
 };
+enum class CHARACTER_DIRECTION
+{
+	RIGHT,
+	LEFT,
+	NONE
+};
+enum class CHARACTER_STATE
+{
+	IDLE,
+	MOVE,
+	MOVE_GUARD,
+	GUARD,
+	ATTACK_WEAK,
+	ATTACK_STRONG,
+	ATTACK_KICK,
+	ATTACK_RANGE,
+	HIT,
+	DEATH,
+	NONE
+};
 
 inline bool CollisionRect(RECT self, RECT other)
 {

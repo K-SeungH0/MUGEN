@@ -6,26 +6,6 @@ class Image;
 class Character : public GameObject
 {
 public:
-	enum class DIRECTION
-	{
-		RIGHT,
-		LEFT,
-		NONE
-	};
-	enum class CHARACTER_STATE
-	{
-		IDLE,
-		MOVE,
-		MOVE_GUARD,
-		GUARD,
-		ATTACK_WEAK,
-		ATTACK_STRONG,
-		ATTACK_KICK,
-		ATTACK_RANGE,
-		HIT,
-		DEATH,
-		NONE
-	};
 
 protected:
 	enum class ATTACK_TYPE
@@ -52,9 +32,9 @@ protected:
 	{
 		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
 		// IMAGE RENDER StartX = pos.x + offsetDrawPos.x
-		POINTFLOAT offsetDrawPos[(int)DIRECTION::NONE];
+		POINTFLOAT offsetDrawPos[(int)CHARACTER_DIRECTION::NONE];
 		// 이미지밖으로 빼고
-		Image* lpImages[(int)DIRECTION::NONE];
+		Image* lpImages[(int)CHARACTER_DIRECTION::NONE];
 		// 애니메이션 속도 클수록 느림 1 ~ 100
 		int motionSpeed = 10;
 
@@ -76,7 +56,7 @@ protected:
 
 	PLAYER_TYPE type = PLAYER_TYPE::NONE;
 	// 바라보는 방향
-	DIRECTION dir;
+	CHARACTER_DIRECTION dir;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
 	// 캐릭터 체력
@@ -116,7 +96,7 @@ public:
 
 	inline void SetPos(POINTFLOAT pos) { this->pos = pos; }
 	inline void SetType(PLAYER_TYPE type) { this->type = type; }
-	inline void SetDirection(DIRECTION dir) { this->dir = dir; }
+	inline void SetDirection(CHARACTER_DIRECTION dir) { this->dir = dir; }
 	inline bool IsAlive() { return state != CHARACTER_STATE::DEATH; }
 	inline int GetHp() { return hp; }
 	inline RECT GetHitRect() { return motions[(int)state].hitRc; }

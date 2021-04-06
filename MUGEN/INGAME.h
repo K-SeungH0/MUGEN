@@ -15,6 +15,7 @@ private:
 	Image* UI_Time;
 	Image* UI_Player1;
 	Image* UI_Player2;
+	Image* lpBgImg;
 
 	int elapsedTime;
 	int frame;

@@ -222,16 +222,16 @@ void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 
 void Image::Release()
 {
-	if (lpImageInfo)
-	{
-		SelectObject(lpImageInfo->hMemDC, lpImageInfo->hOldBit);
-		DeleteObject(lpImageInfo->hBitmap);
-		DeleteDC(lpImageInfo->hMemDC);
-
-		delete lpImageInfo;
-		lpImageInfo = nullptr;
-	}
-
-	if (hBitmap) DeleteObject(SelectObject(tempDC, hOldBitmap));
-	if (tempDC) DeleteDC(tempDC);
+//	if (lpImageInfo)
+//	{
+//		SelectObject(lpImageInfo->hMemDC, lpImageInfo->hOldBit);
+//		DeleteObject(lpImageInfo->hBitmap);
+//		DeleteDC(lpImageInfo->hMemDC);
+//
+//		delete lpImageInfo;
+//		lpImageInfo = nullptr;
+//	}
+//
+//	if (hBitmap) DeleteObject(SelectObject(tempDC, hOldBitmap));
+//	if (tempDC) DeleteDC(tempDC);
 }

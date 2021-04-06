@@ -12,7 +12,6 @@ HRESULT MainGame::Init()
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
 
-	
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 

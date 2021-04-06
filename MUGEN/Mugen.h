@@ -1,7 +1,7 @@
 #pragma once
 
-#define WINSIZE_WIDTH 2000
-#define WINSIZE_HEIGHT 1000
+#define WINSIZE_WIDTH 1200
+#define WINSIZE_HEIGHT 600
 #define PI 3.1415926f
 #define MAX_HP 100
 

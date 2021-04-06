@@ -21,7 +21,6 @@ private:
 	Image* lpKOImg;
 	Image* UI_Time;
 	int x;
-
 	int elapsedTime;
 	int frame;
 	int time = 60;

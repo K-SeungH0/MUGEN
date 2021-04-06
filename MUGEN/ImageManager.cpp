@@ -190,7 +190,7 @@ HRESULT ImageManager::Init()
 
 
 	this->mImage.insert(make_pair("KO", new Image()));
-	this->mImage["KO"]->Init("Image/UI/Round/KO.bmp", 17000*2, 288*2, 34, 1, 34, true, RGB(0, 255, 0));
+	this->mImage["KO"]->Init("Image/UI/Round/KO.bmp", 17000*2*1200/WINSIZE_WIDTH, 288*2*600 / WINSIZE_WIDTH, 34, 1, 34, true, RGB(0, 255, 0));
 	this->mImage.insert(make_pair("FINAL", new Image()));
 	this->mImage["FINAL"]->Init("Image/UI/Round/FINALROUND.bmp", 3154, 1000, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("ROUND1", new Image()));

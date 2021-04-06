@@ -23,10 +23,9 @@ HRESULT InGame::Init()
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
 	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
 
-
 	Character* lpDIO = new DIO();
 	lpDIO->Init();
-	Character* lpChang = new DIO();
+	Character* lpChang = new Chang();
 	lpChang->Init();
 
 	lpPlayer1 = new Controller();
@@ -74,33 +73,25 @@ void InGame::Render(HDC hdc)
 {
 	POINTFLOAT Player1_HPUIPos = { 0, 0 };
 	if (Player1_HPUI)Player1_HPUI->Render(hdc, Player1_HPUIPos.x, Player1_HPUIPos.y);
-	POINTFLOAT Player2_HPUIPos = { WINSIZE_WIDTH - 465, 0 };
+	POINTFLOAT Player2_HPUIPos = { WINSIZE_WIDTH - 385*1200/WINSIZE_WIDTH, 0 };
 	if (Player2_HPUI)Player2_HPUI->Render(hdc, Player2_HPUIPos.x, Player2_HPUIPos.y);
 
 	POINTFLOAT Player1_DelayHPPos = { 93,43 };
 	if (Player1_DelayHP)Player1_DelayHP->Render(hdc, Player1_DelayHPPos.x, Player1_DelayHPPos.y);
-	POINTFLOAT Player2_DelayHPPos = { WINSIZE_WIDTH - 438, 43 };
+	POINTFLOAT Player2_DelayHPPos = { WINSIZE_WIDTH - 358 * 1200 / WINSIZE_WIDTH, 43 };
 	if (Player2_DelayHP)Player2_DelayHP->Render(hdc, Player2_DelayHPPos.x, Player2_DelayHPPos.y);
 
 	POINTFLOAT Player1_HPPos = { 93,43 };
 	if (Player1_HP)Player1_HP->Render(hdc, Player1_HPPos.x, Player1_HPPos.y);
-	POINTFLOAT Player2_HPPos = { WINSIZE_WIDTH - 438, 43 };
+	POINTFLOAT Player2_HPPos = { WINSIZE_WIDTH - 358 * 1200/ WINSIZE_WIDTH, 43 };
 	if (Player2_HP)Player2_HP->Render(hdc, Player2_HPPos.x, Player2_HPPos.y);
 
-	POINTFLOAT KOPos = { WINSIZE_WIDTH/2 - 580, WINSIZE_HEIGHT/2 - 300};
+	POINTFLOAT KOPos = { WINSIZE_WIDTH/2 - 500 * 1200/WINSIZE_WIDTH, WINSIZE_HEIGHT/2 - 300* 600/WINSIZE_WIDTH};
 	if (lpKOImg)lpKOImg->Render(hdc, KOPos.x, KOPos.y, frame);
 
-	for(int i = 0; i <= 10; i++)
-		{
-			if (i == time / 10)
-			{
-				POINTFLOAT Time10Pos = { WINSIZE_WIDTH / 2 - 200, 50 };
-				if (UI_Time)UI_Time->Render(hdc, Time10Pos.x, Time10Pos.y,i);
-			}
-			if (i == time % 10)
-			{
-				POINTFLOAT Time10Pos = { WINSIZE_WIDTH / 2 - 100, 50 };
-				if (UI_Time)UI_Time->Render(hdc, Time10Pos.x, Time10Pos.y,i);
-			}
-		}
+	POINTFLOAT Time10Pos = { WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600/WINSIZE_HEIGHT };
+	if (UI_Time)UI_Time->Render(hdc, Time10Pos.x, Time10Pos.y, time / 10);
+
+	POINTFLOAT Time1Pos = { WINSIZE_WIDTH / 2 , 50 * 600 / WINSIZE_HEIGHT };
+	if (UI_Time)UI_Time->Render(hdc, Time1Pos.x, Time1Pos.y, time % 10);
 }

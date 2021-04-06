@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "Mugen.h"
+#include "GameData.h"
+//#include "Mugen.h"
 
 class Image;
 class Character;
@@ -18,7 +19,10 @@ private:
 
 	Image* lpBuffer;
 	Image* lpBgImg;
-	// ĳ���� �߰�
+
+	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
+
+	// 캐릭터 추가
 	Character* lpKING;
 	Character* lpDIO;
 	Character* lpChang;
@@ -27,6 +31,10 @@ private:
 	Controller* lpPlayer2;
 
 	GameScene* title;
+
+	GameUI* title;
+	
+	SCENE_STATE currentScene;
 
 	InGame* inGame;
 

@@ -18,12 +18,12 @@ void Controller::Init()
 
 void Controller::Release()
 {
-	if (lpCharacter)
+	/*if (lpCharacter)
 	{
 		lpCharacter->Release();
 		delete lpCharacter;
 		lpCharacter = nullptr;
-	}
+	}*/
 }
 
 void Controller::Update()
@@ -176,7 +176,11 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 
 	// 아래키와 일반 공격을 누르면 원거리 공격으로
 	mCommands[SKILL_KIND::DOWN].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_WEAK] }));
-	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	lpCharacter->RefreshImage();
 }
 
 void Controller::CommandInput(SKILL_KIND kind)

@@ -17,8 +17,6 @@ private:
 
 	Image* lpBuffer;
 	Image* lpBgImg;
-
-	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
 public:
 	HRESULT Init();
 	void Release();

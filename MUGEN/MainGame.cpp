@@ -41,6 +41,8 @@ void MainGame::Update()
 {
 	if (g_hWnd != GetForegroundWindow()) return;
 
+	SceneManager::GetLpInstance()->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 

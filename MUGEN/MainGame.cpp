@@ -23,25 +23,27 @@ HRESULT MainGame::Init()
 		MessageBox(g_hWnd, "배경로드 실패", "Error", MB_OK);
 	}
 
-	lpDIO = new DIO();
-	lpDIO->Init();
-
-	lpKING = new King();
-	lpKING->Init();
-
-	lpChang = new Chang();
-	lpChang->Init();
-
-	lpPlayer1 = new Controller();
-	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
-
-	lpPlayer2 = new Controller();
-	lpPlayer2->Init();
-	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
+	//lpDIO = new DIO();
+	//lpDIO->Init();
+	//
+	//lpKING = new King();
+	//lpKING->Init();
+	//
+	//lpChang = new Chang();
+	//lpChang->Init();
+	//
+	//lpPlayer1 = new Controller();
+	//lpPlayer1->Init();
+	//lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
+	//
+	//lpPlayer2 = new Controller();
+	//lpPlayer2->Init();
+	//lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
 	title = new Title();
 	title->Init();
+	currentScene = SCENE_STATE::TITLE;
+
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -49,14 +51,22 @@ HRESULT MainGame::Init()
 
 void MainGame::Release()
 {
-	lpDIO->Release();
-	delete lpDIO;
+	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
+	{
+		delete this->players[i].lp_Character;
+		this->players[i].lp_Character = nullptr;
 
-	lpKING->Release();
-	delete lpKING;
-
-	lpChang->Release();
-	delete lpChang;
+		delete this->players[i].lp_Controller;
+		this->players[i].lp_Controller = nullptr;
+	}
+	//lpDIO->Release();
+	//delete lpDIO;
+	//
+	//lpKING->Release();
+	//delete lpKING;
+	//
+	//lpChang->Release();
+	//delete lpChang;
 
 	lpBgImg->Release();
 	delete lpBgImg;
@@ -64,8 +74,10 @@ void MainGame::Release()
 	lpBuffer->Release();
 	delete lpBuffer;
 
+	//ColliderManager::GetLpInstance()->ReleaseSingleton();
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
+	GameData::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
@@ -76,29 +88,41 @@ void MainGame::Update()
 	{
 		isDebugMode = !isDebugMode;
 	}
+	switch (currentScene)
+	{
+		case SCENE_STATE::TITLE:
+			title->Update();
+			break;
+		
+		case SCENE_STATE::BATTLE:
+			ColliderManager::GetLpInstance()->Update();
+			for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
+			{
+				players[i].lp_Controller->Update();
+			}
+			// 캐릭터의 위치 조정
+			// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
+			RECT player1Rect = players[(PLAYER_TYPE::P1].lpCharacter->GetLpCharacter()->GetHitRect();
+			RECT player2Rect = players[(PLAYER_TYPE::P2].lpCharacter->GetLpCharacter()->GetHitRect();
+			if (CollisionRect(player1Rect, player2Rect))
+			{
+				// 충돌
+				// 겹쳐진 만큼 이동시켜야한다
+				float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
+				lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+				lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+			}
 
-	//ColliderManager::GetLpInstance()->Update();
-	//
-	//lpPlayer1->Update();
-	//lpPlayer2->Update();
-	//
-	//// 캐릭터의 위치 조정
-	//// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
-	//RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
-	//RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
-	//if (CollisionRect(player1Rect, player2Rect))
-	//{
-	//	// 충돌
-	//	// 겹쳐진 만큼 이동시켜야한다
-	//	float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
-	//	lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//	lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//}
-	//
-	//IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
-	//IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
+			IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
+			IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
+			break;
+		
+		case SCENE_STATE::END:
+			break;
+	}
+	
 
-	title->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 

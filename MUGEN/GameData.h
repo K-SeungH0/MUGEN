@@ -1,18 +1,20 @@
 #pragma once
 #include "Singleton.h"
 #include "Mugen.h"
+
 class Character;
 class Controller;
 class GameData : public Singleton<GameData>
 {
-private:
-	struct Player
+public:
+	struct PlayerInfo
 	{
 		PLAYER_TYPE playerType;
 		Character* lp_Character;
 		Controller* lp_Controller;
 	};
-	Player player[(int)PLAYER_TYPE::NONE];
+private:
+	PlayerInfo player[(int)PLAYER_TYPE::NONE];
 
 public:
 	void Init();

@@ -59,7 +59,10 @@ public:
 	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, int maxFrame, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
 
 	void Render(HDC hdc, int destX = 0, int destY = 0);
-	void Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip = false, int angle = 0);
+	void Render(HDC hdc, int destX, int destY, int frameIndex);
+
+	//void Render(HDC hdc, int angle, int destX, int destY, int frameIndex);
+	//void Render(HDC hdc, bool flip, int destX, int destY, int frameIndex);
 
 	void Release();
 

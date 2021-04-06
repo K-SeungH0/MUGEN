@@ -337,12 +337,12 @@ void Character::LoadData()
 				if (vImageKeys[k][0] != '-')
 				{
 					atkInfo.imageKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, (CHARACTER_STATE)state, vImageKeys[k]);
-					atkInfo.imageKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, (CHARACTER_STATE)state, vImageKeys[k]);
+					atkInfo.imageKey[1] = GetKey(name, CHARACTER_DIRECTION::LEFT, (CHARACTER_STATE)state, vImageKeys[k]);
 				}
 				if (vEffectKeys[k][0] != '-')
 				{
 					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, CHARACTER_STATE::NONE, vEffectKeys[k]);
-					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, CHARACTER_STATE::NONE, vEffectKeys[k]);
+					atkInfo.hitEffectKey[1] = GetKey(name, CHARACTER_DIRECTION::LEFT, CHARACTER_STATE::NONE, vEffectKeys[k]);
 				}
 				if (lpmAtkInfo->find(vFrames[k]) == lpmAtkInfo->end())
 				{

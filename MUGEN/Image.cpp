@@ -115,54 +115,110 @@ void Image::Render(HDC hdc, int destX, int destY)
 	}
 }
 
-void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip, int angle)
+void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
 {
-	int size = (int)sqrt(lpImageInfo->width * lpImageInfo->width + lpImageInfo->height * lpImageInfo->height);
-	if (!tempDC)
+	lpImageInfo->currentFrame = frameIndex;
+	if (isTransparent)
 	{
-		tempDC = CreateCompatibleDC(lpImageInfo->hMemDC);
-		hBitmap = CreateCompatibleBitmap(lpImageInfo->hMemDC, size, size);
-		hOldBitmap = (HBITMAP)SelectObject(tempDC, hBitmap);
-		HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 255));
-		DeleteObject(SelectObject(tempDC, hBrush));
-		PatBlt(tempDC, 0, 0, size, size, PATCOPY);
+		GdiTransparentBlt(
+			hdc,
+			destX, destY,
+			lpImageInfo->width, lpImageInfo->height,
+			lpImageInfo->hMemDC,
+			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+			lpImageInfo->width, lpImageInfo->height,
+			transColor
+		);
 	}
-	SetGraphicsMode(tempDC, GM_ADVANCED);
-
-	XFORM xForm, oldXForm;
-	GetWorldTransform(tempDC, &oldXForm);
-	POINT p = { (size - lpImageInfo->width) / 2, (size - lpImageInfo->height) / 2 };
-	float radian = PI * angle / 180;
-	xForm.eM11 = cosf(radian); xForm.eM12 = sinf(radian); xForm.eDx = (size - cos(radian) * lpImageInfo->width + sin(radian) * lpImageInfo->height) / 2;
-	xForm.eM21 = -sinf(radian); xForm.eM22 = cosf(radian); xForm.eDy = (size - cos(radian) * lpImageInfo->height - sin(radian) * lpImageInfo->width) / 2;
-	SetWorldTransform(tempDC, &xForm);
-	
-	StretchBlt(
-		tempDC,
-		(isFlip)?lpImageInfo->width:0, 0,
-		(isFlip)?0:lpImageInfo->width,
-		lpImageInfo->height,
-		lpImageInfo->hMemDC,
-		lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
-		lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
-		lpImageInfo->width,
-		lpImageInfo->height,
-		SRCCOPY
-	);
-
-	SetWorldTransform(tempDC, &oldXForm);
-
-	GdiTransparentBlt(
-		hdc,
-		destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
-		size, size,
-		tempDC,
-		0, 0, size, size,
-		transColor
-	);
-	
-	SetGraphicsMode(hdc, GM_COMPATIBLE);
+	else
+	{
+		BitBlt(
+			hdc,
+			destX, destY,
+			lpImageInfo->width,
+			lpImageInfo->height,
+			lpImageInfo->hMemDC,
+			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+			SRCCOPY
+		);
+	}
 }
+
+//void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
+//{
+//	int size = (int)sqrt(lpImageInfo->width * lpImageInfo->width + lpImageInfo->height * lpImageInfo->height);
+//	if (!tempDC)
+//	{
+//		tempDC = CreateCompatibleDC(lpImageInfo->hMemDC);
+//		hBitmap = CreateCompatibleBitmap(lpImageInfo->hMemDC, size, size);
+//		hOldBitmap = (HBITMAP)SelectObject(tempDC, hBitmap);
+//		HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 255));
+//		DeleteObject(SelectObject(tempDC, hBrush));
+//		PatBlt(tempDC, 0, 0, size, size, PATCOPY);
+//	}
+//	SetGraphicsMode(tempDC, GM_ADVANCED);
+//
+//	XFORM xForm, oldXForm;
+//	GetWorldTransform(tempDC, &oldXForm);
+//	POINT p = { (size - lpImageInfo->width) / 2, (size - lpImageInfo->height) / 2 };
+//	float radian = PI * angle / 180;
+//	xForm.eM11 = cosf(radian); xForm.eM12 = sinf(radian); xForm.eDx = (size - cos(radian) * lpImageInfo->width + sin(radian) * lpImageInfo->height) / 2;
+//	xForm.eM21 = -sinf(radian); xForm.eM22 = cosf(radian); xForm.eDy = (size - cos(radian) * lpImageInfo->height - sin(radian) * lpImageInfo->width) / 2;
+//	SetWorldTransform(tempDC, &xForm);
+//	
+//	StretchBlt(
+//		tempDC,
+//		0, 0,
+//		lpImageInfo->width,
+//		lpImageInfo->height,
+//		lpImageInfo->hMemDC,
+//		lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+//		lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+//		lpImageInfo->width,
+//		lpImageInfo->height,
+//		SRCCOPY
+//	);
+//
+//	SetWorldTransform(tempDC, &oldXForm);
+//
+//	//GdiTransparentBlt(
+//	//	hdc,
+//	//	destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
+//	//	size, size,
+//	//	tempDC,
+//	//	0, 0, size, size,
+//	//	transColor
+//	//);
+//
+//	BitBlt(
+//		hdc,
+//		destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
+//		size, size,
+//		tempDC,
+//		0, 0,
+//		SRCCOPY
+//	);
+//	
+//	SetGraphicsMode(hdc, GM_COMPATIBLE);
+//}
+//
+//void Image::Render(HDC hdc, bool flip, int destX, int destY, int frameIndex)
+//{
+//	StretchBlt(
+//		hdc,
+//		destX + lpImageInfo->width, destY,
+//		-lpImageInfo->width,
+//		lpImageInfo->height,
+//		lpImageInfo->hMemDC,
+//		lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
+//		lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
+//		lpImageInfo->width,
+//		lpImageInfo->height,
+//		SRCCOPY
+//	);
+//}
 
 void Image::Release()
 {

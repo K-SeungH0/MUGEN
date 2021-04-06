@@ -28,6 +28,6 @@ public:
 	HRESULT Init();
 	void Update();
 	void Render(HDC hdc);
-	void ChangeScene(SCENE_STATE chageScene);
+	void LoadScene(SCENE_STATE loadScene);
 };
 

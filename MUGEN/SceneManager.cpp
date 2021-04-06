@@ -52,8 +52,9 @@ void SceneManager::Render(HDC hdc)
 	lpBuffer->Render(hdc);
 }
 
-void SceneManager::ChangeScene(SCENE_STATE chageScene)
+void SceneManager::LoadScene(SCENE_STATE loadScene)
 {
-	currentScene = chageScene;
-
+	currentScene = loadScene;
+	if (currentScene == SCENE_STATE::INGAME)
+		scenes[(int)currentScene]->Load();
 }

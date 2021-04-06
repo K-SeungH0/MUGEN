@@ -61,8 +61,8 @@ public:
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex);
 
-	void Render(HDC hdc, int angle, int destX, int destY, int frameIndex);
-	void Render(HDC hdc, bool flip, int destX, int destY, int frameIndex);
+	//void Render(HDC hdc, int angle, int destX, int destY, int frameIndex);
+	//void Render(HDC hdc, bool flip, int destX, int destY, int frameIndex);
 
 	void Release();
 

@@ -147,7 +147,7 @@ void InGame::Render(HDC hdc)
 	if (Player2_HPUI)Player2_HPUI->Render(hBackDC, WINSIZE_WIDTH - 385 * 1200 / WINSIZE_WIDTH, 0);
 	if (Player1_DelayHP)Player1_DelayHP->Render(hBackDC, 93, 43);
 	if (Player2_DelayHP)Player2_DelayHP->Render(hBackDC, WINSIZE_WIDTH - 358 * 1200 / WINSIZE_WIDTH, 43);
-	if (Player1_HP)Player1_HP->Render(hBackDC, 93, 43);
+	if (Player1_HP)Player1_HP->Render(hBackDC, 93, 43,->GetHp()/MAX_HP,1);
 	if (Player2_HP)Player2_HP->Render(hBackDC, WINSIZE_WIDTH - 358 * 1200 / WINSIZE_WIDTH, 43);
 	if (lpKOImg)lpKOImg->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);

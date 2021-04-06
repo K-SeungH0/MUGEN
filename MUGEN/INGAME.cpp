@@ -50,31 +50,38 @@ HRESULT InGame::Init()
 	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
 	//		break;
 	//	}
-	Character* lpDIO = new DIO();
-	lpDIO->Init();
-
-	Character* lpKING = new King();
-	lpKING->Init();
-
-	Character* lpChang = new Chang();
-	lpChang->Init();
-
-	lpPlayer1 = new Controller();
-	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
-
-	lpPlayer2 = new Controller();
-	lpPlayer2->Init();
-	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
+	//Character* lpDIO = new DIO();
+	//lpDIO->Init();
+	//
+	//Character* lpKING = new King();
+	//lpKING->Init();
+	//
+	//Character* lpChang = new Chang();
+	//lpChang->Init();
+	//
+	//lpPlayer1 = new Controller();
+	//lpPlayer1->Init();
+	//lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
+	//
+	//lpPlayer2 = new Controller();
+	//lpPlayer2->Init();
+	//lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
 	lpBgImg = new Image();
+
+	lpController_P1 = nullptr;
+	lpController_P2 = nullptr;
+	lpCharacter_P1 = nullptr;
+	lpCharacter_P2 = nullptr;
+
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
 		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
 	}
+
 	return S_OK;
 }
 
@@ -165,6 +172,19 @@ void InGame::Render(HDC hdc)
 	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
 	lpBuffer->Render(hdc);
+}
+
+// 김승호 추가
+void InGame::Load()
+{
+	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
+	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
+
+	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
+	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
+
+	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
+	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
 }
 
 bool InGame::IsCollision(Character* attacker, Character* defender)

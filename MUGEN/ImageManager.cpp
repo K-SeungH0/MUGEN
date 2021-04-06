@@ -250,6 +250,11 @@ HRESULT ImageManager::Init()
 
 	this->mImage.insert(make_pair("DIO_RIGHT_HIT_EFFECT", new Image()));
 	this->mImage["DIO_RIGHT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("KING_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
 	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
 	this->mImage["DIO_LEFT_HIT_EFFECT"]->Reverse("DIO_RIGHT_HIT_EFFECT");
 #pragma endregion

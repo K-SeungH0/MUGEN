@@ -16,15 +16,6 @@ HRESULT MainGame::Init()
 
 void MainGame::Release()
 {
-	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
-	{
-		delete this->players[i].lp_Character;
-		this->players[i].lp_Character = nullptr;
-
-		delete this->players[i].lp_Controller;
-		this->players[i].lp_Controller = nullptr;
-	}
-	
 	// 메인에 필요?
 	//lpBgImg->Release();
 	//delete lpBgImg;
@@ -49,7 +40,6 @@ void MainGame::Update()
 void MainGame::Render(HDC hdc)
 {
 	SceneManager::GetLpInstance()->Render(hdc);
-
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

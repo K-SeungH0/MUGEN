@@ -51,3 +51,10 @@ void SceneManager::Render(HDC hdc)
 	scenes[(int)currentScene]->Render(hBackDC);
 	lpBuffer->Render(hdc);
 }
+
+void SceneManager::LoadScene(SCENE_STATE loadScene)
+{
+	currentScene = loadScene;
+	if (currentScene == SCENE_STATE::INGAME)
+		scenes[(int)currentScene]->Load();
+}

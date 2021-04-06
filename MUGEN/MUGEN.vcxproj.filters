@@ -117,6 +117,9 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -171,6 +174,9 @@
       <Filter>소스 파일\MEGEN\GameScene\Title</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
   </ItemGroup>

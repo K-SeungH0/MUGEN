@@ -28,7 +28,5 @@ public:
 	HRESULT Init();
 	void Update();
 	void Render(HDC hdc);
-
-	inline void ChangeSence(SCENE_STATE currentScene) { this->currentScene = currentScene; }
+	void LoadScene(SCENE_STATE loadScene);
 };
-

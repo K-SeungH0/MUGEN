@@ -17,8 +17,6 @@ private:
 
 	Image* lpBuffer;
 	Image* lpBgImg;
-
-	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
 public:
 	HRESULT Init();
 	void Release();
@@ -26,7 +24,7 @@ public:
 	void Render(HDC hdc);
 
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
-private:
-	bool IsCollision(Character* attacker, Character* defender);
+
+
 };
 

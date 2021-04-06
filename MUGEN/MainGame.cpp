@@ -41,63 +41,13 @@ void MainGame::Update()
 {
 	if (g_hWnd != GetForegroundWindow()) return;
 
-	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
-	{
-		isDebugMode = !isDebugMode;
-	}
-	SceneManager::GetLpInstance()->Update();
-	//currentScene[(int)currentStage]->Update();
-	
-	// INGAME에 추가
-	//	ColliderManager::GetLpInstance()->Update();
-	//	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
-	//	{
-	//		players[i].lp_Controller->Update();
-	//	}
-	//	// 캐릭터의 위치 조정
-	//	// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
-	//	RECT player1Rect = players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter()->GetHitRect();
-	//	RECT player2Rect = players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter()->GetHitRect();
-	//	if (CollisionRect(player1Rect, player2Rect))
-	//	{
-	//		// 충돌
-	//		// 겹쳐진 만큼 이동시켜야한다
-	//		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
-	//		players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//		players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//	}
-	//
-	//	IsCollision(players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter(), players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter());
-	//	IsCollision(players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter(), players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter());
-
-
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-	// 메인에도 필요한가?
-	//HDC hBackDC = lpBuffer->GetMemDC();
-
 	SceneManager::GetLpInstance()->Render(hdc);
-	//currentScene[(int)currentStage]->Render(hBackDC);
 
-	//INGAME에 추가
-	//lpBgImg->Render(hBackDC);
-	//
-	//lpPlayer1->Render(hBackDC);
-	//lpPlayer2->Render(hBackDC);
-	//
-	//// 충돌체 렌더
-	//ColliderManager::GetLpInstance()->Render(hBackDC);
-	//
-	//// 이펙트 렌더
-	//EffectManager::GetLpInstance()->Render(hBackDC);
-	//
-	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
-
-	//lpBuffer->Render(hdc);
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

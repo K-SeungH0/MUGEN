@@ -17,6 +17,7 @@ bool FileManager::ReadFile(string path)
 			switch (ifs.peek())
 			{
 			case '[':
+				
 				getline(ifs, group);
 				group = group.substr(1, group.length() - 2);
 				if (mDataSet.find(group) == mDataSet.end()) mDataSet.insert(make_pair(group, map<string, vector<string>>()));

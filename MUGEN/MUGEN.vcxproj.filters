@@ -43,9 +43,6 @@
     <Filter Include="소스 파일\MEGEN\Controller">
       <UniqueIdentifier>{c899b8ed-e547-440d-b870-6c2769489cf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\UI">
-      <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\MEGEN\GameScene">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
@@ -58,8 +55,8 @@
     <Filter Include="소스 파일\MEGEN\GameScene\Default">
       <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\GameScene\GameUI">
-      <UniqueIdentifier>{62405340-07f0-4a53-a94a-897e82cfd448}</UniqueIdentifier>
+    <Filter Include="소스 파일\MEGEN\GameScene\Title">
+      <UniqueIdentifier>{a6b46494-b541-471c-973c-2f6b658c73d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,9 +93,6 @@
     <ClCompile Include="King.cpp">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>소스 파일\MEGEN\UI</Filter>
-    </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>소스 파일\MEGEN\Controller</Filter>
     </ClCompile>
@@ -114,14 +108,14 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
-    </ClCompile>
     <ClCompile Include="GameData.cpp">
       <Filter>소스 파일\MEGEN\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일\MEGEN\GameScene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -146,9 +140,6 @@
     <ClInclude Include="Character.h">
       <Filter>소스 파일\MEGEN\Character\Default</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>소스 파일\MEGEN\UI</Filter>
-    </ClInclude>
     <ClInclude Include="DIO.h">
       <Filter>소스 파일\MEGEN\Character\DIO</Filter>
     </ClInclude>
@@ -161,9 +152,6 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
@@ -175,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="GameUI.h">
       <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>소스 파일\MEGEN\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>소스 파일\MEGEN\GameScene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -246,9 +246,9 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
 	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
 	this->mImage.insert(make_pair("TITLE", new Image()));
-	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", 1600, 600, 2, 1, 2, false);
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2, WINSIZE_HEIGHT, 2, 1, 2, false);
 	this->mImage.insert(make_pair("BACK_TITLE", new Image()));
-	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", 800, 600, 1, 1, 1, false);
+	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT, 1, 1, 1, false);
 	this->mImage.insert(make_pair("SELECT_1P", new Image()));
 	this->mImage["SELECT_1P"]->Init("Image/UI/TITLE/SELECT_1P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
 	this->mImage.insert(make_pair("SELECT_2P", new Image()));

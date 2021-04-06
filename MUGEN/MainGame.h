@@ -1,13 +1,11 @@
 ﻿#pragma once
-#include "GameData.h"
-//#include "Mugen.h"
+#include "Mugen.h"
 
 class Image;
 class Character;
 class Controller;
-class GameUI;
+class GameScene;
 
-class InGame;
 class MainGame
 {
 private:
@@ -21,21 +19,6 @@ private:
 	Image* lpBgImg;
 
 	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
-
-	// 캐릭터 추가
-	Character* lpKING;
-	Character* lpDIO;
-	Character* lpChang;
-
-	Controller* lpPlayer1;
-	Controller* lpPlayer2;
-
-	GameUI* title;
-	
-	SCENE_STATE currentScene;
-
-	InGame* inGame;
-
 public:
 	HRESULT Init();
 	void Release();
@@ -43,7 +26,6 @@ public:
 	void Render(HDC hdc);
 
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
-
 private:
 	bool IsCollision(Character* attacker, Character* defender);
 };

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Mugen.h"
 #include "GameObject.h"
 

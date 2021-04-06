@@ -89,7 +89,7 @@ inline RECT GetRectOffset(POINTFLOAT pos, POINTFLOAT offset, int width, int heig
 	return rect;
 }
 
-inline string GetKey(string name, CHARACTER_DIRECTION dir, CHARACTER_STATE state, string col = "")
+inline string GetKey(string name, CHARACTER_DIRECTION dir = CHARACTER_DIRECTION::NONE, CHARACTER_STATE state = CHARACTER_STATE::NONE, string col = "")
 {
 	string key = "";
 	key += name;
@@ -145,49 +145,5 @@ inline string GetKey(string name, CHARACTER_DIRECTION dir, CHARACTER_STATE state
 	if (!col.empty())
 		key += "_" + col;
 
-	return key;
-}
-
-inline string GetKey(string name, CHARACTER_STATE state)
-{
-	string key = "";
-	key += name;
-
-	switch (state)
-	{
-	case CHARACTER_STATE::IDLE:
-		key += "_IDLE";
-		break;
-	case CHARACTER_STATE::MOVE:
-		key += "_MOVE";
-		break;
-	case CHARACTER_STATE::MOVE_GUARD:
-		key += "_MOVE_GUARD";
-		break;
-	case CHARACTER_STATE::GUARD:
-		key += "_GUARD";
-		break;
-	case CHARACTER_STATE::ATTACK_WEAK:
-		key += "_ATTACK_WEAK";
-		break;
-	case CHARACTER_STATE::ATTACK_STRONG:
-		key += "_ATTACK_STRONG";
-		break;
-	case CHARACTER_STATE::ATTACK_KICK:
-		key += "_ATTACK_KICK";
-		break;
-	case CHARACTER_STATE::ATTACK_RANGE:
-		key += "_ATTACK_RANGE";
-		break;
-	case CHARACTER_STATE::HIT:
-		key += "_HIT";
-		break;
-	case CHARACTER_STATE::DEATH:
-		key += "_DEATH";
-		break;
-	case CHARACTER_STATE::NONE:
-		break;
-	}
-
-	return key;
+	return (key.length() > 0 && key[0] == '_')?key.substr(1):key;
 }

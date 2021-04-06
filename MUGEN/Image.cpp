@@ -154,7 +154,7 @@ void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
 		tempDC = CreateCompatibleDC(lpImageInfo->hMemDC);
 		hBitmap = CreateCompatibleBitmap(lpImageInfo->hMemDC, size, size);
 		hOldBitmap = (HBITMAP)SelectObject(tempDC, hBitmap);
-		HBRUSH hBrush = CreateSolidBrush(RGB(255, 0, 255));
+		HBRUSH hBrush = CreateSolidBrush(RGB(0, 0, 255));
 		DeleteObject(SelectObject(tempDC, hBrush));
 		PatBlt(tempDC, 0, 0, size, size, PATCOPY);
 	}
@@ -183,13 +183,22 @@ void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
 
 	SetWorldTransform(tempDC, &oldXForm);
 
-	GdiTransparentBlt(
+	//GdiTransparentBlt(
+	//	hdc,
+	//	destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
+	//	size, size,
+	//	tempDC,
+	//	0, 0, size, size,
+	//	transColor
+	//);
+
+	BitBlt(
 		hdc,
 		destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
 		size, size,
 		tempDC,
-		0, 0, size, size,
-		transColor
+		0, 0,
+		SRCCOPY
 	);
 	
 	SetGraphicsMode(hdc, GM_COMPATIBLE);

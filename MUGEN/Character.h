@@ -24,7 +24,7 @@ protected:
 		// 데미지
 		int damage;
 		string imageKey[(int)CHARACTER_DIRECTION::NONE];
-		string hitEffectKey;
+		string hitEffectKey[(int)CHARACTER_DIRECTION::NONE];
 	};
 	struct MotionInfo
 	{
@@ -44,7 +44,7 @@ protected:
 		RECT hitRc;
 
 		// 프레임, 히트판정/데미지
-		map<int, AttackInfo> mAtkInfo;
+		map<int, vector<AttackInfo>> mAtkInfos;
 	};
 
 	// 애니메이션 처리를 위한 변수
@@ -102,5 +102,8 @@ public:
 	inline POINTFLOAT GetPos() { return pos; }
 	inline RECT GetHitRect() { return hitRc; }
 	inline PLAYER_TYPE GetPlayerType() { return type; }
+
+protected:
+	void LoadData();
 };
 

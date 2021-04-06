@@ -43,44 +43,44 @@ void Character::Update()
 			}
 		}
 
-		if (motions[(int)state].mAtkInfo.find(frame) != motions[(int)state].mAtkInfo.end())
+		if (motions[(int)state].mAtkInfos.find(frame) != motions[(int)state].mAtkInfos.end())
 		{
 			// 공격할 위치가 존재 하다면 공격!
 			POINTFLOAT atkPos;
-			switch (motions[(int)state].mAtkInfo[frame].type)
+			switch (motions[(int)state].mAtkInfos[frame][0].type)
 			{
 			case ATTACK_TYPE::MELEE:
-				if (dir == CHARACTER_DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
-				else atkPos = { pos.x + motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+				if (dir == CHARACTER_DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
+				else atkPos = { pos.x + motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
 				ColliderManager::GetLpInstance()->Create(type, atkPos,
-													motions[(int)state].mAtkInfo[frame].width,
-													motions[(int)state].mAtkInfo[frame].height,
-													motions[(int)state].mAtkInfo[frame].hitEffectKey,
+													motions[(int)state].mAtkInfos[frame][0].width,
+													motions[(int)state].mAtkInfos[frame][0].height,
+													motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
 													10);
 				break;
 			case ATTACK_TYPE::RANGE:
 				if (dir == CHARACTER_DIRECTION::LEFT)
 				{
-					atkPos = { pos.x - motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+					atkPos = { pos.x - motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
 					ColliderManager::GetLpInstance()->Fire(
 									type, atkPos, 
-									motions[(int)state].mAtkInfo[frame].width,
-									motions[(int)state].mAtkInfo[frame].height,
+									motions[(int)state].mAtkInfos[frame][0].width,
+									motions[(int)state].mAtkInfos[frame][0].height,
 									5, PI,
-									motions[(int)state].mAtkInfo[frame].imageKey[(int)dir],
-									motions[(int)state].mAtkInfo[frame].hitEffectKey,
+									motions[(int)state].mAtkInfos[frame][0].imageKey[(int)dir],
+									motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
 									10);
 				}
 				else
 				{
-					atkPos = { pos.x + motions[(int)state].mAtkInfo[frame].offsetPos.x, pos.y + motions[(int)state].mAtkInfo[frame].offsetPos.y };
+					atkPos = { pos.x + motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
 					ColliderManager::GetLpInstance()->Fire(
 						type, atkPos,
-						motions[(int)state].mAtkInfo[frame].width,
-						motions[(int)state].mAtkInfo[frame].height,
+						motions[(int)state].mAtkInfos[frame][0].width,
+						motions[(int)state].mAtkInfos[frame][0].height,
 						5, 0,
-						motions[(int)state].mAtkInfo[frame].imageKey[(int)dir],
-						motions[(int)state].mAtkInfo[frame].hitEffectKey,
+						motions[(int)state].mAtkInfos[frame][0].imageKey[(int)dir],
+						motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
 						10);
 				}
 				break;
@@ -103,7 +103,7 @@ void Character::Render(HDC hdc)
 	}
 
 	POINTFLOAT drawPos = { pos.x + motions[(int)state].offsetDrawPos[(int)dir].x, pos.y + motions[(int)state].offsetDrawPos[(int)dir].y };
-	if (lpImage) lpImage->Render(hdc, true, drawPos.x, drawPos.y, frame);
+	if (lpImage) lpImage->Render(hdc, drawPos.x, drawPos.y, frame);
 }
 
 void Character::Stay()
@@ -262,4 +262,100 @@ void Character::Translate(POINTFLOAT delta)
 	}
 	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
+}
+
+void Character::LoadData()
+{
+	// INI파일 로드
+	if (FileManager::GetLpInstance()->ReadFile("INI/" + name + ".ini"))
+	{
+		int state;
+		string group;
+		vector<float> vFloats;
+		for (int i = 0; i < (int)CHARACTER_STATE::NONE; ++i)
+		{
+			group = GetKey("", CHARACTER_DIRECTION::NONE, (CHARACTER_STATE)i);
+
+			state = FileManager::GetLpInstance()->GetData<int>(group, "CHARACTER_STATE");
+			vFloats = FileManager::GetLpInstance()->GetData<vector<float>>(group, "OFFSET_DRAW_POS");
+			for (int k = 0; k < vFloats.size(); ++k)
+			{
+				if (k % 2 == 0) motions[state].offsetDrawPos[k / 2].x = vFloats[k];
+				else motions[state].offsetDrawPos[k / 2].y = vFloats[k];
+			}
+			vFloats = FileManager::GetLpInstance()->GetData<vector<float>>(group, "OFFSET_HIT_POS");
+			for (int k = 0; k < vFloats.size(); ++k)
+			{
+				if (k % 2 == 0) motions[state].offsetHitPos.x = vFloats[k];
+				else motions[state].offsetHitPos.y = vFloats[k];
+			}
+			motions[state].width = FileManager::GetLpInstance()->GetData<int>(group, "HIT_RECT_WIDTH");
+			motions[state].height = FileManager::GetLpInstance()->GetData<int>(group, "HIT_RECT_HEIGHT");
+			motions[state].motionSpeed = FileManager::GetLpInstance()->GetData<int>(group, "MOTION_SPEED");
+		}
+	}
+	else
+	{
+		MessageBox(g_hWnd, "캐릭터 INI파일을 읽지 못하였습니다.", "Error", MB_OK);
+	}
+
+	if (FileManager::GetLpInstance()->ReadFile("INI/" + name + "_ATTACKINFO.ini"))
+	{
+		int state;
+		string group;
+		vector<int> vFrames;
+		vector<int> vAtkTypes;
+		vector<float> vOffsetPos;
+		vector<int> vHitRectWidths;
+		vector<int> vHitRectHeights;
+		vector<int> vDamages;
+		vector<string> vImageKeys;
+		vector<string> vEffectKeys;
+		AttackInfo atkInfo;
+		map<int, vector<AttackInfo>>* lpmAtkInfo = nullptr;
+		for (int i = 0; i < (int)CHARACTER_STATE::NONE; ++i)
+		{
+			group = GetKey("", CHARACTER_DIRECTION::NONE, (CHARACTER_STATE)i);
+			state = FileManager::GetLpInstance()->GetData<int>(group, "CHARACTER_STATE");
+			lpmAtkInfo = &motions[state].mAtkInfos;
+			vFrames = FileManager::GetLpInstance()->GetData<vector<int>>(group, "FRAME");
+			vAtkTypes = FileManager::GetLpInstance()->GetData<vector<int>>(group, "ATTACK_TYPE");
+			vOffsetPos = FileManager::GetLpInstance()->GetData<vector<float>>(group, "OFFSET_POS");
+			vHitRectWidths = FileManager::GetLpInstance()->GetData<vector<int>>(group, "HIT_RECT_WIDTH");
+			vHitRectHeights = FileManager::GetLpInstance()->GetData<vector<int>>(group, "HIT_RECT_HEIGHT");
+			vDamages = FileManager::GetLpInstance()->GetData<vector<int>>(group, "DAMAGE");
+			vImageKeys = FileManager::GetLpInstance()->GetData<vector<string>>(group, "IMAGE_KEY");
+			vEffectKeys = FileManager::GetLpInstance()->GetData<vector<string>>(group, "EFFECT_KEY");
+			for (int k = 0; k < vFrames.size(); ++k)
+			{
+				atkInfo.type = (ATTACK_TYPE)vAtkTypes[k];
+				atkInfo.offsetPos = { vOffsetPos[k * 2], vOffsetPos[k * 2 + 1] };
+				atkInfo.damage = vDamages[k];
+				atkInfo.height = vHitRectHeights[k];
+				atkInfo.width = vHitRectWidths[k];
+				if (vImageKeys[k][0] != '-')
+				{
+					atkInfo.imageKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, (CHARACTER_STATE)state, vImageKeys[k]);
+					atkInfo.imageKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, (CHARACTER_STATE)state, vImageKeys[k]);
+				}
+				if (vEffectKeys[k][0] != '-')
+				{
+					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, (CHARACTER_STATE)state, vEffectKeys[k]);
+					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, (CHARACTER_STATE)state, vEffectKeys[k]);
+				}
+				if (lpmAtkInfo->find(vFrames[k]) == lpmAtkInfo->end())
+				{
+					lpmAtkInfo->insert(make_pair(vFrames[k], vector<AttackInfo>{atkInfo}));
+				}
+				else
+				{
+					(*lpmAtkInfo)[vFrames[k]].push_back(atkInfo);
+				}
+			}
+		}
+	}
+	else
+	{
+		MessageBox(g_hWnd, "캐릭터 공격정보 INI파일을 읽지 못하였습니다.", "Error", MB_OK);
+	}
 }

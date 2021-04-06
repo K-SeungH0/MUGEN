@@ -14,14 +14,19 @@ bool FileManager::ReadFile(string path)
 		ifs.open(path, ios_base::in);
 		while (!ifs.eof())
 		{
-			int c = ifs.get();
-			switch (c)
+			switch (ifs.peek())
 			{
 			case '[':
 				getline(ifs, group);
-				group = group.substr(0, group.length() - 1);
-
-				mDataSet.insert(make_pair(group, map<string, vector<string>>()));
+				group = group.substr(1, group.length() - 2);
+				if (mDataSet.find(group) == mDataSet.end()) mDataSet.insert(make_pair(group, map<string, vector<string>>()));
+				break;
+			case '#':
+			case '\n':
+			case '\0':
+				getline(ifs, group);
+				break;
+			default:
 				getline(ifs, line);
 				while (line.length() > 0)
 				{
@@ -32,7 +37,8 @@ bool FileManager::ReadFile(string path)
 						if (index++ == 0)
 						{
 							key = data;
-							mDataSet[group].insert(make_pair(key, vector<string>()));
+							if (mDataSet[group].find(key) == mDataSet[group].end())
+								mDataSet[group].insert(make_pair(key, vector<string>()));
 						}
 						else
 						{
@@ -41,9 +47,6 @@ bool FileManager::ReadFile(string path)
 					}
 					getline(ifs, line);
 				}
-				break;
-			default:
-				getline(ifs, group);
 				break;
 			}
 		}

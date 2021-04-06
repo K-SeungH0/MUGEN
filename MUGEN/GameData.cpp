@@ -18,7 +18,7 @@ void GameData::Release()
 	{
 		delete this->player[i].lp_Character;
 		this->player[i].lp_Character = nullptr;
-
+		
 		delete this->player[i].lp_Controller;
 		this->player[i].lp_Controller = nullptr;
 	}

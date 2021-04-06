@@ -44,7 +44,6 @@ HRESULT MainGame::Init()
 	title = new Title();
 	title->Init();
 	currentScene = SCENE_STATE::TITLE;
-
 	inGame = new InGame();
 	inGame->Init();
 
@@ -78,12 +77,11 @@ void MainGame::Release()
 	lpBuffer->Release();
 	delete lpBuffer;
 
-	inGame->Release();
 	delete inGame;
 
+	GameData::GetLpInstance()->ReleaseSingleton();
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
-	GameData::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
@@ -108,8 +106,8 @@ void MainGame::Update()
 			}
 			// 캐릭터의 위치 조정
 			// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
-			RECT player1Rect = players[(PLAYER_TYPE::P1].lpCharacter->GetLpCharacter()->GetHitRect();
-			RECT player2Rect = players[(PLAYER_TYPE::P2].lpCharacter->GetLpCharacter()->GetHitRect();
+			RECT player1Rect = players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter()->GetHitRect();
+			RECT player2Rect = players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter()->GetHitRect();
 			if (CollisionRect(player1Rect, player2Rect))
 			{
 				// 충돌
@@ -126,9 +124,6 @@ void MainGame::Update()
 		case SCENE_STATE::END:
 			break;
 	}
-	
-
-
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -136,19 +131,19 @@ void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
 
-	lpBgImg->Render(hBackDC);
-	
-	lpPlayer1->Render(hBackDC);
-	lpPlayer2->Render(hBackDC);
-	
-	// 충돌체 렌더
-	ColliderManager::GetLpInstance()->Render(hBackDC);
-	
-	// 이펙트 렌더
-	EffectManager::GetLpInstance()->Render(hBackDC);
-	
-	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
+	//lpBgImg->Render(hBackDC);
+	//
+	//lpPlayer1->Render(hBackDC);
+	//lpPlayer2->Render(hBackDC);
+	//
+	//// 충돌체 렌더
+	//ColliderManager::GetLpInstance()->Render(hBackDC);
+	//
+	//// 이펙트 렌더
+	//EffectManager::GetLpInstance()->Render(hBackDC);
+	//
+	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
 	title->Render(hBackDC);
 	lpBuffer->Render(hdc);

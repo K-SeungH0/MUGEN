@@ -50,43 +50,31 @@ HRESULT InGame::Init()
 	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
 	//		break;
 	//	}
-	//Character* lpDIO = new DIO();
-	//lpDIO->Init();
-	//
-	//Character* lpKING = new King();
-	//lpKING->Init();
-	//
-	//Character* lpChang = new Chang();
-	//lpChang->Init();
-	//
-	//lpPlayer1 = new Controller();
-	//lpPlayer1->Init();
-	//lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
-	//
-	//lpPlayer2 = new Controller();
-	//lpPlayer2->Init();
-	//lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
+	Character* lpDIO = new DIO();
+	lpDIO->Init();
+	
+	Character* lpKING = new King();
+	lpKING->Init();
+	
+	Character* lpChang = new Chang();
+	lpChang->Init();
+	
+	lpPlayer1 = new Controller();
+	lpPlayer1->Init();
+	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
+	
+	lpPlayer2 = new Controller();
+	lpPlayer2->Init();
+	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
-
-	lpBgImg = new Image();
 
 	lpController_P1 = nullptr;
 	lpController_P2 = nullptr;
 	lpCharacter_P1 = nullptr;
 	lpCharacter_P2 = nullptr;
 
-	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
-	{
-		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
-	}
-
-	lpBgImg = new Image();
-	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
-	{
-		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
-	}
 	return S_OK;
 }
 
@@ -99,9 +87,6 @@ void InGame::Release()
 	Player1_DelayHP->Release();
 	Player2_DelayHP->Release();
 	lpKOImg->Release();
-
-	lpBgImg->Release();
-	delete lpBgImg;
 
 	lpBuffer->Release();
 	delete lpBuffer;
@@ -153,8 +138,11 @@ void InGame::Update()
 void InGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_02")->Render(hBackDC, 0, 0);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_01")->Render(hBackDC, 0, 0);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_03")->Render(hBackDC, 212, WINSIZE_HEIGHT - 134, (frame % 12) / 2);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_04")->Render(hBackDC, WINSIZE_WIDTH / 2 - 55, WINSIZE_HEIGHT / 2 + 105, (frame % 36) / 2);
 
-	lpBgImg->Render(hBackDC);
 	lpPlayer1->Render(hBackDC);
 	lpPlayer2->Render(hBackDC);
 	if (Player1_HPUI)Player1_HPUI->Render(hBackDC, 0, 0);
@@ -172,10 +160,6 @@ void InGame::Render(HDC hdc)
 	
 	// 이펙트 렌더
 	EffectManager::GetLpInstance()->Render(hBackDC);
-
-	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
-
 	lpBuffer->Render(hdc);
 }
 

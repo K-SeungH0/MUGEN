@@ -4,6 +4,9 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
+#include "Title.h"
+#include "GameData.h"
+#include "INGAME.h"
 #include "InGame.h"
 
 HRESULT MainGame::Init()

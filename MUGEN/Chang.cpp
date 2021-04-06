@@ -53,9 +53,9 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::HIT].height = 115;
 	motions[(int)CHARACTER_STATE::HIT].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::HIT].offsetHitPos, 100, 115);
 
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].mAtkInfo.insert(make_pair(2, AttackInfo{ ATTACK_TYPE::MELEE, {63,-90}, 70, 50, 10 }));
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::MELEE, {85,-90}, 90, 50, 15 }));
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {106,-46}, 60, 40, 10 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_WEAK].mAtkInfo.insert(make_pair(2, AttackInfo{ ATTACK_TYPE::MELEE, {63,-90}, 70, 50, 10 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::MELEE, {85,-90}, 90, 50, 15 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {106,-46}, 60, 40, 10 }));
 
 	// ATTACK_STRONG
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -81, -160 };
@@ -85,7 +85,7 @@ void Chang::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].height = 112;
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos, 0, 0);
 
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::RANGE, {100,-100}, 40, 40, 10, "Chang_RIGHT_RANGE_ATTACK_COLLIDER", "" }));
+	//motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::RANGE, {100,-100}, 40, 40, 10, "Chang_RIGHT_RANGE_ATTACK_COLLIDER", "" }));
 
 
 	motions[(int)CHARACTER_STATE::GUARD].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -80, -159 };

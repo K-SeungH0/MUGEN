@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #include "GameData.h"
 //#include "Mugen.h"
 
@@ -7,6 +7,7 @@ class Character;
 class Controller;
 class GameUI;
 
+class InGame;
 class MainGame
 {
 private:
@@ -21,7 +22,7 @@ private:
 
 	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
 
-	// ƒ≥∏Ø≈Õ √ﬂ∞°
+	// Ï∫êÎ¶≠ÌÑ∞ Ï∂îÍ∞Ä
 	Character* lpKING;
 	Character* lpDIO;
 	Character* lpChang;
@@ -32,6 +33,8 @@ private:
 	GameUI* title;
 	
 	SCENE_STATE currentScene;
+
+	InGame* inGame;
 
 public:
 	HRESULT Init();

@@ -1,4 +1,4 @@
-#include "MainGame.h"
+ï»¿#include "MainGame.h"
 #include "Image.h"
 #include "King.h"
 #include "Chang.h"
@@ -6,6 +6,7 @@
 #include "Controller.h"
 #include "Title.h"
 #include "GameData.h"
+#include "INGAME.h"
 
 HRESULT MainGame::Init()
 {
@@ -20,7 +21,7 @@ HRESULT MainGame::Init()
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
-		MessageBox(g_hWnd, "¹è°æ·Îµå ½ÇÆÐ", "Error", MB_OK);
+		MessageBox(g_hWnd, "ë°°ê²½ ë¡œë“œ ì‹¤íŒ¨", "Error", MB_OK);
 	}
 
 	//lpDIO = new DIO();
@@ -43,6 +44,9 @@ HRESULT MainGame::Init()
 	title = new Title();
 	title->Init();
 	currentScene = SCENE_STATE::TITLE;
+
+	inGame = new InGame();
+	inGame->Init();
 
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
@@ -74,7 +78,9 @@ void MainGame::Release()
 	lpBuffer->Release();
 	delete lpBuffer;
 
-	//ColliderManager::GetLpInstance()->ReleaseSingleton();
+	inGame->Release();
+	delete inGame;
+
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
 	GameData::GetLpInstance()->ReleaseSingleton();
@@ -82,7 +88,7 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	//if (g_hWnd != GetForegroundWindow()) return;
+	if (g_hWnd != GetForegroundWindow()) return;
 
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{
@@ -100,14 +106,14 @@ void MainGame::Update()
 			{
 				players[i].lp_Controller->Update();
 			}
-			// Ä³¸¯ÅÍÀÇ À§Ä¡ Á¶Á¤
-			// Ä³¸¯ÅÍ³¢¸® ºÎµúÇûÀ»°æ¿ì ¼­·Î ÀÏÁ¤Ä¡¸¸Å­ ¹Ð·Á³ªµµ·Ï Ã³¸®
+			// ìºë¦­í„°ì˜ ìœ„ì¹˜ ì¡°ì •
+			// ìºë¦­í„°ë¼ë¦¬ ë¶€ë”ªí˜”ì„ê²½ìš° ì„œë¡œ ì¼ì •ì¹˜ë§Œí¼ ë°€ë ¤ë‚˜ë„ë¡ ì²˜ë¦¬
 			RECT player1Rect = players[(PLAYER_TYPE::P1].lpCharacter->GetLpCharacter()->GetHitRect();
 			RECT player2Rect = players[(PLAYER_TYPE::P2].lpCharacter->GetLpCharacter()->GetHitRect();
 			if (CollisionRect(player1Rect, player2Rect))
 			{
-				// Ãæµ¹
-				// °ãÃÄÁø ¸¸Å­ ÀÌµ¿½ÃÄÑ¾ßÇÑ´Ù
+				// ì¶©ëŒ
+				// ê²¹ì³ì§„ ë§Œí¼ ì´ë™ì‹œì¼œì•¼í•œë‹¤
 				float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
 				lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 				lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
@@ -130,19 +136,19 @@ void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
 
-	//lpBgImg->Render(hBackDC);
-	//
-	//lpPlayer1->Render(hBackDC);
-	//lpPlayer2->Render(hBackDC);
-	//
-	//// Ãæµ¹Ã¼ ·»´õ
-	//ColliderManager::GetLpInstance()->Render(hBackDC);
-	//
-	//// ÀÌÆåÆ® ·»´õ
-	//EffectManager::GetLpInstance()->Render(hBackDC);
-	//
-	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
+	lpBgImg->Render(hBackDC);
+	
+	lpPlayer1->Render(hBackDC);
+	lpPlayer2->Render(hBackDC);
+	
+	// ì¶©ëŒì²´ ë Œë”
+	ColliderManager::GetLpInstance()->Render(hBackDC);
+	
+	// ì´íŽ™íŠ¸ ë Œë”
+	EffectManager::GetLpInstance()->Render(hBackDC);
+	
+	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
 	title->Render(hBackDC);
 	lpBuffer->Render(hdc);

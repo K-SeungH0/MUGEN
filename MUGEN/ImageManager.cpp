@@ -179,18 +179,18 @@ HRESULT ImageManager::Init()
 
 #pragma region GameUI Image Load
 	this->mImage.insert(make_pair("Player1_HPUI", new Image()));
-	this->mImage["Player1_HPUI"]->Init("Image/UI/Player/Player1_HPUI.bmp", 701 -350, 324 - 150, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["Player1_HPUI"]->Init("Image/UI/Player/Player1_HPUI.bmp", 701 / 2, 324 / 2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("Player2_HPUI", new Image()));
-	this->mImage["Player2_HPUI"]->Init("Image/UI/Player/Player2_HPUI.bmp", 701 - 350, 324 - 150, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["Player2_HPUI"]->Init("Image/UI/Player/Player2_HPUI.bmp", 701 / 2, 324 / 2, 1, 1, 1, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("HP", new Image()));
-	this->mImage["HP"]->Init("Image/UI/Player/HP.bmp", 499, 54);
+	this->mImage["HP"]->Init("Image/UI/Player/HP.bmp", 499 / 2+1, 54/ 2);
 	this->mImage.insert(make_pair("Delay_HP", new Image()));
-	this->mImage["Delay_HP"]->Init("Image/UI/Player/Delay_HP.bmp", 499, 54);
+	this->mImage["Delay_HP"]->Init("Image/UI/Player/Delay_HP.bmp", 499 / 2+1, 54/ 2);
 
 
 	this->mImage.insert(make_pair("KO", new Image()));
-	this->mImage["KO"]->Init("Image/UI/Round/KO.bmp", 17000, 288, 34, 1, 34, true, RGB(0, 255, 0));
+	this->mImage["KO"]->Init("Image/UI/Round/KO.bmp", 17000*2, 288*2, 34, 1, 34, true, RGB(0, 255, 0));
 	this->mImage.insert(make_pair("FINAL", new Image()));
 	this->mImage["FINAL"]->Init("Image/UI/Round/FINALROUND.bmp", 3154, 1000, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("ROUND1", new Image()));
@@ -208,26 +208,8 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("GO", new Image()));
 	this->mImage["GO"]->Init("Image/UI/Round/GO.bmp", 497, 160, true, RGB(255, 0, 255));
 
-	this->mImage.insert(make_pair("TIME0", new Image()));
-	this->mImage["TIME0"]->Init("Image/UI/Number/0.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME1", new Image()));
-	this->mImage["TIME1"]->Init("Image/UI/Number/1.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME2", new Image()));
-	this->mImage["TIME2"]->Init("Image/UI/Number/2.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME3", new Image()));
-	this->mImage["TIME3"]->Init("Image/UI/Number/3.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME4", new Image()));
-	this->mImage["TIME4"]->Init("Image/UI/Number/4.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME5", new Image()));
-	this->mImage["TIME5"]->Init("Image/UI/Number/5.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME6", new Image()));
-	this->mImage["TIME6"]->Init("Image/UI/Number/6.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME7", new Image()));
-	this->mImage["TIME7"]->Init("Image/UI/Number/7.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME8", new Image()));
-	this->mImage["TIME8"]->Init("Image/UI/Number/8.bmp", 100, 120, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("TIME9", new Image()));
-	this->mImage["TIME9"]->Init("Image/UI/Number/9.bmp", 100, 120, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_Time", new Image()));
+	this->mImage["UI_Time"]->Init("Image/UI/Number/UI_Time.bmp", 1200, 120, 10, 1, 10, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_Chang", new Image()));
 	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));

@@ -19,25 +19,12 @@ private:
 	Image* lpBuffer;
 	Image* lpBgImg;
 	Image* lpKOImg;
-	Image* Time;
-	Image* Time0;
-	Image* Time1;
-	Image* Time2;
-	Image* Time3;
-	Image* Time4;
-	Image* Time5;
-	Image* Time6;
-	Image* Time7;
-	Image* Time8;
-	Image* Time9;
+	Image* UI_Time;
+	int x;
 
 	int elapsedTime;
 	int frame;
 	int time = 60;
-	// 캐릭터 추가
-	Character* lpKING;
-	Character* lpDIO;
-	Character* lpChang;
 
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;

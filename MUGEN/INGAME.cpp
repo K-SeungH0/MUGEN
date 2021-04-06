@@ -209,7 +209,7 @@ bool InGame::IsCollision(Character* attacker, Character* defender)
 				}
 			}
 			/* it->hitEffectKey */
-			defender->Hit(it->damage, point, "KING_RIGHT_RANGE_ATTACK_EFFECT");
+			defender->Hit(it->damage, point, it->hitEffectKey);
 
 			if (isDebugMode && it->type == ColliderManager::COLLIDER_TYPE::STATIC)
 			{

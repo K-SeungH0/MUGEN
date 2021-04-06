@@ -244,6 +244,11 @@ HRESULT ImageManager::Init()
 	this->mImage["EFFECT_LEFT_DUST"]->Init("Image/UI/Effects/EFFECT_LEFT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
 	this->mImage.insert(make_pair("EFFECT_RIGHT_DUST", new Image()));
 	this->mImage["EFFECT_RIGHT_DUST"]->Init("Image/UI/Effects/EFFECT_RIGHT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+
+	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["DIO_LEFT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["DIO_RIGHT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
 #pragma endregion
 
 #pragma region Title Image Load

@@ -88,7 +88,6 @@ void InGame::Render(HDC hdc)
 
 	POINTFLOAT KOPos = { WINSIZE_WIDTH/2 - 500 * 1200/WINSIZE_WIDTH, WINSIZE_HEIGHT/2 - 300* 600/WINSIZE_WIDTH};
 	if (lpKOImg)lpKOImg->Render(hdc, KOPos.x, KOPos.y, frame);
-
 	POINTFLOAT Time10Pos = { WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600/WINSIZE_HEIGHT };
 	if (UI_Time)UI_Time->Render(hdc, Time10Pos.x, Time10Pos.y, time / 10);
 

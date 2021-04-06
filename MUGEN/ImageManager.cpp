@@ -14,60 +14,50 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_RIGHT_MOVE", new Image()));
 	this->mImage["KING_RIGHT_MOVE"]->Init("Image/Character/KING/KING_RIGHT_MOVE.bmp", 256, 112, 4, 1, 4, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_DEAD", new Image()));
-	this->mImage["KING_LEFT_DEAD"]->Init("Image/Character/KING/KING_LEFT_DEAD.bmp", 1536, 112, 12, 1, 12, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_DEAD", new Image()));
-	this->mImage["KING_RIGHT_DEAD"]->Init("Image/Character/KING/KING_RIGHT_DEAD.bmp", 1536, 112, 12, 1, 12, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_MOVE_GUARD", new Image()));
+	this->mImage["KING_LEFT_MOVE_GUARD"]->Init("Image/Character/KING/KING_LEFT_MOVE_GUARD.bmp", 256, 112, 4, 1, 4, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_MOVE_GUARD", new Image()));
+	this->mImage["KING_RIGHT_MOVE_GUARD"]->Init("Image/Character/KING/KING_RIGHT_MOVE_GUARD.bmp", 256, 112, 4, 1, 4, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_HIT1", new Image()));
-	this->mImage["KING_LEFT_HIT1"]->Init("Image/Character/KING/KING_LEFT_HIT1.bmp", 400, 112, 5, 1, 5, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_HIT1", new Image()));
-	this->mImage["KING_RIGHT_HIT1"]->Init("Image/Character/KING/KING_RIGHT_HIT1.bmp", 400, 112, 5, 1, 5, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_DEATH", new Image()));
+	this->mImage["KING_LEFT_DEATH"]->Init("Image/Character/KING/KING_LEFT_DEATH.bmp", 1536, 112, 12, 1, 12, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_DEATH", new Image()));
+	this->mImage["KING_RIGHT_DEATH"]->Init("Image/Character/KING/KING_RIGHT_DEATH.bmp", 1536, 112, 12, 1, 12, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_HIT2", new Image()));
-	this->mImage["KING_LEFT_HIT2"]->Init("Image/Character/KING/KING_LEFT_HIT2.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_HIT2", new Image()));
-	this->mImage["KING_RIGHT_HIT2"]->Init("Image/Character/KING/KING_RIGHT_HIT2.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_HIT", new Image()));
+	this->mImage["KING_LEFT_HIT"]->Init("Image/Character/KING/KING_LEFT_HIT.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_HIT", new Image()));
+	this->mImage["KING_RIGHT_HIT"]->Init("Image/Character/KING/KING_RIGHT_HIT.bmp", 448, 96, 7, 1, 7, true, RGB(140, 206, 156));
 
 	this->mImage.insert(make_pair("KING_LEFT_GUARD", new Image()));
 	this->mImage["KING_LEFT_GUARD"]->Init("Image/Character/KING/KING_LEFT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
 	this->mImage.insert(make_pair("KING_RIGHT_GUARD", new Image()));
 	this->mImage["KING_RIGHT_GUARD"]->Init("Image/Character/KING/KING_RIGHT_GUARD.bmp", 128, 112, 2, 1, 2, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_SKILL", new Image()));
-	this->mImage["KING_LEFT_SKILL"]->Init("Image/Character/KING/KING_LEFT_SKILL.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_SKILL", new Image()));
-	this->mImage["KING_RIGHT_SKILL"]->Init("Image/Character/KING/KING_RIGHT_SKILL.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_ATTACK_RANGE", new Image()));
+	this->mImage["KING_LEFT_ATTACK_RANGE"]->Init("Image/Character/KING/KING_LEFT_ATTACK_RANGE.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_RANGE", new Image()));
+	this->mImage["KING_RIGHT_ATTACK_RANGE"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_RANGE.bmp", 384, 112, 4, 1, 4, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_STRONGKICK", new Image()));
-	this->mImage["KING_LEFT_STRONGKICK"]->Init("Image/Character/KING/KING_LEFT_STRONGKICK.bmp", 1008, 112, 9, 1, 9, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_STRONGKICK", new Image()));
-	this->mImage["KING_RIGHT_STRONGKICK"]->Init("Image/Character/KING/KING_RIGHT_STRONGKICK.bmp", 1008, 112, 9, 1, 9, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_ATTACK_KICK", new Image()));
+	this->mImage["KING_LEFT_ATTACK_KICK"]->Init("Image/Character/KING/KING_LEFT_ATTACK_KICK.bmp", 1008, 112, 9, 1, 9, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_KICK", new Image()));
+	this->mImage["KING_RIGHT_ATTACK_KICK"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_KICK.bmp", 1008, 112, 9, 1, 9, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_STRONGPUNCH", new Image()));
-	this->mImage["KING_LEFT_STRONGPUNCH"]->Init("Image/Character/KING/KING_LEFT_STRONGPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_STRONGPUNCH", new Image()));
-	this->mImage["KING_RIGHT_STRONGPUNCH"]->Init("Image/Character/KING/KING_RIGHT_STRONGPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_ATTACK_STRONG", new Image()));
+	this->mImage["KING_LEFT_ATTACK_STRONG"]->Init("Image/Character/KING/KING_LEFT_ATTACK_STRONG.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_STRONG", new Image()));
+	this->mImage["KING_RIGHT_ATTACK_STRONG"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_STRONG.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_WEAKKICK", new Image()));
-	this->mImage["KING_LEFT_WEAKKICK"]->Init("Image/Character/KING/KING_LEFT_WEAKKICK.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_WEAKKICK", new Image()));
-	this->mImage["KING_RIGHT_WEAKKICK"]->Init("Image/Character/KING/KING_RIGHT_WEAKKICK.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
-
-	this->mImage.insert(make_pair("KING_LEFT_WEAKPUNCH", new Image()));
-	this->mImage["KING_LEFT_WEAKPUNCH"]->Init("Image/Character/KING/KING_LEFT_WEAKPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
-	this->mImage.insert(make_pair("KING_RIGHT_WEAKPUNCH", new Image()));
-	this->mImage["KING_RIGHT_WEAKPUNCH"]->Init("Image/Character/KING/KING_RIGHT_WEAKPUNCH.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_LEFT_ATTACK_WEAK", new Image()));
+	this->mImage["KING_LEFT_ATTACK_WEAK"]->Init("Image/Character/KING/KING_LEFT_ATTACK_WEAK.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
+	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_WEAK", new Image()));
+	this->mImage["KING_RIGHT_ATTACK_WEAK"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_WEAK.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
 
 	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_COLLIDER", new Image()));
 	this->mImage["KING_LEFT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_LEFT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
 	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
 	this->mImage["KING_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
-
-	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_EFFECT", new Image()));
-	this->mImage["KING_LEFT_RANGE_ATTACK_EFFECT"]->Init("Image/Character/KING/KING_LEFT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
-	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_EFFECT", new Image()));
-	this->mImage["KING_RIGHT_RANGE_ATTACK_EFFECT"]->Init("Image/Character/KING/KING_RIGHT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
 #pragma endregion
 
 #pragma region DIO Image Load
@@ -230,7 +220,39 @@ HRESULT ImageManager::Init()
 
 
 #pragma region Effect Image Load
+	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_EFFECT", new Image()));
+	this->mImage["KING_LEFT_RANGE_ATTACK_EFFECT"]->Init("Image/UI/Effects/KING_LEFT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_EFFECT", new Image()));
+	this->mImage["KING_RIGHT_RANGE_ATTACK_EFFECT"]->Init("Image/UI/Effects/KING_RIGHT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("EFFECT_BOOM", new Image()));
+	this->mImage["EFFECT_BOOM"]->Init("Image/UI/Effects/EFFECT_BOOM.bmp", 768, 48, 16, 1, 16, true, RGB(0, 0, 0));
+	this->mImage.insert(make_pair("EFFECT_GUARD", new Image()));
+	this->mImage["EFFECT_GUARD"]->Init("Image/UI/Effects/EFFECT_GUARD.bmp", 256, 32, 8, 1, 8, true, RGB(66, 181, 99));
+	this->mImage.insert(make_pair("EFFECT_HIT1", new Image()));
+	this->mImage["EFFECT_HIT1"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("EFFECT_HIT2", new Image()));
+	this->mImage["EFFECT_HIT2"]->Init("Image/UI/Effects/EFFECT_HIT2.bmp", 648, 80, 9, 1, 9, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("EFFECT_LEFT_DUST", new Image()));
+	this->mImage["EFFECT_LEFT_DUST"]->Init("Image/UI/Effects/EFFECT_LEFT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+	this->mImage.insert(make_pair("EFFECT_RIGHT_DUST", new Image()));
+	this->mImage["EFFECT_RIGHT_DUST"]->Init("Image/UI/Effects/EFFECT_RIGHT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+#pragma endregion
 
+#pragma region Title Image Load
+	this->mImage.insert(make_pair("CHANG_SELECTION", new Image()));
+	this->mImage["CHANG_SELECTION"]->Init("Image/UI/TITLE/CHANG_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("DIO_SELECTION", new Image()));
+	this->mImage["DIO_SELECTION"]->Init("Image/UI/TITLE/DIO_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
+	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("TITLE", new Image()));
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", 1600, 600, 2, 1, 2, false);
+	this->mImage.insert(make_pair("BACK_TITLE", new Image()));
+	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", 800, 600, 1, 1, 1, false);
+	this->mImage.insert(make_pair("SELECT_1P", new Image()));
+	this->mImage["SELECT_1P"]->Init("Image/UI/TITLE/SELECT_1P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
+	this->mImage.insert(make_pair("SELECT_2P", new Image()));
+	this->mImage["SELECT_2P"]->Init("Image/UI/TITLE/SELECT_2P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
 #pragma endregion
 
 	return S_OK;
@@ -256,3 +278,4 @@ Image* ImageManager::GetImage(string key)
 {
 	return this->mImage[key];
 }
+

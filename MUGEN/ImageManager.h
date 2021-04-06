@@ -3,7 +3,10 @@
 #include <string>
 #include <map>
 #include "Singleton.h"
+
 class Image;
+enum class CHARACTER_DIRECTION;
+enum class CHARACTER_STATE;
 class ImageManager : public Singleton<ImageManager>
 {
 private:

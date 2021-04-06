@@ -49,6 +49,9 @@
     <Filter Include="소스 파일\MEGEN\GameScene">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\GameData">
+      <UniqueIdentifier>{a76f57f3-f86e-4ef7-9f19-8aad066c9ace}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\MEGEN\GameScene\INGAME">
       <UniqueIdentifier>{60bd0359-be49-45c0-84c5-65fda7b97995}</UniqueIdentifier>
     </Filter>
@@ -114,6 +117,12 @@
     <ClCompile Include="GameUI.cpp">
       <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>소스 파일\MEGEN\GameData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -151,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>

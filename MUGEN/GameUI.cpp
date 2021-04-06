@@ -1,8 +1,7 @@
 #include "GameUI.h"
 
-HRESULT GameUI::Init()
+void GameUI::Init()
 {
-	return S_OK;
 }
 
 void GameUI::Release()

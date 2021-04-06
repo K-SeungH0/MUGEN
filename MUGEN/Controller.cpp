@@ -140,7 +140,7 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 	{
 	case PLAYER_TYPE::P1:
 		// 1P 초기위치지정
-		this->lpCharacter->SetDirection(Character::DIRECTION::RIGHT);
+		this->lpCharacter->SetDirection(CHARACTER_DIRECTION::RIGHT);
 		this->lpCharacter->SetPos({ 100, WINSIZE_HEIGHT - 100 });
 		// W A S D // H J K
 		mSkillKey.insert(make_pair(SKILL_KIND::LEFT, 'A'));
@@ -153,7 +153,7 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 		break;
 	case PLAYER_TYPE::P2:
 		// 2P 초기위치 지정
-		this->lpCharacter->SetDirection(Character::DIRECTION::LEFT);
+		this->lpCharacter->SetDirection(CHARACTER_DIRECTION::LEFT);
 		this->lpCharacter->SetPos({ WINSIZE_WIDTH - 100, WINSIZE_HEIGHT - 100 });
 		// 방향키 // 숫자키패드 1 2 3
 		mSkillKey.insert(make_pair(SKILL_KIND::LEFT, VK_LEFT));

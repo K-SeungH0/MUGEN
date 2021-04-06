@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Mugen.h"
 
 class Image;
@@ -6,6 +6,7 @@ class Character;
 class Controller;
 class GameUI;
 
+class InGame;
 class MainGame
 {
 private:
@@ -17,8 +18,7 @@ private:
 
 	Image* lpBuffer;
 	Image* lpBgImg;
-
-	// Ä³¸¯ÅÍ Ãß°¡
+	// Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	Character* lpKING;
 	Character* lpDIO;
 	Character* lpChang;
@@ -27,6 +27,8 @@ private:
 	Controller* lpPlayer2;
 
 	GameUI* title;
+
+	InGame* inGame;
 
 public:
 	HRESULT Init();

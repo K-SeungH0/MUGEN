@@ -1,4 +1,4 @@
-#include "MainGame.h"
+ï»¿#include "MainGame.h"
 #include "Image.h"
 #include "King.h"
 #include "Chang.h"
@@ -20,7 +20,7 @@ HRESULT MainGame::Init()
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
-		MessageBox(g_hWnd, "¹è°æ·Îµå ½ÇÆÐ", "Error", MB_OK);
+		MessageBox(g_hWnd, "ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½", "Error", MB_OK);
 	}
 
 	lpDIO = new DIO();
@@ -42,6 +42,9 @@ HRESULT MainGame::Init()
 
 	title = new Title();
 	title->Init();
+	inGame = new InGame();
+	inGame->Init();
+
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -64,6 +67,9 @@ void MainGame::Release()
 	lpBuffer->Release();
 	delete lpBuffer;
 
+	inGame->Release();
+	delete inGame;
+
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
 }
@@ -82,14 +88,14 @@ void MainGame::Update()
 	//lpPlayer1->Update();
 	//lpPlayer2->Update();
 	//
-	//// Ä³¸¯ÅÍÀÇ À§Ä¡ Á¶Á¤
-	//// Ä³¸¯ÅÍ³¢¸® ºÎµúÇûÀ»°æ¿ì ¼­·Î ÀÏÁ¤Ä¡¸¸Å­ ¹Ð·Á³ªµµ·Ï Ã³¸®
+	//// Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+	//// Ä³ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½Å­ ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	//RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
 	//RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
 	//if (CollisionRect(player1Rect, player2Rect))
 	//{
-	//	// Ãæµ¹
-	//	// °ãÃÄÁø ¸¸Å­ ÀÌµ¿½ÃÄÑ¾ßÇÑ´Ù
+	//	// ï¿½æµ¹
+	//	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å­ ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Ñ´ï¿½
 	//	float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
 	//	lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 	//	lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
@@ -111,10 +117,10 @@ void MainGame::Render(HDC hdc)
 	//lpPlayer1->Render(hBackDC);
 	//lpPlayer2->Render(hBackDC);
 	//
-	//// Ãæµ¹Ã¼ ·»´õ
+	//// ì¶©ëŒì²´ ë Œë”
 	//ColliderManager::GetLpInstance()->Render(hBackDC);
 	//
-	//// ÀÌÆåÆ® ·»´õ
+	//// ì´íŽ™íŠ¸ ë Œë”
 	//EffectManager::GetLpInstance()->Render(hBackDC);
 	//
 	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);

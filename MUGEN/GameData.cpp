@@ -3,7 +3,7 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
-
+#include "FileManager.h"
 void GameData::Init()
 {
 	player = new PlayerInfo[(int)PLAYER_TYPE::NONE];
@@ -15,6 +15,8 @@ void GameData::Init()
 		player[i].lp_Controller = new Controller();
 		player[i].lp_Controller->Init();
 	}
+
+	LoadKeySet();
 }
 
 void GameData::Release()
@@ -54,4 +56,23 @@ void GameData::SetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName
 	}
 	
 	player[(int)playerType].lp_Controller->SetController(playerType, player[(int)playerType].lp_Character);
+}
+
+void GameData::LoadKeySet()
+{
+	if (FileManager::GetLpInstance()->ReadFile("INI/INPUT_KEY.ini"))
+	{
+		string group = "1P";
+		string up = FileManager::GetLpInstance()->GetData<string>(group, "UP");
+		string down = FileManager::GetLpInstance()->GetData<string>(group, "DOWN");
+		string left = FileManager::GetLpInstance()->GetData<string>(group, "LEFT");
+		string right = FileManager::GetLpInstance()->GetData<string>(group, "RIGHT");
+		string weakA = FileManager::GetLpInstance()->GetData<string>(group, "ATTACK_WEAK");
+		string strongA = FileManager::GetLpInstance()->GetData<string>(group, "ATTACK_STRONG");
+		string kick = FileManager::GetLpInstance()->GetData<string>(group, "ATTACK_KICK");
+	}
+	else
+	{
+		MessageBox(g_hWnd, "키셋팅 INI파일을 읽지 못하였습니다.", "Error", MB_OK);
+	}
 }

@@ -11,7 +11,6 @@ private:
 	Image* Player1_DelayHP;
 	Image* Player2_DelayHP;
 	Image* lpBuffer;
-	Image* lpBgImg;
 	Image* lpKOImg;
 	Image* UI_Time;
 	Image* UI_Player1;

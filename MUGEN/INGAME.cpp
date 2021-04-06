@@ -42,8 +42,6 @@ HRESULT InGame::Init()
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
-	lpBgImg = new Image();
-
 	lpController_P1 = nullptr;
 	lpController_P2 = nullptr;
 	lpCharacter_P1 = nullptr;
@@ -97,9 +95,6 @@ void InGame::Release()
 	Player2_DelayHP->Release();
 	lpKOImg->Release();
 
-	lpBgImg->Release();
-	delete lpBgImg;
-
 	lpBuffer->Release();
 	delete lpBuffer;
 }
@@ -151,6 +146,10 @@ void InGame::Update()
 void InGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_02")->Render(hBackDC, 0, 0);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_01")->Render(hBackDC, 0, 0);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_03")->Render(hBackDC, 212, WINSIZE_HEIGHT - 134, (frame % 12) / 2);
+	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_04")->Render(hBackDC, WINSIZE_WIDTH / 2 - 55, WINSIZE_HEIGHT / 2 + 105, (frame % 36) / 2);
 
 	lpBgImg->Render(hBackDC);
 	lpController_P1->Render(hBackDC);
@@ -171,10 +170,6 @@ void InGame::Render(HDC hdc)
 	
 	// 이펙트 렌더
 	EffectManager::GetLpInstance()->Render(hBackDC);
-
-	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
-
 	lpBuffer->Render(hdc);
 }
 

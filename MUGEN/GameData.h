@@ -1,24 +1,33 @@
 #pragma once
 #include "Singleton.h"
-#include "Mugen.h"
 
 class Character;
 class Controller;
+enum class PLAYER_TYPE;
 class GameData : public Singleton<GameData>
 {
 public:
+	enum class CHARACTER_NAME
+	{
+		CHANG,
+		DIO,
+		KING,
+		NONE
+	};
 	struct PlayerInfo
 	{
 		PLAYER_TYPE playerType;
 		Character* lp_Character;
 		Controller* lp_Controller;
 	};
+
 private:
-	PlayerInfo player[(int)PLAYER_TYPE::NONE];
+	PlayerInfo* player;
 
 public:
 	void Init();
 	void Release();
 	
-	void GetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName);
+	void SetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName);
+	inline PlayerInfo GetPlayer(PLAYER_TYPE playerType) { return player[(int)playerType]; }
 };

@@ -292,6 +292,7 @@ void Character::LoadData()
 			motions[state].width = FileManager::GetLpInstance()->GetData<int>(group, "HIT_RECT_WIDTH");
 			motions[state].height = FileManager::GetLpInstance()->GetData<int>(group, "HIT_RECT_HEIGHT");
 			motions[state].motionSpeed = FileManager::GetLpInstance()->GetData<int>(group, "MOTION_SPEED");
+			if (motions[state].motionSpeed < 1) motions[state].motionSpeed = 1;
 		}
 	}
 	else
@@ -340,8 +341,8 @@ void Character::LoadData()
 				}
 				if (vEffectKeys[k][0] != '-')
 				{
-					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, (CHARACTER_STATE)state, vEffectKeys[k]);
-					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, (CHARACTER_STATE)state, vEffectKeys[k]);
+					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::RIGHT, CHARACTER_STATE::NONE, vEffectKeys[k]);
+					atkInfo.hitEffectKey[0] = GetKey(name, CHARACTER_DIRECTION::LEFT, CHARACTER_STATE::NONE, vEffectKeys[k]);
 				}
 				if (lpmAtkInfo->find(vFrames[k]) == lpmAtkInfo->end())
 				{

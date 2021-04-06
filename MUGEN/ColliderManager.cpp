@@ -1,7 +1,7 @@
 #include "Mugen.h"
 #include "ColliderManager.h"
 #include "Image.h"
-
+#include "GameData.h"
 ColliderManager::ColliderManager()
 {
 }

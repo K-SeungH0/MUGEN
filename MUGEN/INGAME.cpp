@@ -26,30 +26,37 @@ void InGame::Init()
 	Player2_DelayHP = ImageManager::GetLpInstance()->GetImage("Delay_HP");
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
 	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
-	//switch(Player1)
-	//{
-	//case Chang:
-	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//		break;
-	//case DIO:
-	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//	break;
-	//case KING:
-	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//	break;
-	//}
-	//switch (Player2)
-	//	{
-	//	case Chang:
-	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//			break;
-	//	case DIO:
-	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//		break;
-	//	case KING:
-	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
-	//		break;
-	//	}
+
+	lpPlayer1 = nullptr;
+	lpPlayer2 = nullptr;
+
+	lpCharacter1 = nullptr;
+	lpCharacter2 = nullptr;
+
+	switch(Player1)
+	{
+	case Chang:
+		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+			break;
+	case DIO:
+		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+		break;
+	case KING:
+		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+		break;
+	}
+	switch (Player2)
+		{
+		case Chang:
+			UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+				break;
+		case DIO:
+			UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+			break;
+		case KING:
+			UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+			break;
+		}
 	Character* lpDIO = new DIO();
 	lpDIO->Init();
 
@@ -58,14 +65,6 @@ void InGame::Init()
 
 	Character* lpChang = new Chang();
 	lpChang->Init();
-
-	lpPlayer1 = new Controller();
-	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
-
-	lpPlayer2 = new Controller();
-	lpPlayer2->Init();
-	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
@@ -154,7 +153,6 @@ void InGame::Render(HDC hdc)
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
 	// 충돌체 렌더
-	
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	
 	// 이펙트 렌더

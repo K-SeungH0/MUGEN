@@ -26,6 +26,11 @@ private:
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
 
+	Character* lpCharacter1;
+	Character* lpCharacter2;
+
+	bool IsCollision(Character* attacker, Character* defender);
+
 public:
 	InGame();
 	~InGame();
@@ -33,8 +38,5 @@ public:
 	void Release();
 	void Update();
 	void Render(HDC hdc);
-private:
-	bool IsCollision(Character* attacker, Character* defender);
-
 };
 

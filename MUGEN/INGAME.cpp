@@ -24,7 +24,30 @@ void InGame::Init()
 	Player2_DelayHP = ImageManager::GetLpInstance()->GetImage("Delay_HP");
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
 	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
-	
+	//switch(Player1)
+	//{
+	//case Chang:
+	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//		break;
+	//case DIO:
+	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//	break;
+	//case KING:
+	//	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//	break;
+	//}
+	//switch (Player2)
+	//	{
+	//	case Chang:
+	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//			break;
+	//	case DIO:
+	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//		break;
+	//	case KING:
+	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	//		break;
+	//	}
 	lpDIO = new DIO();
 	lpDIO->Init();
 
@@ -153,6 +176,7 @@ void InGame::Render(HDC hdc)
 
 bool InGame::IsCollision(Character* attacker, Character* defender)
 {
+	
 	bool isCollision = false;
 	RECT playerRect = {}, targetRect = {};
 

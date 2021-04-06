@@ -1,16 +1,7 @@
 #include "Title.h"
 #include "Image.h"
-#include "GameData.h"
 
-Title::Title()
-{
-}
-
-Title::~Title()
-{
-}
-
-void Title::Init()
+HRESULT Title::Init()
 {
 	elapsedTime = 0;
 	
@@ -27,33 +18,35 @@ void Title::Init()
 				selectPlayers[i].lpSelectImage = ImageManager::GetLpInstance()->GetImage("SELECT_2P");
 				break;
 		}
-		selectPlayers[i].selectedCharacterName = CHARACTER_NAME::NONE;
+		selectPlayers[i].selectedCharacterName = GameData::CHARACTER_NAME::NONE;
 	}
 	
-	for (int i = 0; i < (int)CHARACTER_NAME::NONE; i++)
+	for (int i = 0; i < (int)GameData::CHARACTER_NAME::NONE; i++)
 	{
 		switch (i)
 		{
-			case (int)CHARACTER_NAME::CHANG:
-				selectCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("CHANG_SELECTION");
-				selectCharacters[i].name = CHARACTER_NAME::CHANG;
+			case (int)GameData::CHARACTER_NAME::CHANG:
+				selectableCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("CHANG_SELECTION");
+				selectableCharacters[i].name = GameData::CHARACTER_NAME::CHANG;
 				break;
-			case (int)CHARACTER_NAME::DIO:
-				selectCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("DIO_SELECTION");
-				selectCharacters[i].name = CHARACTER_NAME::DIO;
+			case (int)GameData::CHARACTER_NAME::DIO:
+				selectableCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("DIO_SELECTION");
+				selectableCharacters[i].name = GameData::CHARACTER_NAME::DIO;
 				break;
-			case (int)CHARACTER_NAME::KING:
-				selectCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("KING_SELECTION");
-				selectCharacters[i].name = CHARACTER_NAME::KING;
+			case (int)GameData::CHARACTER_NAME::KING:
+				selectableCharacters[i].lpCharacterImage = ImageManager::GetLpInstance()->GetImage("KING_SELECTION");
+				selectableCharacters[i].name = GameData::CHARACTER_NAME::KING;
 				break;
 		}
-		selectCharacters[i].pos = { i * WINSIZE_WIDTH / 3 + selectCharacters[i].lpCharacterImage->GetImageInfo()->width / 3, WINSIZE_HEIGHT / 2 };
-		selectCharacters[i].isSelected = false;
+		selectableCharacters[i].pos = { i * WINSIZE_WIDTH / 3 + selectableCharacters[i].lpCharacterImage->GetImageInfo()->width / 3, WINSIZE_HEIGHT / 2 };
+		selectableCharacters[i].isSelected = false;
 	}
 
 	speed = 30;
 	titleMode = TITLE_MODE::TITLE;
 	selectIndex = 0;
+
+	return S_OK;
 }
 
 void Title::Release()
@@ -67,10 +60,10 @@ void Title::Release()
 		selectPlayers[i].lpSelectImage = nullptr;
 	}
 
-	for (int i = 0; i < (int)CHARACTER_NAME::NONE; i++)
+	for (int i = 0; i < (int)GameData::CHARACTER_NAME::NONE; i++)
 	{
-		delete selectCharacters[i].lpCharacterImage;
-		selectCharacters[i].lpCharacterImage = nullptr;
+		delete selectableCharacters[i].lpCharacterImage;
+		selectableCharacters[i].lpCharacterImage = nullptr;
 	}
 }
 
@@ -95,7 +88,7 @@ void Title::Update()
 			{
 				for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 				{
-					if (selectPlayers[i].selectedCharacterName == CHARACTER_NAME::NONE)
+					if (selectPlayers[i].selectedCharacterName == GameData::CHARACTER_NAME::NONE)
 					{
 						++selectPlayers[i].lpSelectImage->GetImageInfo()->currentFrame %= selectPlayers[i].lpSelectImage->GetImageInfo()->maxFrame;
 						break;
@@ -105,7 +98,7 @@ void Title::Update()
 			if (KeyManager::GetLpInstance()->IsOnceKeyDown(VK_RIGHT))
 			{
 				selectIndex++;
-				if (selectIndex >= (int)CHARACTER_NAME::NONE) selectIndex--;
+				if (selectIndex >= (int)GameData::CHARACTER_NAME::NONE) selectIndex--;
 			}
 			if (KeyManager::GetLpInstance()->IsOnceKeyDown(VK_LEFT))
 			{
@@ -116,16 +109,21 @@ void Title::Update()
 			{
 				for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 				{
-					if (selectPlayers[i].selectedCharacterName == CHARACTER_NAME::NONE)
+					if (selectPlayers[i].selectedCharacterName == GameData::CHARACTER_NAME::NONE)
 					{
-						selectPlayers[i].selectedCharacterName = selectCharacters[selectIndex].name;
-						GameData::GetLpInstance()->GetCharacter((PLAYER_TYPE)i, selectPlayers[i].selectedCharacterName);
+						selectPlayers[i].selectedCharacterName = selectableCharacters[selectIndex].name;
+						GameData::GetLpInstance()->SetCharacter((PLAYER_TYPE)i, selectPlayers[i].selectedCharacterName);
 						selectIndex = 0;
 						break;
 					}
 				}
 			}
 			break;
+	}
+	if (selectPlayers[(int)PLAYER_TYPE::P1].selectedCharacterName != GameData::CHARACTER_NAME::NONE &&
+		selectPlayers[(int)PLAYER_TYPE::P2].selectedCharacterName != GameData::CHARACTER_NAME::NONE)
+	{
+		SceneManager::GetLpInstance()->ChangeSence(SceneManager::SCENE_STATE::INGAME);
 	}
 }
 
@@ -140,17 +138,17 @@ void Title::Render(HDC hdc)
 		case Title::TITLE_MODE::SELECT:
 			for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 			{
-				if (selectPlayers[i].selectedCharacterName == CHARACTER_NAME::NONE)
+				if (selectPlayers[i].selectedCharacterName == GameData::CHARACTER_NAME::NONE)
 				{
-					selectPlayers[i].lpSelectImage->Render(hdc, selectCharacters[selectIndex].pos.x + selectCharacters[selectIndex].lpCharacterImage->GetImageInfo()->width / 3,
-						selectCharacters[selectIndex].pos.y + selectCharacters[selectIndex].lpCharacterImage->GetImageInfo()->height, 
+					selectPlayers[i].lpSelectImage->Render(hdc, selectableCharacters[selectIndex].pos.x + selectableCharacters[selectIndex].lpCharacterImage->GetImageInfo()->width / 3,
+						selectableCharacters[selectIndex].pos.y + selectableCharacters[selectIndex].lpCharacterImage->GetImageInfo()->height, 
 						selectPlayers[i].lpSelectImage->GetImageInfo()->currentFrame);
 					break;
 				}
 			}
-			for (int i = 0; i < (int)CHARACTER_NAME::NONE; i++)
+			for (int i = 0; i < (int)GameData::CHARACTER_NAME::NONE; i++)
 			{
-				selectCharacters[i].lpCharacterImage->Render(hdc, selectCharacters[i].pos.x, selectCharacters[i].pos.y);
+				selectableCharacters[i].lpCharacterImage->Render(hdc, selectableCharacters[i].pos.x, selectableCharacters[i].pos.y);
 			}
 			break;
 	}

@@ -62,4 +62,3 @@ public:
 private:
 	void CommandInput(SKILL_KIND kind);
 };
-

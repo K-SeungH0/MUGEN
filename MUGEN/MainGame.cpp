@@ -20,7 +20,7 @@ HRESULT MainGame::Init()
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
-		MessageBox(g_hWnd, "���ε� ����", "Error", MB_OK);
+		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
 	}
 
 	lpDIO = new DIO();
@@ -40,8 +40,8 @@ HRESULT MainGame::Init()
 	lpPlayer2->Init();
 	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
-	title = new Title();
-	title->Init();
+	//title = new Title();
+	//title->Init();
 	inGame = new InGame();
 	inGame->Init();
 
@@ -76,35 +76,35 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	//if (g_hWnd != GetForegroundWindow()) return;
+	if (g_hWnd != GetForegroundWindow()) return;
 
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{
 		isDebugMode = !isDebugMode;
 	}
 
-	//ColliderManager::GetLpInstance()->Update();
-	//
-	//lpPlayer1->Update();
-	//lpPlayer2->Update();
-	//
-	//// ĳ������ ��ġ ����
-	//// ĳ���ͳ��� �ε�������� ���� ����ġ��ŭ �з������� ó��
-	//RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
-	//RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
-	//if (CollisionRect(player1Rect, player2Rect))
-	//{
-	//	// �浹
-	//	// ������ ��ŭ �̵����Ѿ��Ѵ�
-	//	float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
-	//	lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//	lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	//}
-	//
-	//IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
-	//IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
+	ColliderManager::GetLpInstance()->Update();
+	
+	lpPlayer1->Update();
+	lpPlayer2->Update();
+	
+	// ĳ������ ��ġ ����
+	// ĳ���ͳ��� �ε�������� ���� ����ġ��ŭ �з������� ó��
+	RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
+	RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
+	if (CollisionRect(player1Rect, player2Rect))
+	{
+		// �浹
+		// ������ ��ŭ �̵����Ѿ��Ѵ�
+		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
+		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+	}
+	
+	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
+	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
 
-	title->Update();
+	//title->Update();
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -112,19 +112,19 @@ void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
 
-	//lpBgImg->Render(hBackDC);
-	//
-	//lpPlayer1->Render(hBackDC);
-	//lpPlayer2->Render(hBackDC);
-	//
-	//// 충돌체 렌더
-	//ColliderManager::GetLpInstance()->Render(hBackDC);
-	//
-	//// 이펙트 렌더
-	//EffectManager::GetLpInstance()->Render(hBackDC);
-	//
-	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
+	lpBgImg->Render(hBackDC);
+	
+	lpPlayer1->Render(hBackDC);
+	lpPlayer2->Render(hBackDC);
+	
+	// 충돌체 렌더
+	ColliderManager::GetLpInstance()->Render(hBackDC);
+	
+	// 이펙트 렌더
+	EffectManager::GetLpInstance()->Render(hBackDC);
+	
+	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
 	title->Render(hBackDC);
 	lpBuffer->Render(hdc);

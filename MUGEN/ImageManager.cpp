@@ -89,10 +89,13 @@ HRESULT ImageManager::Init()
 	this->mImage["DIO_LEFT_DEATH"]->Init("Image/Character/DIO/DIO_LEFT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_DEATH", new Image()));
 	this->mImage["DIO_RIGHT_DEATH"]->Init("Image/Character/DIO/DIO_RIGHT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
+
 	this->mImage.insert(make_pair("DIO_LEFT_IDLE", new Image()));
 	this->mImage["DIO_LEFT_IDLE"]->Init("Image/Character/DIO/DIO_LEFT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_IDLE", new Image()));
-	this->mImage["DIO_RIGHT_IDLE"]->Init("Image/Character/DIO/DIO_RIGHT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
+	//this->mImage["DIO_RIGHT_IDLE"]->Init("Image/Character/DIO/DIO_RIGHT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
+	this->mImage["DIO_RIGHT_IDLE"]->Reverse("DIO_LEFT_IDLE");
+
 	this->mImage.insert(make_pair("DIO_LEFT_MOVE", new Image()));
 	this->mImage["DIO_LEFT_MOVE"]->Init("Image/Character/DIO/DIO_LEFT_MOVE.bmp", 316, 460, 4, 4, 16, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_MOVE", new Image()));
@@ -245,10 +248,10 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("EFFECT_RIGHT_DUST", new Image()));
 	this->mImage["EFFECT_RIGHT_DUST"]->Init("Image/UI/Effects/EFFECT_RIGHT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
 
-	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
-	this->mImage["DIO_LEFT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_HIT_EFFECT", new Image()));
 	this->mImage["DIO_RIGHT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["DIO_LEFT_HIT_EFFECT"]->Reverse("DIO_RIGHT_HIT_EFFECT");
 #pragma endregion
 
 #pragma region Title Image Load

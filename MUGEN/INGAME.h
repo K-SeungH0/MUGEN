@@ -2,7 +2,6 @@
 #include "GameScene.h"
 #include "Character.h"
 #include "Controller.h"
-#include "Singleton.h"
 
 class InGame : public GameScene
 {

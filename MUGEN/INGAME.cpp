@@ -100,6 +100,7 @@ void InGame::Update()
 	{
 		isDebugMode = !isDebugMode;
 	}
+
 	elapsedTime++;
 	if (elapsedTime % 2 == 0)
 	{
@@ -115,7 +116,7 @@ void InGame::Update()
 	}
 	lpPlayer1->GetPlayerType();
 
-	if (g_hWnd != GetForegroundWindow()) return;
+	
 	ColliderManager::GetLpInstance()->Update();
 
 	lpPlayer1->Update();
@@ -126,8 +127,7 @@ void InGame::Update()
 	RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
 	if (CollisionRect(player1Rect, player2Rect))
 	{
-		// �浹
-		// ������ ��ŭ �̵����Ѿ��Ѵ�
+//
 		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
 		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
@@ -154,7 +154,7 @@ void InGame::Render(HDC hdc)
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
 	// 충돌체 렌더
-
+	
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	
 	// 이펙트 렌더

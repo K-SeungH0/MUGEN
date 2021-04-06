@@ -4,6 +4,8 @@
 class Image;
 class Character;
 class Controller;
+class GameUI;
+
 class MainGame
 {
 private:
@@ -23,6 +25,8 @@ private:
 
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
+
+	GameUI* title;
 
 public:
 	HRESULT Init();

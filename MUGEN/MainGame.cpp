@@ -4,6 +4,7 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
+#include "Title.h"
 
 HRESULT MainGame::Init()
 {
@@ -37,6 +38,8 @@ HRESULT MainGame::Init()
 	lpPlayer2->Init();
 	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
+	title = new Title();
+	title->Init();
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -72,27 +75,28 @@ void MainGame::Update()
 		isDebugMode = !isDebugMode;
 	}
 
-	ColliderManager::GetLpInstance()->Update();
+	//ColliderManager::GetLpInstance()->Update();
+	//
+	//lpPlayer1->Update();
+	//lpPlayer2->Update();
+	//
+	//// 캐릭터의 위치 조정
+	//// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
+	//RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
+	//RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
+	//if (CollisionRect(player1Rect, player2Rect))
+	//{
+	//	// 충돌
+	//	// 겹쳐진 만큼 이동시켜야한다
+	//	float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
+	//	lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+	//	lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+	//}
+	//
+	//IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
+	//IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
 
-	lpPlayer1->Update();
-	lpPlayer2->Update();
-
-	// 캐릭터의 위치 조정
-	// 캐릭터끼리 부딪혔을경우 서로 일정치만큼 밀려나도록 처리
-	RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
-	RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
-	if (CollisionRect(player1Rect, player2Rect))
-	{
-		// 충돌
-		// 겹쳐진 만큼 이동시켜야한다
-		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
-		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-	}
-
-	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
-	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
-
+	title->Update();
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -100,20 +104,23 @@ void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
 
-	lpBgImg->Render(hBackDC);
+	//lpBgImg->Render(hBackDC);
+	//
+	//lpPlayer1->Render(hBackDC);
+	//lpPlayer2->Render(hBackDC);
+	//
+	//// 충돌체 렌더
+	//ColliderManager::GetLpInstance()->Render(hBackDC);
+	//
+	//// 이펙트 렌더
+	//EffectManager::GetLpInstance()->Render(hBackDC);
+	//
+	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
-	lpPlayer1->Render(hBackDC);
-	lpPlayer2->Render(hBackDC);
-
-	// 충돌체 렌더
-	ColliderManager::GetLpInstance()->Render(hBackDC);
-
-	// 이펙트 렌더
-	EffectManager::GetLpInstance()->Render(hBackDC);
-
-	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
+	title->Render(hBackDC);
 	lpBuffer->Render(hdc);
+	
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

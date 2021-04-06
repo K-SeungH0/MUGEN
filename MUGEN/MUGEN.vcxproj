@@ -25,19 +25,18 @@
     <ClCompile Include="DIO.cpp" />
     <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="GameObject.h" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="King.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Title.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DIO.h" />
-    <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="ImageManager.h" />
@@ -45,6 +44,7 @@
     <ClInclude Include="King.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Mugen.h" />
+    <ClInclude Include="Title.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

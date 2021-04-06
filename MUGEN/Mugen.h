@@ -53,12 +53,17 @@ enum class CHARACTER_STATE
 enum class SCENE_STATE
 {
 	TITLE,
-	SELECTION,
 	BATTLE,
 	END,
 	NONE
 };
-
+enum class CHARACTER_NAME
+{
+	CHANG,
+	DIO,
+	KING,
+	NONE
+};
 
 inline bool CollisionRect(RECT self, RECT other)
 {

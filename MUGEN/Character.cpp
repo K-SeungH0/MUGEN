@@ -14,7 +14,7 @@ void Character::Update()
 {
 	if (!IsAlive())
 	{
-		// 죽었을때 마지막 프레임에서 멈추기
+		//죽었을때 마지막 프레임에서 멈추기
 		if (frame + 1 == motions[(int)state].lpImages[(int)dir]->GetImageInfo()->maxFrame) return;
 	}
 

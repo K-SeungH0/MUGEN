@@ -50,9 +50,6 @@ HRESULT InGame::Init()
 	//		UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
 	//		break;
 	//	}
-	
-	
-	//김승호 추가
 	//Character* lpDIO = new DIO();
 	//lpDIO->Init();
 	//
@@ -69,15 +66,21 @@ HRESULT InGame::Init()
 	//lpPlayer2 = new Controller();
 	//lpPlayer2->Init();
 	//lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
-	
-	lpPlayer1 = nullptr;
-	lpPlayer2 = nullptr;
-	lpP1_Character = nullptr;
-	lpP2_Character = nullptr;
-	// 김승호 추가 끝
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+
+	lpBgImg = new Image();
+
+	lpController_P1 = nullptr;
+	lpController_P2 = nullptr;
+	lpCharacter_P1 = nullptr;
+	lpCharacter_P2 = nullptr;
+
+	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
+	{
+		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
+	}
 
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
@@ -179,10 +182,14 @@ void InGame::Render(HDC hdc)
 // 김승호 추가
 void InGame::Load()
 {
-	lpP1_Character = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
-	lpP2_Character = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
-	lpPlayer1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
-	lpPlayer2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
+	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
+	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
+
+	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
+	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
+
+	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
+	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
 }
 
 bool InGame::IsCollision(Character* attacker, Character* defender)
@@ -208,22 +215,22 @@ bool InGame::IsCollision(Character* attacker, Character* defender)
 			{
 				for (int i = 0; point.x + i >= playerPoint.x + 0.0001f; --i)
 				{
-					//if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
-					//{
-					//	point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
-					//	break;
-					//}
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
 				}
 			}
 			else
 			{
 				for (int i = 0; point.x + i < playerPoint.x + 0.0001f; ++i)
 				{
-					//if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
-					//{
-					//	point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
-					//	break;
-					//}
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
 				}
 			}
 			/* it->hitEffectKey */

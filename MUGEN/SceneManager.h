@@ -30,3 +30,4 @@ public:
 	void Render(HDC hdc);
 	void LoadScene(SCENE_STATE loadScene);
 };
+

@@ -18,10 +18,12 @@
 #include "EffectManager.h"
 #include "GameData.h"
 #include "SceneManager.h"
+#include "FileManager.h"
 
 extern bool isDebugMode;
 extern HINSTANCE g_hInstance;
 extern HWND g_hWnd;
+
 extern bool isDebugMode;
 
 using namespace std;
@@ -66,14 +68,24 @@ inline bool CollisionRect(RECT self, RECT other)
 	return true;
 }
 
+inline bool CollisionRectInPoint(RECT self, POINT other)
+{
+	if (other.x < self.left || self.right < other.x
+		|| other.y < self.top || self.bottom < other.y)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 inline RECT GetRectOffset(POINTFLOAT pos, POINTFLOAT offset, int width, int height)
 {
 	RECT rect = { (int)(pos.x + offset.x), (int)(pos.y + offset.y), (int)(pos.x + offset.x + width), (int)(pos.y + offset.y + height) };
 	return rect;
 }
 
-
-inline string GetKey(string name, CHARACTER_DIRECTION dir, CHARACTER_STATE state, string col = "")
+inline string GetKey(string name, CHARACTER_DIRECTION dir = CHARACTER_DIRECTION::NONE, CHARACTER_STATE state = CHARACTER_STATE::NONE, string col = "")
 {
 	string key = "";
 	key += name;
@@ -129,5 +141,5 @@ inline string GetKey(string name, CHARACTER_DIRECTION dir, CHARACTER_STATE state
 	if (!col.empty())
 		key += "_" + col;
 
-	return key;
+	return (key.length() > 0 && key[0] == '_')?key.substr(1):key;
 }

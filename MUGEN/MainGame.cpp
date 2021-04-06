@@ -6,6 +6,7 @@
 #include "Controller.h"
 #include "Title.h"
 #include "GameData.h"
+#include "INGAME.h"
 
 HRESULT MainGame::Init()
 {

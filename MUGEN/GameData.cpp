@@ -3,7 +3,7 @@
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
-
+#include "FileManager.h"
 void GameData::Init()
 {
 	player = new PlayerInfo[(int)PLAYER_TYPE::NONE];

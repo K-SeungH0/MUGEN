@@ -30,7 +30,7 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	if (g_hWnd != GetForegroundWindow()) return;
+	//if (g_hWnd != GetForegroundWindow()) return;
 
 	SceneManager::GetLpInstance()->Update();
 

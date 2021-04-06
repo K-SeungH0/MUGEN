@@ -33,3 +33,4 @@ void King::Init()
 	lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
+

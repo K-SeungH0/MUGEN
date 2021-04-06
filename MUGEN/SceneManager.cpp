@@ -51,3 +51,9 @@ void SceneManager::Render(HDC hdc)
 	scenes[(int)currentScene]->Render(hBackDC);
 	lpBuffer->Render(hdc);
 }
+
+void SceneManager::ChangeScene(SCENE_STATE chageScene)
+{
+	currentScene = chageScene;
+
+}

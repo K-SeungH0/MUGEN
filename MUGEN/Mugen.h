@@ -16,6 +16,8 @@
 #include "ColliderManager.h"
 #include "ImageManager.h"
 #include "EffectManager.h"
+#include "GameData.h"
+#include "SceneManager.h"
 #include "FileManager.h"
 
 extern bool isDebugMode;
@@ -26,12 +28,6 @@ extern bool isDebugMode;
 
 using namespace std;
 
-enum class PLAYER_TYPE
-{
-	P1,
-	P2,
-	NONE
-};
 enum class CHARACTER_DIRECTION
 {
 	RIGHT,
@@ -52,18 +48,12 @@ enum class CHARACTER_STATE
 	DEATH,
 	NONE
 };
-enum class SCENE_STATE
+
+
+enum class PLAYER_TYPE
 {
-	TITLE,
-	BATTLE,
-	END,
-	NONE
-};
-enum class CHARACTER_NAME
-{
-	CHANG,
-	DIO,
-	KING,
+	P1,
+	P2,
 	NONE
 };
 

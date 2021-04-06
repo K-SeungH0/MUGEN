@@ -89,10 +89,13 @@ HRESULT ImageManager::Init()
 	this->mImage["DIO_LEFT_DEATH"]->Init("Image/Character/DIO/DIO_LEFT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_DEATH", new Image()));
 	this->mImage["DIO_RIGHT_DEATH"]->Init("Image/Character/DIO/DIO_RIGHT_DEATH.bmp", 456, 540, 3, 5, 13, true, RGB(255, 0, 255));
+
 	this->mImage.insert(make_pair("DIO_LEFT_IDLE", new Image()));
 	this->mImage["DIO_LEFT_IDLE"]->Init("Image/Character/DIO/DIO_LEFT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_IDLE", new Image()));
-	this->mImage["DIO_RIGHT_IDLE"]->Init("Image/Character/DIO/DIO_RIGHT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
+	//this->mImage["DIO_RIGHT_IDLE"]->Init("Image/Character/DIO/DIO_RIGHT_IDLE.bmp", 198, 240, 3, 2, 6, true, RGB(255, 0, 255));
+	this->mImage["DIO_RIGHT_IDLE"]->Reverse("DIO_LEFT_IDLE");
+
 	this->mImage.insert(make_pair("DIO_LEFT_MOVE", new Image()));
 	this->mImage["DIO_LEFT_MOVE"]->Init("Image/Character/DIO/DIO_LEFT_MOVE.bmp", 316, 460, 4, 4, 16, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("DIO_RIGHT_MOVE", new Image()));
@@ -244,6 +247,16 @@ HRESULT ImageManager::Init()
 	this->mImage["EFFECT_LEFT_DUST"]->Init("Image/UI/Effects/EFFECT_LEFT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
 	this->mImage.insert(make_pair("EFFECT_RIGHT_DUST", new Image()));
 	this->mImage["EFFECT_RIGHT_DUST"]->Init("Image/UI/Effects/EFFECT_RIGHT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+
+	this->mImage.insert(make_pair("DIO_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["DIO_RIGHT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("KING_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["DIO_LEFT_HIT_EFFECT"]->Reverse("DIO_RIGHT_HIT_EFFECT");
 #pragma endregion
 
 #pragma region Title Image Load
@@ -254,9 +267,9 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
 	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
 	this->mImage.insert(make_pair("TITLE", new Image()));
-	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", 1600, 600, 2, 1, 2, false);
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2, WINSIZE_HEIGHT, 2, 1, 2, false);
 	this->mImage.insert(make_pair("BACK_TITLE", new Image()));
-	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", 800, 600, 1, 1, 1, false);
+	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT, 1, 1, 1, false);
 	this->mImage.insert(make_pair("SELECT_1P", new Image()));
 	this->mImage["SELECT_1P"]->Init("Image/UI/TITLE/SELECT_1P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
 	this->mImage.insert(make_pair("SELECT_2P", new Image()));

@@ -16,7 +16,7 @@ InGame::~InGame()
 {
 }
 
-void InGame::Init()
+HRESULT InGame::Init()
 {
 	Player1_HPUI = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
 	Player2_HPUI = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
@@ -70,10 +70,18 @@ void InGame::Init()
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
 	lpBgImg = new Image();
+
+	lpController_P1 = nullptr;
+	lpController_P2 = nullptr;
+	lpCharacter_P1 = nullptr;
+	lpCharacter_P2 = nullptr;
+
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
 		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
 	}
+
+	return S_OK;
 }
 
 void InGame::Release()
@@ -164,6 +172,19 @@ void InGame::Render(HDC hdc)
 	lpBuffer->Render(hdc);
 }
 
+// 김승호 추가
+void InGame::Load()
+{
+	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
+	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
+
+	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
+	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
+
+	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
+	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
+}
+
 bool InGame::IsCollision(Character* attacker, Character* defender)
 {
 	bool isCollision = false;
@@ -206,7 +227,7 @@ bool InGame::IsCollision(Character* attacker, Character* defender)
 				}
 			}
 			/* it->hitEffectKey */
-			defender->Hit(it->damage, point, "KING_RIGHT_RANGE_ATTACK_EFFECT");
+			defender->Hit(it->damage, point, it->hitEffectKey);
 
 			if (isDebugMode && it->type == ColliderManager::COLLIDER_TYPE::STATIC)
 			{

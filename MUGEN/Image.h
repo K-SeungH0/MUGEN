@@ -49,20 +49,21 @@ private:
 	COLORREF transColor;
 	int elapsedTime;
 
+	int tempSize;
 	HDC tempDC = NULL;
 	HBITMAP hBitmap = NULL;
-	HBITMAP hOldBitmap = NULL;
-
+	HBRUSH hTempBrush = NULL;
+	XFORM xForm, xOldForm;
 public:
 	HRESULT Init(int width, int height);
 	HRESULT Init(string fileName, int width, int height, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
 	HRESULT Init(string fileName, int width, int height, int maxFrameX, int maxFrameY, int maxFrame, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
 
-	void Render(HDC hdc, int destX = 0, int destY = 0);
-	void Render(HDC hdc, int destX, int destY, int frameIndex);
+	HRESULT Reverse(string key);
 
-	void Render(HDC hdc, int angle, int destX, int destY, int frameIndex);
-	void Render(HDC hdc, bool flip, int destX, int destY, int frameIndex);
+	void Render(HDC hdc, int destX = 0, int destY = 0);
+	void Render(HDC hdc, int destX, int destY, int frameIndex, int angle = 0);
+	void Render(HDC hdc, POINT offset, float widthRatio, float heightRatio, int frameIndex = 0);
 
 	void Release();
 

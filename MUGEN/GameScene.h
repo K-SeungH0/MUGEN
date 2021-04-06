@@ -1,14 +1,18 @@
 #pragma once
 #include "Mugen.h"
-#include "GameObject.h"
+#include <Windows.h>
 
-class GameScene : public GameObject
+class GameScene
 {
 public:
-	virtual void Init() override;
-	virtual void Release() override;
-	virtual void Update() override;
-	virtual void Render(HDC hdc) override;
 
+protected:
+
+public:
+	virtual HRESULT Init() = 0;
+	virtual void Release() = 0;
+	virtual void Update() = 0;
+	virtual void Render(HDC hdc) = 0;
+	virtual void Load() = 0;
 };
 

@@ -1,7 +1,5 @@
 #pragma once
 #include "GameScene.h"
-#include "Character.h"
-#include "Controller.h"
 
 class InGame : public GameScene
 {
@@ -31,12 +29,24 @@ private:
 
 	bool IsCollision(Character* attacker, Character* defender);
 
+
+	// ±è½ÂÈ£ Ãß°¡
+	Controller* lpController_P1;
+	Controller* lpController_P2;
+	Character* lpCharacter_P1;
+	Character* lpCharacter_P2;
+
 public:
 	InGame();
 	~InGame();
-	void Init();
+	HRESULT Init();
 	void Release();
 	void Update();
 	void Render(HDC hdc);
+	// ±è½ÂÈ£ Ãß°¡
+	void Load();
+private:
+	bool IsCollision(Character* attacker, Character* defender);
+
 };
 

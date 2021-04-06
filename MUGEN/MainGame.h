@@ -1,8 +1,11 @@
 ﻿#pragma once
-#include "GameData.h"
 #include "Mugen.h"
 
+class Image;
+class Character;
+class Controller;
 class GameScene;
+
 class MainGame
 {
 private:
@@ -12,6 +15,8 @@ private:
 	bool isInitialize = false;
 	HWND hTimer;
 
+	Image* lpBuffer;
+	Image* lpBgImg;
 public:
 	HRESULT Init();
 	void Release();

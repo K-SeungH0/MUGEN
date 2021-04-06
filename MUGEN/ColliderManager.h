@@ -1,4 +1,5 @@
 #pragma once
+//#include "GameData.h"
 #include "Singleton.h"
 #include <Windows.h>
 #include <map>
@@ -7,10 +8,10 @@
 
 using namespace std;
 
-enum class PLAYER_TYPE;
-
 class Image;
 class GameObject;
+class GameData;
+enum class PLAYER_TYPE;
 class ColliderManager : public Singleton<ColliderManager>
 {
 public:

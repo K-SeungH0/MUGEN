@@ -7,7 +7,8 @@ HRESULT MainGame::Init()
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
-	
+	SceneManager::GetLpInstance()->Init();
+
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
 	return S_OK;
@@ -15,6 +16,12 @@ HRESULT MainGame::Init()
 
 void MainGame::Release()
 {
+	// 메인에 필요?
+	//lpBgImg->Release();
+	//delete lpBgImg;
+	//
+	//lpBuffer->Release();
+	//delete lpBuffer;
 
 	GameData::GetLpInstance()->ReleaseSingleton();
 	KeyManager::GetLpInstance()->ReleaseSingleton();
@@ -25,12 +32,14 @@ void MainGame::Update()
 {
 	if (g_hWnd != GetForegroundWindow()) return;
 
+	SceneManager::GetLpInstance()->Update();
+
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
 void MainGame::Render(HDC hdc)
 {
-
+	SceneManager::GetLpInstance()->Render(hdc);
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

@@ -2,6 +2,7 @@
 #include "GameScene.h"
 
 class Image;
+
 class Title : public GameScene
 {
 private:
@@ -16,7 +17,7 @@ private:
 	{
 		Image* lpCharacterImage;
 		POINT pos;
-		CHARACTER_NAME name;
+		GameData::CHARACTER_NAME name;
 		bool isSelected;
 	};
 
@@ -24,14 +25,14 @@ private:
 	{
 		Image* lpSelectImage;
 		POINT pos;
-		CHARACTER_NAME selectedCharacterName;
+		GameData::CHARACTER_NAME selectedCharacterName;
 	};
 
 	TITLE_MODE titleMode;
 
 	Image* lpTitleImage;
 	Image* lpBgImage;
-	SelectCharacter selectCharacters[(int)CHARACTER_NAME::NONE];
+	SelectCharacter selectableCharacters[(int)GameData::CHARACTER_NAME::NONE];
 	SelectPlayer selectPlayers[(int)PLAYER_TYPE::NONE];
 
 	int selectIndex;
@@ -39,11 +40,10 @@ private:
 	int elapsedTime;
 	int speed;
 public:
-	Title();
-	~Title();
-	void Init() final;
+	HRESULT Init() final;
 	void Release() final;
 	void Update() final;
 	void Render(HDC hdc) final;
+	void Load() final;
 };
 

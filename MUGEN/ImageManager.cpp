@@ -154,10 +154,10 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("Chang_RIGHT_RANGE_ATTACK", new Image()));
 	this->mImage["Chang_RIGHT_RANGE_ATTACK"]->Init("Image/Character/Chang/Chang_RIGHT_RANGE_ATTACK.bmp", 1800, 175, 12, 1, 12, true, RGB(255, 0, 255));
 
-	this->mImage.insert(make_pair("Chang_LEFT_DOWN", new Image()));
-	this->mImage["Chang_LEFT_DOWN"]->Init("Image/Character/Chang/Chang_LEFT_DOWN.bmp", 4000, 200, 16, 1, 16, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("Chang_RIGHT_DOWN", new Image()));
-	this->mImage["Chang_RIGHT_DOWN"]->Init("Image/Character/Chang/Chang_RIGHT_DOWN.bmp", 4000, 200, 16, 1, 16, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Chang_LEFT_DEATH", new Image()));
+	this->mImage["Chang_LEFT_DEATH"]->Init("Image/Character/Chang/Chang_LEFT_DOWN.bmp", 4000, 200, 16, 1, 16, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Chang_RIGHT_DEATH", new Image()));
+	this->mImage["Chang_RIGHT_DEATH"]->Init("Image/Character/Chang/Chang_RIGHT_DOWN.bmp", 4000, 200, 16, 1, 16, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("Chang_LEFT_HIT", new Image()));
 	this->mImage["Chang_LEFT_HIT"]->Init("Image/Character/Chang/Chang_LEFT_HIT.bmp", 1400, 175, 7, 1, 7, true, RGB(255, 0, 255));
@@ -170,10 +170,10 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("Chang_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
 	this->mImage["Chang_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/Chang/Chang_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 52, 53, 1, 1, 1, true, RGB(255, 0, 255));
 	
-	this->mImage.insert(make_pair("Chang_LEFT_BACKMOVE", new Image()));
-	this->mImage["Chang_LEFT_BACKMOVE"]->Init("Image/Character/Chang/Chang_LEFT_BACKMOVE.bmp", 1500, 170, 10, 1, 10, true, RGB(255, 0, 255));
-	this->mImage.insert(make_pair("Chang_RIGHT_BACKMOVE", new Image()));
-	this->mImage["Chang_RIGHT_BACKMOVE"]->Init("Image/Character/Chang/Chang_RIGHT_BACKMOVE.bmp", 1500, 170, 10, 1, 10, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Chang_LEFT_MOVE_GUARD", new Image()));
+	this->mImage["Chang_LEFT_MOVE_GUARD"]->Init("Image/Character/Chang/Chang_RIGHT_MOVE.bmp", 1500, 172, 10, 1, 10, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Chang_RIGHT_MOVE_GUARD", new Image()));
+	this->mImage["Chang_RIGHT_MOVE_GUARD"]->Init("Image/Character/Chang/Chang_LEFT_MOVE.bmp", 1500, 172, 10, 1, 10, true, RGB(255, 0, 255));
 #pragma endregion
 
 #pragma region GameUI Image Load

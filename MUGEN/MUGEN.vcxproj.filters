@@ -46,8 +46,20 @@
     <Filter Include="소스 파일\MEGEN\UI">
       <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\GameUI">
+    <Filter Include="소스 파일\MEGEN\GameScene">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameData">
+      <UniqueIdentifier>{a76f57f3-f86e-4ef7-9f19-8aad066c9ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameScene\INGAME">
+      <UniqueIdentifier>{60bd0359-be49-45c0-84c5-65fda7b97995}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameScene\Default">
+      <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameScene\GameUI">
+      <UniqueIdentifier>{62405340-07f0-4a53-a94a-897e82cfd448}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,11 +108,20 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    <ClCompile Include="InGame.cpp">
+      <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>소스 파일\MEGEN\GameData</Filter>
     </ClCompile>
     <ClCompile Include="FileManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
@@ -143,14 +164,20 @@
     <ClInclude Include="King.h">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
     </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="EffectManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    <ClInclude Include="InGame.h">
+      <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
     </ClInclude>
     <ClInclude Include="FileManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>

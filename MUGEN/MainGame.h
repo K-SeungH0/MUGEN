@@ -1,9 +1,13 @@
-#pragma once
-#include "Mugen.h"
+Ôªø#pragma once
+#include "GameData.h"
+//#include "Mugen.h"
 
 class Image;
 class Character;
 class Controller;
+class GameUI;
+
+class InGame;
 class MainGame
 {
 private:
@@ -16,13 +20,21 @@ private:
 	Image* lpBuffer;
 	Image* lpBgImg;
 
-	// ƒ≥∏Ø≈Õ √ﬂ∞°
+	GameData::PlayerInfo players[(int)PLAYER_TYPE::NONE];
+
+	// Ï∫êÎ¶≠ÌÑ∞ Ï∂îÍ∞Ä
 	Character* lpKING;
 	Character* lpDIO;
 	Character* lpChang;
 
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
+
+	GameUI* title;
+	
+	SCENE_STATE currentScene;
+
+	InGame* inGame;
 
 public:
 	HRESULT Init();

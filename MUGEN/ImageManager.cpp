@@ -173,14 +173,94 @@ HRESULT ImageManager::Init()
 	this->mImage["Chang_RIGHT_BACKMOVE"]->Init("Image/Character/Chang/Chang_RIGHT_BACKMOVE.bmp", 1500, 170, 10, 1, 10, true, RGB(255, 0, 255));
 #pragma endregion
 
+#pragma region GameUI Image Load
+	this->mImage.insert(make_pair("Player1_HPUI", new Image()));
+	this->mImage["Player1_HPUI"]->Init("Image/UI/Player/Player1_HPUI.bmp", 701 / 2, 324 / 2, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("Player2_HPUI", new Image()));
+	this->mImage["Player2_HPUI"]->Init("Image/UI/Player/Player2_HPUI.bmp", 701 / 2, 324 / 2, 1, 1, 1, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("HP", new Image()));
+	this->mImage["HP"]->Init("Image/UI/Player/HP.bmp", 499 / 2+1, 54/ 2);
+	this->mImage.insert(make_pair("Delay_HP", new Image()));
+	this->mImage["Delay_HP"]->Init("Image/UI/Player/Delay_HP.bmp", 499 / 2+1, 54/ 2);
+
+
+	this->mImage.insert(make_pair("KO", new Image()));
+	this->mImage["KO"]->Init("Image/UI/Round/KO.bmp", 17000*2*1200/WINSIZE_WIDTH, 288*2*600 / WINSIZE_WIDTH, 34, 1, 34, true, RGB(0, 255, 0));
+	this->mImage.insert(make_pair("FINAL", new Image()));
+	this->mImage["FINAL"]->Init("Image/UI/Round/FINALROUND.bmp", 3154, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("ROUND1", new Image()));
+	this->mImage["ROUND1"]->Init("Image/UI/Round/ROUND1.bmp", 2000, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("ROUND2", new Image()));
+	this->mImage["ROUND2"]->Init("Image/UI/Round/ROUND2.bmp", 2000, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("ROUND3", new Image()));
+	this->mImage["ROUND3"]->Init("Image/UI/Round/ROUND3.bmp", 2000, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("ROUND4", new Image()));
+	this->mImage["ROUND4"]->Init("Image/UI/Round/ROUND4.bmp", 2000, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("ROUND5", new Image()));
+	this->mImage["ROUND5"]->Init("Image/UI/Round/ROUND5.bmp", 2000, 1000, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("READY", new Image()));
+	this->mImage["READY"]->Init("Image/UI/Round/READY.bmp", 1429, 240, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("GO", new Image()));
+	this->mImage["GO"]->Init("Image/UI/Round/GO.bmp", 497, 160, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_Time", new Image()));
+	this->mImage["UI_Time"]->Init("Image/UI/Number/UI_Time.bmp", 1200, 120, 10, 1, 10, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_Player1_Chang", new Image()));
+	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_Player2_Chang", new Image()));
+	this->mImage["UI_Player2_Chang"]->Init("Image/UI/Player/UI_Player2_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_Player1_DIO", new Image()));
+	this->mImage["UI_Player1_DIO"]->Init("Image/UI/Player/UI_Player1_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_Player2_DIO", new Image()));
+	this->mImage["UI_Player2_DIO"]->Init("Image/UI/Player/UI_Player2_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+
+	this->mImage.insert(make_pair("UI_Player1_KING", new Image()));
+	this->mImage["UI_Player1_KING"]->Init("Image/UI/Player/UI_Player1_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("UI_Player2_KING", new Image()));
+	this->mImage["UI_Player2_KING"]->Init("Image/UI/Player/UI_Player2_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+
+#pragma endregion
+
+
 #pragma region Effect Image Load
 	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_EFFECT", new Image()));
 	this->mImage["KING_LEFT_RANGE_ATTACK_EFFECT"]->Init("Image/UI/Effects/KING_LEFT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
 	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_EFFECT", new Image()));
 	this->mImage["KING_RIGHT_RANGE_ATTACK_EFFECT"]->Init("Image/UI/Effects/KING_RIGHT_RANGE_ATTACK_EFFECT.bmp", 800, 144, 10, 1, 10, true, RGB(255, 0, 0));
-
 	this->mImage.insert(make_pair("EFFECT_GUARD", new Image()));
 	this->mImage["EFFECT_GUARD"]->Init("Image/UI/Effects/EFFECT_GUARD.bmp", 256 * 2, 32 * 2, 8, 1, 1, true, RGB(66, 181, 99));
+	this->mImage.insert(make_pair("EFFECT_BOOM", new Image()));
+	this->mImage["EFFECT_BOOM"]->Init("Image/UI/Effects/EFFECT_BOOM.bmp", 768, 48, 16, 1, 16, true, RGB(0, 0, 0));
+	this->mImage.insert(make_pair("EFFECT_GUARD", new Image()));
+	this->mImage["EFFECT_GUARD"]->Init("Image/UI/Effects/EFFECT_GUARD.bmp", 256, 32, 8, 1, 8, true, RGB(66, 181, 99));
+	this->mImage.insert(make_pair("EFFECT_HIT1", new Image()));
+	this->mImage["EFFECT_HIT1"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("EFFECT_HIT2", new Image()));
+	this->mImage["EFFECT_HIT2"]->Init("Image/UI/Effects/EFFECT_HIT2.bmp", 648, 80, 9, 1, 9, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("EFFECT_LEFT_DUST", new Image()));
+	this->mImage["EFFECT_LEFT_DUST"]->Init("Image/UI/Effects/EFFECT_LEFT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+	this->mImage.insert(make_pair("EFFECT_RIGHT_DUST", new Image()));
+	this->mImage["EFFECT_RIGHT_DUST"]->Init("Image/UI/Effects/EFFECT_RIGHT_DUST.bmp", 800, 32, 10, 1, 10, true, RGB(255, 206, 8));
+#pragma endregion
+
+#pragma region Title Image Load
+	this->mImage.insert(make_pair("CHANG_SELECTION", new Image()));
+	this->mImage["CHANG_SELECTION"]->Init("Image/UI/TITLE/CHANG_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("DIO_SELECTION", new Image()));
+	this->mImage["DIO_SELECTION"]->Init("Image/UI/TITLE/DIO_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
+	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
+	this->mImage.insert(make_pair("TITLE", new Image()));
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", 1600, 600, 2, 1, 2, false);
+	this->mImage.insert(make_pair("BACK_TITLE", new Image()));
+	this->mImage["BACK_TITLE"]->Init("Image/UI/TITLE/BACK_TITLE.bmp", 800, 600, 1, 1, 1, false);
+	this->mImage.insert(make_pair("SELECT_1P", new Image()));
+	this->mImage["SELECT_1P"]->Init("Image/UI/TITLE/SELECT_1P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
+	this->mImage.insert(make_pair("SELECT_2P", new Image()));
+	this->mImage["SELECT_2P"]->Init("Image/UI/TITLE/SELECT_2P.bmp", 128 * 2, 32 * 2, 4, 1, 4, true, RGB(255, 206, 8));
 #pragma endregion
 
 	return S_OK;

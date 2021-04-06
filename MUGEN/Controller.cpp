@@ -18,12 +18,12 @@ void Controller::Init()
 
 void Controller::Release()
 {
-	if (lpCharacter)
+	/*if (lpCharacter)
 	{
 		lpCharacter->Release();
 		delete lpCharacter;
 		lpCharacter = nullptr;
-	}
+	}*/
 }
 
 void Controller::Update()

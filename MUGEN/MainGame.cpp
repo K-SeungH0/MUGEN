@@ -1,12 +1,16 @@
-#include "MainGame.h"
+ï»¿#include "MainGame.h"
 #include "Image.h"
 #include "King.h"
 #include "Chang.h"
 #include "DIO.h"
 #include "Controller.h"
+#include "Title.h"
+#include "GameData.h"
+#include "INGAME.h"
 
 HRESULT MainGame::Init()
 {
+	GameData::GetLpInstance()->Init();
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();
@@ -17,25 +21,31 @@ HRESULT MainGame::Init()
 	lpBgImg = new Image();
 	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
 	{
-		MessageBox(g_hWnd, "¹è°æ·Îµå ½ÇÆÐ", "Error", MB_OK);
+		MessageBox(g_hWnd, "ë°°ê²½ ë¡œë“œ ì‹¤íŒ¨", "Error", MB_OK);
 	}
 
-	lpDIO = new DIO();
-	lpDIO->Init();
-
-	lpKING = new DIO();
-	lpKING->Init();
-
+	//lpDIO = new DIO();
+	//lpDIO->Init();
+	//
+	//lpKING = new King();
+	//lpKING->Init();
+	//
 	//lpChang = new Chang();
 	//lpChang->Init();
+	//
+	//lpPlayer1 = new Controller();
+	//lpPlayer1->Init();
+	//lpPlayer1->SetController(PLAYER_TYPE::P1, lpChang);
+	//
+	//lpPlayer2 = new Controller();
+	//lpPlayer2->Init();
+	//lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
 
-	lpPlayer1 = new Controller();
-	lpPlayer1->Init();
-	lpPlayer1->SetController(PLAYER_TYPE::P1, lpDIO);
-
-	lpPlayer2 = new Controller();
-	lpPlayer2->Init();
-	lpPlayer2->SetController(PLAYER_TYPE::P2, lpKING);
+	title = new Title();
+	title->Init();
+	currentScene = SCENE_STATE::TITLE;
+	inGame = new InGame();
+	inGame->Init();
 
 	isInitialize = true;
 	hTimer = (HWND)SetTimer(g_hWnd, 0, 10, NULL);
@@ -44,12 +54,20 @@ HRESULT MainGame::Init()
 
 void MainGame::Release()
 {
-	lpDIO->Release();
-	delete lpDIO;
+	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
+	{
+		delete this->players[i].lp_Character;
+		this->players[i].lp_Character = nullptr;
 
-	lpKING->Release();
-	delete lpKING;
-
+		delete this->players[i].lp_Controller;
+		this->players[i].lp_Controller = nullptr;
+	}
+	//lpDIO->Release();
+	//delete lpDIO;
+	//
+	//lpKING->Release();
+	//delete lpKING;
+	//
 	//lpChang->Release();
 	//delete lpChang;
 
@@ -59,40 +77,53 @@ void MainGame::Release()
 	lpBuffer->Release();
 	delete lpBuffer;
 
+	delete inGame;
+
+	GameData::GetLpInstance()->ReleaseSingleton();
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
 }
 
 void MainGame::Update()
 {
-	//if (g_hWnd != GetForegroundWindow()) return;
+	if (g_hWnd != GetForegroundWindow()) return;
 
 	if (KeyManager::GetLpInstance()->IsOnceKeyDown('P'))
 	{
 		isDebugMode = !isDebugMode;
 	}
-
-	ColliderManager::GetLpInstance()->Update();
-
-	lpPlayer1->Update();
-	lpPlayer2->Update();
-
-	// Ä³¸¯ÅÍÀÇ À§Ä¡ Á¶Á¤
-	// Ä³¸¯ÅÍ³¢¸® ºÎµúÇûÀ»°æ¿ì ¼­·Î ÀÏÁ¤Ä¡¸¸Å­ ¹Ð·Á³ªµµ·Ï Ã³¸®
-	RECT player1Rect = lpPlayer1->GetLpCharacter()->GetHitRect();
-	RECT player2Rect = lpPlayer2->GetLpCharacter()->GetHitRect();
-	if (CollisionRect(player1Rect, player2Rect))
+	switch (currentScene)
 	{
-		// Ãæµ¹
-		// °ãÃÄÁø ¸¸Å­ ÀÌµ¿½ÃÄÑ¾ßÇÑ´Ù
-		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
-		lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
-		lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+		case SCENE_STATE::TITLE:
+			title->Update();
+			break;
+		
+		case SCENE_STATE::BATTLE:
+			ColliderManager::GetLpInstance()->Update();
+			for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
+			{
+				players[i].lp_Controller->Update();
+			}
+			// ìºë¦­í„°ì˜ ìœ„ì¹˜ ì¡°ì •
+			// ìºë¦­í„°ë¼ë¦¬ ë¶€ë”ªí˜”ì„ê²½ìš° ì„œë¡œ ì¼ì •ì¹˜ë§Œí¼ ë°€ë ¤ë‚˜ë„ë¡ ì²˜ë¦¬
+			RECT player1Rect = players[(int)PLAYER_TYPE::P1].lp_Controller->GetLpCharacter()->GetHitRect();
+			RECT player2Rect = players[(int)PLAYER_TYPE::P2].lp_Controller->GetLpCharacter()->GetHitRect();
+			if (CollisionRect(player1Rect, player2Rect))
+			{
+				// ì¶©ëŒ
+				// ê²¹ì³ì§„ ë§Œí¼ ì´ë™ì‹œì¼œì•¼í•œë‹¤
+				float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
+				lpPlayer1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+				lpPlayer2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
+			}
+
+			IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
+			IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
+			break;
+		
+		case SCENE_STATE::END:
+			break;
 	}
-
-	IsCollision(lpPlayer1->GetLpCharacter(), lpPlayer2->GetLpCharacter());
-	IsCollision(lpPlayer2->GetLpCharacter(), lpPlayer1->GetLpCharacter());
-
 	InvalidateRect(g_hWnd, NULL, false);
 }
 
@@ -100,20 +131,23 @@ void MainGame::Render(HDC hdc)
 {
 	HDC hBackDC = lpBuffer->GetMemDC();
 
-	lpBgImg->Render(hBackDC);
+	//lpBgImg->Render(hBackDC);
+	//
+	//lpPlayer1->Render(hBackDC);
+	//lpPlayer2->Render(hBackDC);
+	//
+	//// ì¶©ëŒì²´ ë Œë”
+	//ColliderManager::GetLpInstance()->Render(hBackDC);
+	//
+	//// ì´íŽ™íŠ¸ ë Œë”
+	//EffectManager::GetLpInstance()->Render(hBackDC);
+	//
+	//MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
+	//LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
 
-	lpPlayer1->Render(hBackDC);
-	lpPlayer2->Render(hBackDC);
-
-	// Ãæµ¹Ã¼ ·»´õ
-	ColliderManager::GetLpInstance()->Render(hBackDC);
-	
-	// ÀÌÆåÆ® ·»´õ
-	EffectManager::GetLpInstance()->Render(hBackDC);
-	
-	MoveToEx(hBackDC, 0, WINSIZE_HEIGHT - 100, nullptr);
-	LineTo(hBackDC, WINSIZE_WIDTH, WINSIZE_HEIGHT - 100);
+	title->Render(hBackDC);
 	lpBuffer->Render(hdc);
+	
 }
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
@@ -154,8 +188,6 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 		{
 			isCollision = true;
 
-			// ÄÝ¶óÀÌ´õÀÇ ¿øÁ¤°ú ÇØ´ç Ä³¸¯ÅÍÀÇ hitRectÀÇ Áß½É°ú ¼±À» ÀÌ¾î¼­ hitRect¾È¿¡ ÀÖÀ»¶§ ±× ÁöÁ¡¿¡¼­ ÀÌÆåÆ® Ãâ·Â
-			// KING_LEFT_RANGE_ATTACK_EFFECT
 			incl = (it->pos.y - playerPoint.y) / (it->pos.x - playerPoint.x);
 			point = { roundf(it->pos.x), incl * roundf(it->pos.x) + (it->pos.y - incl * it->pos.x) };
 			if (playerPoint.x - it->pos.x < 0)
@@ -164,7 +196,6 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 				{
 					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
 					{
-						// ÀÌÆåÆ® Ãâ·ÂÈÄ for¹® ³ª°¡±â
 						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
 						break;
 					}
@@ -176,7 +207,6 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 				{
 					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
 					{
-						// ÀÌÆåÆ® Ãâ·ÂÈÄ for¹® ³ª°¡±â
 						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
 						break;
 					}

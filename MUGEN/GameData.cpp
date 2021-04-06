@@ -10,6 +10,7 @@ void GameData::Init()
 
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
+		player[i].playerType = (PLAYER_TYPE)i;
 		player[i].lp_Character = nullptr;
 		player[i].lp_Controller = new Controller();
 		player[i].lp_Controller->Init();

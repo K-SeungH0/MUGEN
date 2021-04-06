@@ -16,7 +16,7 @@ InGame::~InGame()
 {
 }
 
-void InGame::Init()
+HRESULT InGame::Init()
 {
 	Player1_HPUI = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
 	Player2_HPUI = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
@@ -75,6 +75,7 @@ void InGame::Init()
 	{
 		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
 	}
+	return S_OK;
 }
 
 void InGame::Release()

@@ -2,7 +2,7 @@
 #include "Mugen.h"
 #include <Windows.h>
 
-class GameScene : public GameObject
+class GameScene
 {
 public:
 

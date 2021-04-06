@@ -30,7 +30,7 @@ private:
 public:
 	InGame();
 	~InGame();
-	void Init();
+	HRESULT Init();
 	void Release();
 	void Update();
 	void Render(HDC hdc);

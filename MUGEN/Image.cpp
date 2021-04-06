@@ -115,38 +115,7 @@ void Image::Render(HDC hdc, int destX, int destY)
 	}
 }
 
-void Image::Render(HDC hdc, int destX, int destY, int frameIndex)
-{
-	lpImageInfo->currentFrame = frameIndex;
-	if (isTransparent)
-	{
-		GdiTransparentBlt(
-			hdc,
-			destX, destY,
-			lpImageInfo->width, lpImageInfo->height,
-			lpImageInfo->hMemDC,
-			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
-			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
-			lpImageInfo->width, lpImageInfo->height,
-			transColor
-		);
-	}
-	else
-	{
-		BitBlt(
-			hdc,
-			destX, destY,
-			lpImageInfo->width,
-			lpImageInfo->height,
-			lpImageInfo->hMemDC,
-			lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
-			lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
-			SRCCOPY
-		);
-	}
-}
-
-void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
+void Image::Render(HDC hdc, int destX, int destY, int frameIndex, bool isFlip, int angle)
 {
 	int size = (int)sqrt(lpImageInfo->width * lpImageInfo->width + lpImageInfo->height * lpImageInfo->height);
 	if (!tempDC)
@@ -170,8 +139,8 @@ void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
 	
 	StretchBlt(
 		tempDC,
-		0, 0,
-		lpImageInfo->width,
+		(isFlip)?lpImageInfo->width:0, 0,
+		(isFlip)?0:lpImageInfo->width,
 		lpImageInfo->height,
 		lpImageInfo->hMemDC,
 		lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
@@ -183,41 +152,16 @@ void Image::Render(HDC hdc, int angle, int destX, int destY, int frameIndex)
 
 	SetWorldTransform(tempDC, &oldXForm);
 
-	//GdiTransparentBlt(
-	//	hdc,
-	//	destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
-	//	size, size,
-	//	tempDC,
-	//	0, 0, size, size,
-	//	transColor
-	//);
-
-	BitBlt(
+	GdiTransparentBlt(
 		hdc,
 		destX + lpImageInfo->width / 2 - size / 2, destY + lpImageInfo->height / 2 - size / 2,
 		size, size,
 		tempDC,
-		0, 0,
-		SRCCOPY
+		0, 0, size, size,
+		transColor
 	);
 	
 	SetGraphicsMode(hdc, GM_COMPATIBLE);
-}
-
-void Image::Render(HDC hdc, bool flip, int destX, int destY, int frameIndex)
-{
-	StretchBlt(
-		hdc,
-		destX + lpImageInfo->width, destY,
-		-lpImageInfo->width,
-		lpImageInfo->height,
-		lpImageInfo->hMemDC,
-		lpImageInfo->width * (frameIndex % lpImageInfo->maxFrameX),
-		lpImageInfo->height * (frameIndex / lpImageInfo->maxFrameX),
-		lpImageInfo->width,
-		lpImageInfo->height,
-		SRCCOPY
-	);
 }
 
 void Image::Release()

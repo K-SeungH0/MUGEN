@@ -49,6 +49,10 @@ private:
 	COLORREF transColor;
 	int elapsedTime;
 
+	HDC tempDC = NULL;
+	HBITMAP hBitmap = NULL;
+	HBITMAP hOldBitmap = NULL;
+
 public:
 	HRESULT Init(int width, int height);
 	HRESULT Init(string fileName, int width, int height, bool isTransparent = false, COLORREF transColor = RGB(0, 0, 0));
@@ -56,6 +60,9 @@ public:
 
 	void Render(HDC hdc, int destX = 0, int destY = 0);
 	void Render(HDC hdc, int destX, int destY, int frameIndex);
+
+	//void Render(HDC hdc, int angle, int destX, int destY, int frameIndex);
+	//void Render(HDC hdc, bool flip, int destX, int destY, int frameIndex);
 
 	void Release();
 

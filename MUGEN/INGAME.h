@@ -20,6 +20,9 @@ private:
 	Image* lpBgImg;
 	Image* lpKOImg;
 	Image* UI_Time;
+	Character* lpChang;
+	Character* lpDIO;
+	Character* lpKING;
 	int x;
 	int elapsedTime;
 	int frame;
@@ -28,10 +31,12 @@ private:
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
 public:
-	HRESULT Init();
+	void Init();
 	void Release();
 	void Update();
 	void Render(HDC hdc);
+private:
+	bool IsCollision(Character* attacker, Character* defender);
 
 };
 

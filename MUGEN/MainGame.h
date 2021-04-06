@@ -4,7 +4,7 @@
 class Image;
 class Character;
 class Controller;
-class GameUI;
+class GameScene;
 
 class InGame;
 class MainGame
@@ -26,7 +26,7 @@ private:
 	Controller* lpPlayer1;
 	Controller* lpPlayer2;
 
-	GameUI* title;
+	GameScene* title;
 
 	InGame* inGame;
 
@@ -38,7 +38,6 @@ public:
 
 	LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 
-private:
-	bool IsCollision(Character* attacker, Character* defender);
+
 };
 

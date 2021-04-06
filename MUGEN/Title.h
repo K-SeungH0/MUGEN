@@ -31,8 +31,8 @@ private:
 
 	Image* lpTitleImage;
 	Image* lpBgImage;
-	SelectCharacter characters[(int)CHARACTER_NAME::NONE];
-	SelectPlayer players[(int)PLAYER_TYPE::NONE];
+	SelectCharacter selectCharacters[(int)CHARACTER_NAME::NONE];
+	SelectPlayer selectPlayers[(int)PLAYER_TYPE::NONE];
 
 	int selectIndex;
 

@@ -49,6 +49,9 @@
     <Filter Include="소스 파일\MEGEN\GameUI">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\GameData">
+      <UniqueIdentifier>{a76f57f3-f86e-4ef7-9f19-8aad066c9ace}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,6 +105,9 @@
     <ClCompile Include="Title.cpp">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClCompile>
+    <ClCompile Include="GameData.cpp">
+      <Filter>소스 파일\MEGEN\GameData</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Title.h">
       <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameData.h">
+      <Filter>소스 파일\MEGEN\GameData</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

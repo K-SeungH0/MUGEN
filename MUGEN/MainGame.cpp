@@ -5,9 +5,11 @@
 #include "DIO.h"
 #include "Controller.h"
 #include "Title.h"
+#include "GameData.h"
 
 HRESULT MainGame::Init()
 {
+	GameData::GetLpInstance()->Init();
 	KeyManager::GetLpInstance()->Init();
 	ColliderManager::GetLpInstance()->Init();
 	ImageManager::GetLpInstance()->Init();

@@ -24,6 +24,7 @@
     <ClCompile Include="Chang.cpp" />
     <ClCompile Include="DIO.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameObject.h" />
     <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="ImageManager.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DIO.h" />
+    <ClInclude Include="GameData.h" />
     <ClInclude Include="GameUI.h" />
     <ClInclude Include="EffectManager.h" />
     <ClInclude Include="ImageManager.h" />

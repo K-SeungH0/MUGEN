@@ -90,7 +90,7 @@ void King::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].width = 50;
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].height = 100;
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_WEAK].offsetHitPos, 50, 120);
-	motions[(int)CHARACTER_STATE::ATTACK_WEAK].mAtkInfo.insert(make_pair(2, AttackInfo{ ATTACK_TYPE::MELEE, {55,-85}, 40, 25, 5 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_WEAK].mAtkInfo.insert(make_pair(2, AttackInfo{ ATTACK_TYPE::MELEE, {55,-85}, 40, 25, 5 }));
 	motions[(int)CHARACTER_STATE::ATTACK_WEAK].motionSpeed = 7;
 
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -35, -112 };
@@ -101,7 +101,7 @@ void King::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].width = 50;
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].height = 100;
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_STRONG].offsetHitPos, 50, 120);
-	motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::MELEE, {55,-85}, 50, 25, 10 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_STRONG].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::MELEE, {55,-85}, 50, 25, 10 }));
 	motions[(int)CHARACTER_STATE::ATTACK_STRONG].motionSpeed = 7;
 
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -43, -112 };
@@ -112,8 +112,8 @@ void King::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].width = 50;
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].height = 100;
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_KICK].offsetHitPos, 50, 120);
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {65,-85}, 60, 40, 10 }));
-	motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::MELEE, {65,-85}, 60, 40, 15 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(3, AttackInfo{ ATTACK_TYPE::MELEE, {65,-85}, 60, 40, 10 }));
+	//motions[(int)CHARACTER_STATE::ATTACK_KICK].mAtkInfo.insert(make_pair(4, AttackInfo{ ATTACK_TYPE::MELEE, {65,-85}, 60, 40, 15 }));
 	motions[(int)CHARACTER_STATE::ATTACK_KICK].motionSpeed = 7;
 
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetDrawPos[(int)CHARACTER_DIRECTION::RIGHT] = { -35, -107 };
@@ -124,7 +124,7 @@ void King::Init()
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].width = 50;
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].height = 100;
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].hitRc = GetRectOffset(pos, motions[(int)CHARACTER_STATE::ATTACK_RANGE].offsetHitPos, 50, 120);
-	motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::RANGE, {120,-78}, 75, 40, 10, "KING_RIGHT_RANGE_ATTACK_COLLIDER", "KING_RIGHT_RANGE_ATTACK_EFFECT" }));
+	//motions[(int)CHARACTER_STATE::ATTACK_RANGE].mAtkInfo.insert(make_pair(1, AttackInfo{ ATTACK_TYPE::RANGE, {120,-78}, 75, 40, 10, "KING_RIGHT_RANGE_ATTACK_COLLIDER", "KING_RIGHT_RANGE_ATTACK_EFFECT" }));
 	motions[(int)CHARACTER_STATE::ATTACK_RANGE].motionSpeed = 7;
 
 	elapsedTime = 0;

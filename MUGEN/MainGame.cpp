@@ -175,8 +175,11 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 {
 	bool isCollision = false;
 	RECT playerRect = {}, targetRect = {};
+	POINTFLOAT point, playerPoint;
+	float incl = 1;
 
 	playerRect = defender->GetHitRect();
+	playerPoint = { defender->GetPos().x, defender->GetPos().y - (playerRect.bottom - playerRect.top) / 2 };
 	auto& lstColliders = ColliderManager::GetLpInstance()->GetLstColliders(attacker->GetPlayerType());
 	for (auto it = lstColliders.begin(); it != lstColliders.end();)
 	{
@@ -184,7 +187,34 @@ bool MainGame::IsCollision(Character* attacker, Character* defender)
 		if (CollisionRect(playerRect, targetRect))
 		{
 			isCollision = true;
-			defender->Hit(it->damage);
+
+			incl = (it->pos.y - playerPoint.y) / (it->pos.x - playerPoint.x);
+			point = { roundf(it->pos.x), incl * roundf(it->pos.x) + (it->pos.y - incl * it->pos.x) };
+			if (playerPoint.x - it->pos.x < 0)
+			{
+				for (int i = 0; point.x + i >= playerPoint.x + 0.0001f; --i)
+				{
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
+				}
+			}
+			else
+			{
+				for (int i = 0; point.x + i < playerPoint.x + 0.0001f; ++i)
+				{
+					if (CollisionRectInPoint(playerRect, { (int)round(point.x + i + 0.0001f), (int)round(point.y + incl * i + 0.0001f) }))
+					{
+						point = { (float)round(point.x + i + 0.0001f), (float)round(point.y + incl * i + 0.0001f) };
+						break;
+					}
+				}
+			}
+			/* it->hitEffectKey */
+			defender->Hit(it->damage, point, "KING_RIGHT_RANGE_ATTACK_EFFECT");
+
 			if (isDebugMode && it->type == ColliderManager::COLLIDER_TYPE::STATIC)
 			{
 				++it;

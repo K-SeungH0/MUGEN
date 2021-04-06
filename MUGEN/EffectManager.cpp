@@ -14,7 +14,7 @@ void EffectManager::Render(HDC hdc)
 {
 	for (auto iter = lImage.begin(); iter != lImage.end();)
 	{
-		iter->lpImage->Render(hdc, iter->pos.x, iter->pos.y, iter->lpImage->GetImageInfo()->currentFrame);
+		iter->lpImage->Render(hdc, iter->pos.x - iter->lpImage->GetImageInfo()->width / 2, iter->pos.y - iter->lpImage->GetImageInfo()->height / 2, iter->lpImage->GetImageInfo()->currentFrame);
 		iter->lpImage->GetImageInfo()->currentFrame++;
 		if (iter->lpImage->GetImageInfo()->currentFrame >= iter->lpImage->GetImageInfo()->maxFrame)
 		{

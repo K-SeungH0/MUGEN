@@ -1,8 +1,8 @@
 #pragma once
-#include "GameUI.h"
+#include "GameScene.h"
 
 class Image;
-class Title : public GameUI
+class Title : public GameScene
 {
 private:
 	enum class TITLE_MODE 

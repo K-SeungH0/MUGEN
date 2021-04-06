@@ -43,9 +43,6 @@
     <Filter Include="소스 파일\MEGEN\Controller">
       <UniqueIdentifier>{c899b8ed-e547-440d-b870-6c2769489cf6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\MEGEN\UI">
-      <UniqueIdentifier>{619def1d-0e4a-43a9-9a0e-517881fa59d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\MEGEN\GameScene">
       <UniqueIdentifier>{41ac708d-3d21-4dbd-a6ee-8dfd636af3d5}</UniqueIdentifier>
     </Filter>
@@ -57,9 +54,6 @@
     </Filter>
     <Filter Include="소스 파일\MEGEN\GameScene\Default">
       <UniqueIdentifier>{3bcf3092-f397-4740-bbbe-49b4c02661cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\MEGEN\GameScene\GameUI">
-      <UniqueIdentifier>{62405340-07f0-4a53-a94a-897e82cfd448}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +89,6 @@
     </ClCompile>
     <ClCompile Include="King.cpp">
       <Filter>소스 파일\MEGEN\Character\King</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>소스 파일\MEGEN\UI</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>소스 파일\MEGEN\Controller</Filter>

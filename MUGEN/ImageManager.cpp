@@ -177,6 +177,15 @@ HRESULT ImageManager::Init()
 #pragma endregion
 
 #pragma region GameUI Image Load
+	this->mImage.insert(make_pair("BACK_IMAGE_01", new Image()));
+	this->mImage["BACK_IMAGE_01"]->Init("Image/UI/Battle/BackImage.bmp", 1200, 600, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("BACK_IMAGE_02", new Image()));
+	this->mImage["BACK_IMAGE_02"]->Init("Image/UI/Battle/BackImage2.bmp", 1200, 600, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("BACK_IMAGE_03", new Image()));
+	this->mImage["BACK_IMAGE_03"]->Init("Image/UI/Battle/Back_Bottom.bmp", 2328, 190, 3, 2, 6, true, RGB(255, 0, 255));
+	this->mImage.insert(make_pair("BACK_IMAGE_04", new Image()));
+	this->mImage["BACK_IMAGE_04"]->Init("Image/UI/Battle/Back_Object.bmp", 309, 612, 3, 6, 18, true, RGB(255, 0, 255));
+
 	this->mImage.insert(make_pair("Player1_HPUI", new Image()));
 	this->mImage["Player1_HPUI"]->Init("Image/UI/Player/Player1_HPUI.bmp", 701 / 2, 324 / 2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("Player2_HPUI", new Image()));

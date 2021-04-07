@@ -4,17 +4,17 @@
 class InGame : public GameScene
 {
 private:
-	Image* lpPlayer1_HpUi;
-	Image* lpPlayer2_HpUi;
-	Image* lpPlayer1_Hp;
-	Image* lpPlayer2_Hp;
-	Image* lpPlayer1_DelayHp;
-	Image* lpPlayer2_DelayHp;
+	Image* lpPlayer1HpUi;
+	Image* lpPlayer2HpUi;
+	Image* lpPlayer1Hp;
+	Image* lpPlayer2Hp;
+	Image* lpPlayer1DelayHp;
+	Image* lpPlayer2DelayHp;
 	Image* lpBuffer;
-	Image* lpKOImg;
-	Image* lpUi_Time;
-	Image* lpUi_Player1;
-	Image* lpUi_Player2;
+	Image* lpTime;
+	Image* lpPlayer1Ui;
+	Image* lpPlayer2Ui;
+	Image* lpKoImg;
 	Image* lpKo;
 
 	int count = 0;
@@ -25,10 +25,10 @@ private:
 	bool IsCollision(Character* attacker, Character* defender);
 
 
-	Controller* lpController_P1;
-	Controller* lpController_P2;
-	Character* lpCharacter_P1;
-	Character* lpCharacter_P2;
+	Controller* lpControllerP1;
+	Controller* lpControllerP2;
+	Character* lpCharacterP1;
+	Character* lpCharacterP2;
 
 public:
 	InGame();

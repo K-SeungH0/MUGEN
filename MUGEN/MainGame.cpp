@@ -44,6 +44,7 @@ void MainGame::Render(HDC hdc)
 
 LRESULT MainGame::WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 {
+	static POINT ptMouse;
 	switch (iMessage)
 	{
 	case WM_TIMER:

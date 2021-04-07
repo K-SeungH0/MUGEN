@@ -6,7 +6,7 @@ HRESULT Title::Init()
 	elapsedTime = 0;
 	
 	lpTitleImage = ImageManager::GetLpInstance()->GetImage("TITLE");
-	lpBgImage = ImageManager::GetLpInstance()->GetImage("BACK_TITLE");
+	lpBgImage = ImageManager::GetLpInstance()->GetImage("SELCT");
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
 		switch (i)
@@ -38,7 +38,7 @@ HRESULT Title::Init()
 				selectableCharacters[i].name = GameData::CHARACTER_NAME::KING;
 				break;
 		}
-		selectableCharacters[i].pos = { i * WINSIZE_WIDTH / 3 + selectableCharacters[i].lpCharacterImage->GetImageInfo()->width / 3, WINSIZE_HEIGHT / 2 };
+		selectableCharacters[i].pos = { i * 220 + 140, 360 };
 		selectableCharacters[i].isSelected = false;
 	}
 

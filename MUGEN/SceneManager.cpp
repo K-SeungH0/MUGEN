@@ -36,7 +36,7 @@ HRESULT SceneManager::Init()
 		}
 		scenes[i]->Init();
 	}
-	currentScene = SCENE_STATE::INGAME;
+	currentScene = SCENE_STATE::TITLE;
     return S_OK;
 }
 

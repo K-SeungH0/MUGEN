@@ -27,7 +27,6 @@
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameData.cpp" />
     <ClCompile Include="GameObject.h" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="King.cpp" />

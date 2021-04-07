@@ -105,9 +105,6 @@
     <ClCompile Include="InGame.cpp">
       <Filter>소스 파일\MEGEN\GameScene\INGAME</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
-    </ClCompile>
     <ClCompile Include="GameData.cpp">
       <Filter>소스 파일\MEGEN\GameData</Filter>
     </ClCompile>

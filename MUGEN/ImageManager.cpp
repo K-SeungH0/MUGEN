@@ -1,4 +1,4 @@
-//#include "ImageManager.h"
+#include "ImageManager.h"
 #include "Image.h"
 
 HRESULT ImageManager::Init()
@@ -300,11 +300,6 @@ void ImageManager::Release()
 		delete mImage[iter->first];
 		mImage[iter->first] = nullptr;
 	}
-}
-
-void ImageManager::Update()
-{
-	
 }
 
 Image* ImageManager::GetImage(string key)

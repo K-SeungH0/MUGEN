@@ -34,6 +34,7 @@ private:
 	Image* lpTitleImage;
 	Image* lpSelectImage;
 	Image* lpBuffer;
+	Image* lpLoadingImage;
 	Image* lpCompleteTimerImage;
 	SelectCharacter selectableCharacters[(int)GameData::CHARACTER_NAME::NONE];
 	SelectPlayer selectPlayers[(int)PLAYER_TYPE::NONE];
@@ -43,6 +44,7 @@ private:
 	int elapsedTime;
 	int speed;
 	int completeTimer;
+	int imageAlpha;
 public:
 	HRESULT Init() final;
 	void Release() final;

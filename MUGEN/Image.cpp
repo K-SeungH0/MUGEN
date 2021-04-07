@@ -1,5 +1,6 @@
 #include "Image.h"
 
+#pragma comment(lib, "msimg32.lib")
 HRESULT Image::Init(int width, int height)
 {
 	HDC hdc = GetDC(g_hWnd);
@@ -298,4 +299,16 @@ void Image::Release()
 	if (tempDC) DeleteDC(tempDC);
 	tempDC = NULL;
 	hBitmap = NULL;
+}
+
+void Image::Render(int alpha, HDC hdc)
+{
+	BLENDFUNCTION bf;
+
+	bf.AlphaFormat = 0;
+	bf.BlendFlags = 0;
+	bf.BlendOp = AC_SRC_OVER; 
+	bf.SourceConstantAlpha = alpha;
+
+	AlphaBlend(hdc, 0, 0, lpImageInfo->width, lpImageInfo->height, lpImageInfo->hMemDC, 0, 0, lpImageInfo->width, lpImageInfo->height, bf);
 }

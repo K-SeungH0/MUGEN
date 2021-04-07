@@ -12,8 +12,9 @@ HRESULT Title::Init()
 	}
 
 	lpTitleImage = ImageManager::GetLpInstance()->GetImage("TITLE");
-	lpSelectImage = ImageManager::GetLpInstance()->GetImage("SELCT");
+	lpSelectImage = ImageManager::GetLpInstance()->GetImage("SELECT");
 	lpCompleteTimerImage = ImageManager::GetLpInstance()->GetImage("UI_Time");
+	lpLoadingImage = ImageManager::GetLpInstance()->GetImage("LOADING");
 
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
@@ -54,6 +55,7 @@ HRESULT Title::Init()
 	titleMode = TITLE_MODE::TITLE;
 	selectIndex = 0;
 	completeTimer = - 1;
+	imageAlpha = 250;
 	return S_OK;
 }
 
@@ -77,11 +79,16 @@ void Title::Release()
 
 void Title::Update()
 {
+	// 투명도 (투명 0 ~ 불투명 255)
+	if (imageAlpha >= 1) imageAlpha -= 2;
+
 	switch (titleMode)
 	{
 		case Title::TITLE_MODE::TITLE:
 			if (++elapsedTime % speed == 0)
+			{
 				++lpTitleImage->GetImageInfo()->currentFrame %= lpTitleImage->GetImageInfo()->maxFrame;
+			}
 
 			if (KeyManager::GetLpInstance()->IsOnceKeyDown(VK_SPACE) ||
 				KeyManager::GetLpInstance()->IsOnceKeyDown(VK_RETURN))
@@ -90,7 +97,6 @@ void Title::Update()
 				speed = 10;
 			}
 			break;
-
 		case Title::TITLE_MODE::SELECT:
 			if (++elapsedTime % speed == 0)
 			{
@@ -137,7 +143,7 @@ void Title::Update()
 	{
 		speed = 100;
 		elapsedTime = 0;
-		completeTimer = 5;
+		completeTimer = 2;
 	}
 
 	if (completeTimer == 0)
@@ -185,5 +191,7 @@ void Title::Render(HDC hdc)
 			
 			break;
 	}
+	lpLoadingImage->Render(imageAlpha, hBackDC);
+
 	lpBuffer->Render(hdc);
 }

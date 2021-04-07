@@ -1,13 +1,8 @@
 #pragma once
 #include "Mugen.h"
-#include <Windows.h>
 
 class GameScene
 {
-public:
-
-protected:
-
 public:
 	virtual HRESULT Init() = 0;
 	virtual void Release() = 0;

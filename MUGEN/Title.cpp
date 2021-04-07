@@ -156,4 +156,5 @@ void Title::Render(HDC hdc)
 
 void Title::Load()
 {
+
 }

@@ -4,9 +4,9 @@
 #include <map>
 #include "Singleton.h"
 
+using namespace std;
+
 class Image;
-enum class CHARACTER_DIRECTION;
-enum class CHARACTER_STATE;
 class ImageManager : public Singleton<ImageManager>
 {
 private:
@@ -15,7 +15,6 @@ private:
 public:
 	HRESULT Init();
 	void Release();
-	void Update();
-	// 사용법 : ex) Play("KING_LEFT_IDLE")
+	// 사용법 : ex) GetImage("KING_LEFT_IDLE")
 	Image* GetImage(string key);
 };

@@ -28,6 +28,9 @@ public:
 	void Init();
 	void Release();
 
+	void GameReset();
+
 	void SetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName);
 	inline PlayerInfo GetPlayer(PLAYER_TYPE playerType) { return player[(int)playerType]; }
+
 };

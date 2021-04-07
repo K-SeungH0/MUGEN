@@ -1,4 +1,4 @@
-//#include "ImageManager.h"
+#include "ImageManager.h"
 #include "Image.h"
 
 HRESULT ImageManager::Init()
@@ -54,10 +54,10 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_WEAK", new Image()));
 	this->mImage["KING_RIGHT_ATTACK_WEAK"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_WEAK.bmp", 480, 112, 5, 1, 5, true, RGB(140, 206, 156));
 
-	this->mImage.insert(make_pair("KING_LEFT_RANGE_ATTACK_COLLIDER", new Image()));
-	this->mImage["KING_LEFT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_LEFT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
-	this->mImage.insert(make_pair("KING_RIGHT_RANGE_ATTACK_COLLIDER", new Image()));
-	this->mImage["KING_RIGHT_RANGE_ATTACK_COLLIDER"]->Init("Image/Character/KING/KING_RIGHT_RANGE_ATTACK_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("KING_LEFT_ATTACK_RANGE_COLLIDER", new Image()));
+	this->mImage["KING_LEFT_ATTACK_RANGE_COLLIDER"]->Init("Image/Character/KING/KING_LEFT_ATTACK_RANGE_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
+	this->mImage.insert(make_pair("KING_RIGHT_ATTACK_RANGE_COLLIDER", new Image()));
+	this->mImage["KING_RIGHT_ATTACK_RANGE_COLLIDER"]->Init("Image/Character/KING/KING_RIGHT_ATTACK_RANGE_COLLIDER.bmp", 320, 48, 4, 1, 4, true, RGB(255, 0, 0));
 #pragma endregion
 
 #pragma region DIO Image Load
@@ -259,13 +259,13 @@ HRESULT ImageManager::Init()
 
 	this->mImage.insert(make_pair("DIO_RIGHT_HIT_EFFECT", new Image()));
 	this->mImage["DIO_RIGHT_HIT_EFFECT"]->Init("Image/Character/DIO/EFFECT_ATTACK_STRONG.bmp", 256, 282, 2, 3, 5, true, RGB(255, 0, 255));
-
-	this->mImage.insert(make_pair("KING_LEFT_HIT_EFFECT", new Image()));
-	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
-	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
-	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528, 56, 11, 1, 11, true, RGB(24, 82, 33));
 	this->mImage.insert(make_pair("DIO_LEFT_HIT_EFFECT", new Image()));
 	this->mImage["DIO_LEFT_HIT_EFFECT"]->Reverse("DIO_RIGHT_HIT_EFFECT");
+
+	this->mImage.insert(make_pair("KING_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
 #pragma endregion
 
 #pragma region Title Image Load
@@ -276,7 +276,7 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
 	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
 	this->mImage.insert(make_pair("TITLE", new Image()));
-	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2 - 15, WINSIZE_HEIGHT - 37, 2, 1, 2, false);
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2 - 30, WINSIZE_HEIGHT - 37, 2, 1, 2, false);
 	this->mImage.insert(make_pair("SELCT", new Image()));
 	this->mImage["SELCT"]->Init("Image/UI/TITLE/SELCT.bmp", WINSIZE_WIDTH - 15, WINSIZE_HEIGHT - 37, 1, 1, 1, false);
 	this->mImage.insert(make_pair("SELECT_1P", new Image()));
@@ -298,11 +298,6 @@ void ImageManager::Release()
 		delete mImage[iter->first];
 		mImage[iter->first] = nullptr;
 	}
-}
-
-void ImageManager::Update()
-{
-	
 }
 
 Image* ImageManager::GetImage(string key)

@@ -49,6 +49,7 @@ private:
 	COLORREF transColor;
 	int elapsedTime;
 
+	// 이미지 회전 처리할때 사용할 변수들
 	int tempSize;
 	HDC tempDC = NULL;
 	HBITMAP hBitmap = NULL;

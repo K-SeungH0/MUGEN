@@ -55,3 +55,23 @@ void GameData::SetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName
 	
 	player[(int)playerType].lp_Controller->SetController(playerType, player[(int)playerType].lp_Character);
 }
+
+void GameData::GameReset()
+{
+	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
+	{
+		if (player[i].lp_Character != nullptr)
+		{
+			delete player[i].lp_Character;
+			player[i].lp_Character = nullptr;
+		}
+
+		if (player[i].lp_Controller != nullptr)
+		{
+			delete player[i].lp_Controller;
+			player[i].lp_Controller = nullptr;
+		}
+	}
+
+	Init();
+}

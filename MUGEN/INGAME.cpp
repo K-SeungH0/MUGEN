@@ -129,7 +129,6 @@ void InGame::Update()
 	RECT player2Rect = lpController_P2->GetLpCharacter()->GetHitRect();
 	if (CollisionRect(player1Rect, player2Rect))
 	{
-//
 		float diffX = (player1Rect.right - player1Rect.left) + (player2Rect.right - player2Rect.left) - (max(player1Rect.right, player2Rect.right) - min(player1Rect.left, player2Rect.left));
 		lpController_P1->GetLpCharacter()->Translate({ -diffX / 2, 0 });
 		lpController_P2->GetLpCharacter()->Translate({ -diffX / 2, 0 });
@@ -158,8 +157,11 @@ void InGame::Render(HDC hdc)
 	
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
-	if(lpCharacter_P1->GetHp()==0|| lpCharacter_P2->GetHp()==0)
-	lpKOImg->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);
+	if (lpCharacter_P1->GetHp() == 0 || lpCharacter_P2->GetHp() == 0)
+	{
+		lpKOImg->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);
+		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
+	}
 	// 충돌체 렌더
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	

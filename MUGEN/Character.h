@@ -31,8 +31,6 @@ protected:
 		// 출력할 이미지의 상대위치 항상 오른쪽을 바라보는 기준으로 설정한다.
 		// IMAGE RENDER StartX = pos.x + offsetDrawPos.x
 		POINTFLOAT offsetDrawPos[(int)CHARACTER_DIRECTION::NONE];
-		// 이미지밖으로 빼고
-		Image* lpImages[(int)CHARACTER_DIRECTION::NONE];
 		// 애니메이션 속도 클수록 느림 1 ~ 100
 		int motionSpeed = 10;
 
@@ -40,9 +38,6 @@ protected:
 		POINTFLOAT offsetHitPos;
 		int width;
 		int height;
-		// 나의 피격 판정 밖으로 빼고
-		RECT hitRc;
-
 		// 프레임, 히트판정/데미지
 		map<int, vector<AttackInfo>> mAtkInfos;
 	};

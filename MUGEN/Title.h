@@ -23,15 +23,18 @@ private:
 
 	struct SelectPlayer
 	{
-		Image* lpSelectImage;
+		Image* lpSelectIonImage;
 		POINT pos;
 		GameData::CHARACTER_NAME selectedCharacterName;
+		Image* lpSelectedCharacterImage;
 	};
 
 	TITLE_MODE titleMode;
 
 	Image* lpTitleImage;
-	Image* lpBgImage;
+	Image* lpSelectImage;
+	Image* lpBuffer;
+	Image* lpCompleteTimerImage;
 	SelectCharacter selectableCharacters[(int)GameData::CHARACTER_NAME::NONE];
 	SelectPlayer selectPlayers[(int)PLAYER_TYPE::NONE];
 
@@ -39,6 +42,7 @@ private:
 
 	int elapsedTime;
 	int speed;
+	int completeTimer;
 public:
 	HRESULT Init() final;
 	void Release() final;

@@ -87,9 +87,6 @@ void Character::Update()
 			}
 		}
 	}
-
-	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
-
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
 
@@ -260,7 +257,6 @@ void Character::Translate(POINTFLOAT delta)
 		pos.x += delta.x;
 		pos.y += delta.y;
 	}
-	motions[(int)state].hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
 }
 

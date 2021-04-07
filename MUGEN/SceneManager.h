@@ -2,7 +2,6 @@
 #include "Singleton.h"
 #include <Windows.h>
 
-class Image;
 class GameScene;
 enum class SCENE_STATE;
 
@@ -16,9 +15,6 @@ public:
 		NONE
 	};
 private:
-	Image* lpBuffer;
-	Image* lpBgImg;
-
 	GameScene* scenes[(int)SCENE_STATE::NONE];
 	SCENE_STATE currentScene;
 
@@ -26,6 +22,7 @@ public:
 	SceneManager();
 	~SceneManager();
 	HRESULT Init();
+	void Release();
 	void Update();
 	void Render(HDC hdc);
 	void LoadScene(SCENE_STATE loadScene);

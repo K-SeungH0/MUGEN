@@ -39,11 +39,11 @@ HRESULT InGame::Init()
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
-	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
-	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
+	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lpController;
+	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lpController;
 
-	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
-	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
+	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lpCharacter;
+	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lpCharacter;
 
 	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
 	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);

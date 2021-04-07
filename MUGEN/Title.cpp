@@ -181,7 +181,7 @@ void Title::Render(HDC hdc)
 			}
 			
 			if (completeTimer > 0)
-				lpCompleteTimerImage->Render(hBackDC, WINSIZE_WIDTH / 2, WINSIZE_HEIGHT / 2, completeTimer);
+				lpCompleteTimerImage->Render(hBackDC, lpSelectImage->GetImageInfo()->width / 2 - 60, lpSelectImage->GetImageInfo()->height / 2 - 125, completeTimer);
 			
 			break;
 	}

@@ -3,6 +3,7 @@
 #include <Windows.h>
 
 class GameScene;
+class Image;
 enum class SCENE_STATE;
 
 class SceneManager : public Singleton<SceneManager>
@@ -17,6 +18,7 @@ public:
 private:
 	GameScene* scenes[(int)SCENE_STATE::NONE];
 	SCENE_STATE currentScene;
+	Image* loadingScene;
 
 public:
 	SceneManager();
@@ -27,4 +29,3 @@ public:
 	void Render(HDC hdc);
 	void LoadScene(SCENE_STATE loadScene);
 };
-

@@ -26,6 +26,7 @@ HRESULT SceneManager::Init()
 			break;
 		}
 	}
+	loadingScene = new Image();
 	currentScene = SCENE_STATE::TITLE;
 	LoadScene(SCENE_STATE::TITLE);
     return S_OK;

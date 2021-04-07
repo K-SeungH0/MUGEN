@@ -17,8 +17,8 @@ public:
 	struct PlayerInfo
 	{
 		PLAYER_TYPE playerType;
-		Character* lp_Character;
-		Controller* lp_Controller;
+		Character* lpCharacter;
+		Controller* lpController;
 	};
 
 private:

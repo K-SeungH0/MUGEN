@@ -11,9 +11,9 @@ void GameData::Init()
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
 		player[i].playerType = (PLAYER_TYPE)i;
-		player[i].lp_Character = nullptr;
-		player[i].lp_Controller = new Controller();
-		player[i].lp_Controller->Init();
+		player[i].lpCharacter = nullptr;
+		player[i].lpController = new Controller();
+		player[i].lpController->Init();
 	}
 }
 
@@ -21,16 +21,16 @@ void GameData::Release()
 {
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
-		if (player[i].lp_Character != nullptr)
+		if (player[i].lpCharacter != nullptr)
 		{
-			delete player[i].lp_Character;
-			player[i].lp_Character = nullptr;
+			delete player[i].lpCharacter;
+			player[i].lpCharacter = nullptr;
 		}	
 
-		if (player[i].lp_Controller != nullptr)
+		if (player[i].lpController != nullptr)
 		{
-			delete player[i].lp_Controller;
-			player[i].lp_Controller = nullptr;
+			delete player[i].lpController;
+			player[i].lpController = nullptr;
 		}
 	}
 }
@@ -40,36 +40,36 @@ void GameData::SetCharacter(PLAYER_TYPE playerType, CHARACTER_NAME characterName
 	switch (characterName)
 	{
 		case CHARACTER_NAME::CHANG:
-			player[(int)playerType].lp_Character = new Chang();
-			player[(int)playerType].lp_Character->Init();
+			player[(int)playerType].lpCharacter = new Chang();
+			player[(int)playerType].lpCharacter->Init();
 			break;
 		case CHARACTER_NAME::DIO:
-			player[(int)playerType].lp_Character = new DIO();
-			player[(int)playerType].lp_Character->Init();
+			player[(int)playerType].lpCharacter = new DIO();
+			player[(int)playerType].lpCharacter->Init();
 			break;
 		case CHARACTER_NAME::KING:
-			player[(int)playerType].lp_Character = new King();
-			player[(int)playerType].lp_Character->Init();
+			player[(int)playerType].lpCharacter = new King();
+			player[(int)playerType].lpCharacter->Init();
 			break;
 	}
 	
-	player[(int)playerType].lp_Controller->SetController(playerType, player[(int)playerType].lp_Character);
+	player[(int)playerType].lpController->SetController(playerType, player[(int)playerType].lpCharacter);
 }
 
 void GameData::GameReset()
 {
 	for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 	{
-		if (player[i].lp_Character != nullptr)
+		if (player[i].lpCharacter != nullptr)
 		{
-			delete player[i].lp_Character;
-			player[i].lp_Character = nullptr;
+			delete player[i].lpCharacter;
+			player[i].lpCharacter = nullptr;
 		}
 
-		if (player[i].lp_Controller != nullptr)
+		if (player[i].lpController != nullptr)
 		{
-			delete player[i].lp_Controller;
-			player[i].lp_Controller = nullptr;
+			delete player[i].lpController;
+			player[i].lpController = nullptr;
 		}
 	}
 

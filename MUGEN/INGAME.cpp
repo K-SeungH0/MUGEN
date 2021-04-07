@@ -18,14 +18,14 @@ InGame::~InGame()
 
 HRESULT InGame::Init()
 {
-	Player1_HPUI = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
-	Player2_HPUI = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
-	Player1_HP = ImageManager::GetLpInstance()->GetImage("HP");
-	Player2_HP = ImageManager::GetLpInstance()->GetImage("HP");
-	Player1_DelayHP = ImageManager::GetLpInstance()->GetImage("Delay_HP");
-	Player2_DelayHP = ImageManager::GetLpInstance()->GetImage("Delay_HP");
+	lpPlayer1_HpUi = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
+	lpPlayer2_HpUi = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
+	lpPlayer1_Hp = ImageManager::GetLpInstance()->GetImage("HP");
+	lpPlayer2_Hp = ImageManager::GetLpInstance()->GetImage("HP");
+	lpPlayer1_DelayHp = ImageManager::GetLpInstance()->GetImage("Delay_HP");
+	lpPlayer2_DelayHp = ImageManager::GetLpInstance()->GetImage("Delay_HP");
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
-	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
+	lpUi_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
@@ -43,30 +43,30 @@ HRESULT InGame::Init()
 
 if ("Chang" == lpCharacter_P1->GetPlayerName())
 {
-	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+	lpUi_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
 }
 
 if ("DIO" == lpCharacter_P1->GetPlayerName())
 {
-	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_DIO");
+	lpUi_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_DIO");
 }
 if ("KING" == lpCharacter_P1->GetPlayerName())
 {
-	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_KING");
+	lpUi_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_KING");
 }
 if ("Chang" == lpCharacter_P2->GetPlayerName())
 {
-	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_Chang");
+	lpUi_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_Chang");
 }
 
 if ("DIO" == lpCharacter_P2->GetPlayerName())
 {
-	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_DIO");
+	lpUi_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_DIO");
 }
 
 if ("KING" == lpCharacter_P2->GetPlayerName())
 {
-	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_KING");
+	lpUi_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_KING");
 }
 
 	return S_OK;
@@ -74,12 +74,12 @@ if ("KING" == lpCharacter_P2->GetPlayerName())
 
 void InGame::Release()
 {
-	Player1_HPUI->Release();
-	Player2_HPUI->Release();
-	Player1_HP->Release();
-	Player2_HP->Release();
-	Player1_DelayHP->Release();
-	Player2_DelayHP->Release();
+	lpPlayer1_HpUi->Release();
+	lpPlayer2_HpUi->Release();
+	lpPlayer1_Hp->Release();
+	lpPlayer2_Hp->Release();
+	lpPlayer1_DelayHp->Release();
+	lpPlayer2_DelayHp->Release();
 	lpKOImg->Release();
 
 	lpBuffer->Release();
@@ -129,11 +129,11 @@ void InGame::Update()
 			time--;
 			if (lpCharacter_P1->GetHp() == 0 || lpCharacter_P2->GetHp() == 0)
 			{
-				KO = ImageManager::GetLpInstance()->GetImage("KO");
+				lpKo = ImageManager::GetLpInstance()->GetImage("KO");
 				count++;
 				if (count == 10)
 					{
-						KO = nullptr;
+						lpKo = nullptr;
 						count -= 10;
 						time = 60;
 						SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE, lpBuffer->GetImageInfo()->hMemDC);
@@ -160,18 +160,18 @@ void InGame::Render(HDC hdc)
 
 	lpController_P1->Render(hBackDC);
 	lpController_P2->Render(hBackDC);
-	if (Player1_HPUI)Player1_HPUI->Render(hBackDC, 0, 0);
-	if (Player2_HPUI)Player2_HPUI->Render(hBackDC, WINSIZE_WIDTH - 385 * 1200 / WINSIZE_WIDTH, 0);
-	if (Player1_DelayHP)Player1_DelayHP->Render(hBackDC, { 93, 43}, float(lpCharacter_P1->GetHp() / MAX_HP),1);
-	if (Player2_DelayHP)Player2_DelayHP->Render(hBackDC, { WINSIZE_WIDTH-109, 43 }, float(-lpCharacter_P2->GetHp() / MAX_HP),1);
-	if (Player1_HP)Player1_HP->Render(hBackDC, {93 , 43 }, float(lpCharacter_P1->GetHp()) / MAX_HP,1);
-	if (Player2_HP)Player2_HP->Render(hBackDC, { WINSIZE_WIDTH - 109, 43}, float(-lpCharacter_P2->GetHp()) / MAX_HP,1);
+	if (lpPlayer1_HpUi)lpPlayer1_HpUi->Render(hBackDC, 0, 0);
+	if (lpPlayer2_HpUi)lpPlayer2_HpUi->Render(hBackDC, WINSIZE_WIDTH - 385 * 1200 / WINSIZE_WIDTH, 0);
+	if (lpPlayer1_DelayHp)lpPlayer1_DelayHp->Render(hBackDC, { 93, 43}, float(lpCharacter_P1->GetHp() / MAX_HP),1);
+	if (lpPlayer2_DelayHp)lpPlayer2_DelayHp->Render(hBackDC, { WINSIZE_WIDTH-109, 43 }, float(-lpCharacter_P2->GetHp() / MAX_HP),1);
+	if (lpPlayer1_Hp)lpPlayer1_Hp->Render(hBackDC, {93 , 43 }, float(lpCharacter_P1->GetHp()) / MAX_HP,1);
+	if (lpPlayer2_Hp)lpPlayer2_Hp->Render(hBackDC, { WINSIZE_WIDTH - 109, 43}, float(-lpCharacter_P2->GetHp()) / MAX_HP,1);
 	
-	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
-	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
-	if (KO)KO->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);;
-	if (UI_Player1)UI_Player1->Render(hBackDC, 21, 25);
-	if (UI_Player2)UI_Player2->Render(hBackDC, WINSIZE_WIDTH - 145, 25);
+	if (lpUi_Time)lpUi_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
+	if (lpUi_Time)lpUi_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
+	if (lpKo)lpKo->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);;
+	if (lpUi_Player1)lpUi_Player1->Render(hBackDC, 21, 25);
+	if (lpUi_Player2)lpUi_Player2->Render(hBackDC, WINSIZE_WIDTH - 145, 25);
 	// 충돌체 렌더
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	

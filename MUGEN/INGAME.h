@@ -4,18 +4,18 @@
 class InGame : public GameScene
 {
 private:
-	Image* Player1_HPUI;
-	Image* Player2_HPUI;
-	Image* Player1_HP;
-	Image* Player2_HP;
-	Image* Player1_DelayHP;
-	Image* Player2_DelayHP;
+	Image* lpPlayer1_HpUi;
+	Image* lpPlayer2_HpUi;
+	Image* lpPlayer1_Hp;
+	Image* lpPlayer2_Hp;
+	Image* lpPlayer1_DelayHp;
+	Image* lpPlayer2_DelayHp;
 	Image* lpBuffer;
 	Image* lpKOImg;
-	Image* UI_Time;
-	Image* UI_Player1;
-	Image* UI_Player2;
-	Image* KO;
+	Image* lpUi_Time;
+	Image* lpUi_Player1;
+	Image* lpUi_Player2;
+	Image* lpKo;
 
 	int count = 0;
 	int elapsedTime;

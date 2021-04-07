@@ -54,6 +54,10 @@ void SceneManager::Render(HDC hdc)
 
 void SceneManager::LoadScene(SCENE_STATE loadScene)
 {
+	if (loadScene == SCENE_STATE::TITLE)
+	{
+		GameData::GetLpInstance()->GameReset();
+	}
 	currentScene = loadScene;
 	scenes[(int)currentScene]->Init();
 }

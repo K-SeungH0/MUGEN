@@ -123,6 +123,8 @@ void Title::Update()
 	if (selectPlayers[(int)PLAYER_TYPE::P1].selectedCharacterName != GameData::CHARACTER_NAME::NONE &&
 		selectPlayers[(int)PLAYER_TYPE::P2].selectedCharacterName != GameData::CHARACTER_NAME::NONE)
 	{
+		selectPlayers[(int)PLAYER_TYPE::P1].selectedCharacterName = GameData::CHARACTER_NAME::NONE;
+		selectPlayers[(int)PLAYER_TYPE::P2].selectedCharacterName = GameData::CHARACTER_NAME::NONE;
 		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::INGAME);
 	}
 }

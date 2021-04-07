@@ -136,7 +136,7 @@ void Character::Hit(int damage, POINTFLOAT hitPoint, string hitEffectKey)
 	if (state != CHARACTER_STATE::GUARD)
 	{
 		hp -= damage;
-		EffectManager::GetLpInstance()->EffectRender(hitPoint, hitEffectKey);
+		if (hitEffectKey.length() > 0) EffectManager::GetLpInstance()->EffectRender(hitPoint, hitEffectKey);
 	}
 	else
 	{
@@ -308,10 +308,10 @@ void Character::LoadData()
 		vector<int> vDamages;
 		vector<string> vImageKeys;
 		vector<string> vEffectKeys;
-		AttackInfo atkInfo;
 		map<int, vector<AttackInfo>>* lpmAtkInfo = nullptr;
 		for (int i = 0; i < (int)CHARACTER_STATE::NONE; ++i)
 		{
+			AttackInfo atkInfo;
 			group = GetKey("", CHARACTER_DIRECTION::NONE, (CHARACTER_STATE)i);
 			state = FileManager::GetLpInstance()->GetData<int>(group, "CHARACTER_STATE");
 			lpmAtkInfo = &motions[state].mAtkInfos;

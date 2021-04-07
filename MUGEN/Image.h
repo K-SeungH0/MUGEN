@@ -66,7 +66,7 @@ public:
 	void Render(HDC hdc, int destX, int destY, int frameIndex, int angle = 0);
 	void Render(HDC hdc, POINT offset, float widthRatio, float heightRatio, int frameIndex = 0);
 
-	void Render(int alpha, HDC hdc);
+	HDC Render(int alpha, HDC hdc, HDC lastHdc);
 
 	void Release();
 

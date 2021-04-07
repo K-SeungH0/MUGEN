@@ -44,7 +44,6 @@ private:
 	int elapsedTime;
 	int speed;
 	int completeTimer;
-	int imageAlpha;
 public:
 	HRESULT Init() final;
 	void Release() final;

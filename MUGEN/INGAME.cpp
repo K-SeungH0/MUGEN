@@ -136,7 +136,7 @@ void InGame::Update()
 						KO = nullptr;
 						count -= 10;
 						time = 60;
-						SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
+						SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE, lpBuffer->GetImageInfo()->hMemDC);
 					}
 			}
 		}
@@ -145,7 +145,7 @@ void InGame::Update()
 	else
 	{
 		time = 60;
-		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
+		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE, lpBuffer->GetImageInfo()->hMemDC);
 	}
 	
 }

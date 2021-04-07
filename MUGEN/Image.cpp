@@ -301,7 +301,7 @@ void Image::Release()
 	hBitmap = NULL;
 }
 
-void Image::Render(int alpha, HDC hdc)
+HDC Image::Render(int alpha, HDC hdc, HDC lastHdc)
 {
 	BLENDFUNCTION bf;
 
@@ -310,5 +310,17 @@ void Image::Render(int alpha, HDC hdc)
 	bf.BlendOp = AC_SRC_OVER; 
 	bf.SourceConstantAlpha = alpha;
 
-	AlphaBlend(hdc, 0, 0, lpImageInfo->width, lpImageInfo->height, lpImageInfo->hMemDC, 0, 0, lpImageInfo->width, lpImageInfo->height, bf);
+	AlphaBlend(lastHdc, 0, 0, lpImageInfo->width, lpImageInfo->height, lpImageInfo->hMemDC, 0, 0, lpImageInfo->width, lpImageInfo->height, bf);
+
+	TransparentBlt(
+		hdc,
+		0, 0,
+		lpImageInfo->width, lpImageInfo->height,
+		lastHdc ,
+		0, 0,
+		lpImageInfo->width, lpImageInfo->height,
+		transColor
+	);
+
+	return lastHdc;
 }

@@ -25,7 +25,6 @@ private:
 	bool IsCollision(Character* attacker, Character* defender);
 
 
-	// ±è½ÂÈ£ Ãß°¡
 	Controller* lpController_P1;
 	Controller* lpController_P2;
 	Character* lpCharacter_P1;

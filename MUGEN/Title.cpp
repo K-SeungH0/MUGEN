@@ -55,7 +55,6 @@ HRESULT Title::Init()
 	titleMode = TITLE_MODE::TITLE;
 	selectIndex = 0;
 	completeTimer = - 1;
-	imageAlpha = 250;
 	return S_OK;
 }
 
@@ -79,9 +78,6 @@ void Title::Release()
 
 void Title::Update()
 {
-	// 투명도 (투명 0 ~ 불투명 255)
-	if (imageAlpha >= 1) imageAlpha -= 2;
-
 	switch (titleMode)
 	{
 		case Title::TITLE_MODE::TITLE:
@@ -100,7 +96,8 @@ void Title::Update()
 		case Title::TITLE_MODE::SELECT:
 			if (++elapsedTime % speed == 0)
 			{
-				completeTimer--;
+				if (completeTimer > 0)
+					completeTimer--;
 				for (int i = 0; i < (int)PLAYER_TYPE::NONE; i++)
 				{
 					if (selectPlayers[i].selectedCharacterName == GameData::CHARACTER_NAME::NONE)
@@ -139,18 +136,18 @@ void Title::Update()
 	}
 	if (selectPlayers[(int)PLAYER_TYPE::P1].selectedCharacterName != GameData::CHARACTER_NAME::NONE &&
 		selectPlayers[(int)PLAYER_TYPE::P2].selectedCharacterName != GameData::CHARACTER_NAME::NONE &&
-		speed != 100)
+		speed != 75)
 	{
-		speed = 100;
+		speed = 75;
 		elapsedTime = 0;
-		completeTimer = 2;
+		completeTimer = 3;
 	}
 
 	if (completeTimer == 0)
 	{
 		selectPlayers[(int)PLAYER_TYPE::P1].selectedCharacterName = GameData::CHARACTER_NAME::NONE;
 		selectPlayers[(int)PLAYER_TYPE::P2].selectedCharacterName = GameData::CHARACTER_NAME::NONE;
-		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::INGAME);
+		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::INGAME, lpBuffer->GetImageInfo()->hMemDC);
 	}
 }
 
@@ -191,7 +188,6 @@ void Title::Render(HDC hdc)
 			
 			break;
 	}
-	lpLoadingImage->Render(imageAlpha, hBackDC);
 
 	lpBuffer->Render(hdc);
 }

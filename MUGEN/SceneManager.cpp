@@ -26,8 +26,17 @@ HRESULT SceneManager::Init()
 			break;
 		}
 	}
+	alpha = 0;
+	isLoading = false;
+	
+	lpBuffer = new Image();
+	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
+
+	lpLoadingImage = new Image();
+	lpLoadingImage = ImageManager::GetLpInstance()->GetImage("LOADING");
+	
 	currentScene = SCENE_STATE::TITLE;
-	LoadScene(SCENE_STATE::TITLE);
+	LoadScene(SCENE_STATE::TITLE, NULL);
     return S_OK;
 }
 
@@ -37,24 +46,43 @@ void SceneManager::Release()
 	{
 		delete scenes[i];
 	}
+	delete lpLoadingImage;
 }
 
 void SceneManager::Update()
 {
-	scenes[(int)currentScene]->Update();
+	if(!isLoading)
+		scenes[(int)currentScene]->Update();
+	else
+	{
+		alpha += 10;
+		if (alpha >= 250)
+		{
+			isLoading = false;
+			alpha = 0;
+		}
+	}
 }
 
 void SceneManager::Render(HDC hdc)
 {
-	scenes[(int)currentScene]->Render(hdc);
+	if (!isLoading)
+		scenes[(int)currentScene]->Render(hdc);
+	else
+	{
+		lastHdc = lpLoadingImage->Render(alpha, hdc, lastHdc);
+	}
 }
 
-void SceneManager::LoadScene(SCENE_STATE loadScene)
+void SceneManager::LoadScene(SCENE_STATE loadScene, HDC lastHdc)
 {
 	if (loadScene == SCENE_STATE::TITLE)
 	{
 		GameData::GetLpInstance()->GameReset();
 	}
-	currentScene = loadScene;
+	this->lastHdc = lastHdc;
+	this->currentScene = loadScene;
+	if(lastHdc)
+	this->isLoading = true;
 	scenes[(int)currentScene]->Init();
 }

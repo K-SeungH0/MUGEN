@@ -135,6 +135,7 @@ void InGame::Update()
 					{
 						KO = nullptr;
 						count -= 10;
+						time = 60;
 						SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
 					}
 			}
@@ -143,7 +144,7 @@ void InGame::Update()
 	}
 	else
 	{
-		time += 60;
+		time = 60;
 		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
 	}
 	

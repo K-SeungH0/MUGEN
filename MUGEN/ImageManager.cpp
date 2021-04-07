@@ -266,6 +266,11 @@ HRESULT ImageManager::Init()
 	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
 	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
 	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
+
+	this->mImage.insert(make_pair("Chang_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["Chang_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT2.bmp", 648 * 2, 80 * 2, 9, 1, 9, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("Chang_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["Chang_RIGHT_HIT_EFFECT"]->Reverse("Chang_LEFT_HIT_EFFECT");
 #pragma endregion
 
 #pragma region Title Image Load

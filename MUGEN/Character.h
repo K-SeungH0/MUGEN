@@ -23,6 +23,8 @@ protected:
 		int height;
 		// 데미지
 		int damage;
+
+		// 공격시 나올 이미지 정보들
 		string imageKey[(int)CHARACTER_DIRECTION::NONE];
 		string hitEffectKey[(int)CHARACTER_DIRECTION::NONE];
 	};
@@ -42,31 +44,35 @@ protected:
 		map<int, vector<AttackInfo>> mAtkInfos;
 	};
 
+protected:
 	// 애니메이션 처리를 위한 변수
 	int elapsedTime;
 	int frame;
 	int priority;
 
+	// 캐릭터의 타입 - 1P / 2P
 	PLAYER_TYPE type = PLAYER_TYPE::NONE;
-	// 바라보는 방향
+	// 캐릭터가 바라볼 방향 / 공격할 방향
 	CHARACTER_DIRECTION dir;
 	// 캐릭터 상태
 	CHARACTER_STATE state;
+	// 캐릭터의 현재 상태의 이미지
+	Image* lpImage;
+	// 캐릭터의 히트박스
+	RECT hitRc;
+
+	// 캐릭터 위치
+	POINTFLOAT pos;
 	// 캐릭터 체력
 	int hp;
 	// 캐릭터 스피드
 	int moveSpeed;
-	// 캐릭터 위치
-	POINTFLOAT pos;
+
 	// 캐릭터 이름
 	// /Image/Character/캐릭터이름/*.bmp
 	string name;
 
-	// Render용 image
-	Image* lpImage;
-	RECT hitRc;
-
-	// Init 모션별 초기화
+	// 모션별 공격정보
 	MotionInfo motions[(int)CHARACTER_STATE::NONE];
 
 public:
@@ -75,10 +81,12 @@ public:
 	virtual void Update() override;
 	virtual void Render(HDC hdc) override;
 
+	// 행동
 	void Stay();
 	void Hit(int damage, POINTFLOAT hitPoint, string hitEffectKey);
 	void Guard();
 
+	// 커맨드
 	void LeftMove(int priority);
 	void RightMove(int priority);
 	void WeakAttack(int priority);
@@ -86,6 +94,7 @@ public:
 	void KickAttack(int priority);
 	void RangeAttack(int priority);
 
+	// 바라보는 방향으로 이동
 	void Translate(POINTFLOAT delta);
 
 	inline void RefreshImage() { lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state)); }
@@ -99,6 +108,7 @@ public:
 	inline PLAYER_TYPE GetPlayerType() { return type; }
 
 protected:
+	// INI파일 로드
 	void LoadData();
 };
 

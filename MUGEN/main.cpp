@@ -30,6 +30,9 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPreInstance, LPSTR lpszCmdP
 	RegisterClass(&wndClass);
 
 	g_hWnd = CreateWindow(g_lpszClass, g_lpszClass, WS_OVERLAPPEDWINDOW, 0, 0, WINSIZE_WIDTH, WINSIZE_HEIGHT, NULL, NULL, g_hInstance, NULL);
+	RECT winRect = { 0,0,WINSIZE_WIDTH,WINSIZE_HEIGHT };
+	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, false);
+	SetWindowPos(g_hWnd, NULL, 0, 0, winRect.right - winRect.left, winRect.bottom - winRect.top, SWP_NOMOVE | SWP_NOZORDER);
 
 	ShowWindow(g_hWnd, nCmdShow);
 

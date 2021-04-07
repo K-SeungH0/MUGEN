@@ -34,9 +34,9 @@ HRESULT SceneManager::Init()
 			scenes[i] = new InGame();
 			break;
 		}
-		scenes[i]->Init();
 	}
 	currentScene = SCENE_STATE::TITLE;
+	LoadScene(SCENE_STATE::TITLE);
     return S_OK;
 }
 
@@ -55,6 +55,5 @@ void SceneManager::Render(HDC hdc)
 void SceneManager::LoadScene(SCENE_STATE loadScene)
 {
 	currentScene = loadScene;
-	if (currentScene == SCENE_STATE::TITLE)
-		scenes[(int)currentScene]->Load();
+	scenes[(int)currentScene]->Init();
 }

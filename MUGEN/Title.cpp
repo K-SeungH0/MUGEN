@@ -153,8 +153,3 @@ void Title::Render(HDC hdc)
 			break;
 	}
 }
-
-void Title::Load()
-{
-
-}

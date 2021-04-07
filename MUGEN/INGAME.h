@@ -36,7 +36,5 @@ public:
 	void Release();
 	void Update();
 	void Render(HDC hdc);
-	// ±è½ÂÈ£ Ãß°¡
-	void Load();
 };
 

@@ -18,8 +18,6 @@ InGame::~InGame()
 
 HRESULT InGame::Init()
 {
-
-	Load();
 	Player1_HPUI = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
 	Player2_HPUI = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
 	Player1_HP = ImageManager::GetLpInstance()->GetImage("HP");
@@ -29,54 +27,56 @@ HRESULT InGame::Init()
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
 	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
 
+	//Character* lpDIO = new DIO();
+	//lpDIO->Init();
 
-	Character* lpDIO = new DIO();
-	lpDIO->Init();
+	//Character* lpKING = new King();
+	//lpKING->Init();
 
-	Character* lpKING = new King();
-	lpKING->Init();
-
-	Character* lpChang = new Chang();
-	lpChang->Init();
+	//Character* lpChang = new Chang();
+	//lpChang->Init();
 
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
-	lpController_P1 = nullptr;
-	lpController_P2 = nullptr;
-	lpCharacter_P1 = nullptr;
-	lpCharacter_P2 = nullptr;
+	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
+	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
 
-	lpController_P1 = new Controller();
-	lpController_P1->Init();
-	switch ((int)lpCharacter_P1)
-	{
-	case 0:
-		lpController_P1->SetController(PLAYER_TYPE::P1, lpChang);
-		break;
-	case 1:
-		lpController_P1->SetController(PLAYER_TYPE::P1, lpDIO);
-		break;
-	case 2:
-		lpController_P1->SetController(PLAYER_TYPE::P1, lpKING);
-		break;
-	}
+	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
+	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
 
-	lpController_P2 = new Controller();
-	lpController_P2->Init();
-	switch ((int)lpCharacter_P2)
-	{
-	case 0:
-		lpController_P2->SetController(PLAYER_TYPE::P2, lpChang);
-		break;
-	case 1:
-		lpController_P2->SetController(PLAYER_TYPE::P2, lpDIO);
-		break;
-	case 2:
-		lpController_P2->SetController(PLAYER_TYPE::P2, lpKING);
-		break;
-	}
+	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
+	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
 
+	//lpController_P1 = new Controller();
+	//lpController_P1->Init();
+	//switch ((int)lpCharacter_P1)
+	//{
+	//case 0:
+	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpChang);
+	//	break;
+	//case 1:
+	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpDIO);
+	//	break;
+	//case 2:
+	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpKING);
+	//	break;
+	//}
+
+	//lpController_P2 = new Controller();
+	//lpController_P2->Init();
+	//switch ((int)lpCharacter_P2)
+	//{
+	//case 0:
+	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpChang);
+	//	break;
+	//case 1:
+	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpDIO);
+	//	break;
+	//case 2:
+	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpKING);
+	//	break;
+	//}
 
 	return S_OK;
 }
@@ -166,19 +166,6 @@ void InGame::Render(HDC hdc)
 	// 이펙트 렌더
 	EffectManager::GetLpInstance()->Render(hBackDC);
 	lpBuffer->Render(hdc);
-}
-
-// 김승호 추가
-void InGame::Load()
-{
-	lpController_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Controller;
-	lpController_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Controller;
-
-	lpCharacter_P1 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P1).lp_Character;
-	lpCharacter_P2 = GameData::GetLpInstance()->GetPlayer(PLAYER_TYPE::P2).lp_Character;
-
-	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
-	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
 }
 
 bool InGame::IsCollision(Character* attacker, Character* defender)

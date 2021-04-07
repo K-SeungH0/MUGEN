@@ -44,6 +44,5 @@ public:
 	void Release() final;
 	void Update() final;
 	void Render(HDC hdc) final;
-	void Load() final;
 };
 

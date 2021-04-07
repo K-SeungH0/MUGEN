@@ -140,11 +140,18 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 	mCommands.insert(make_pair(SKILL_KIND::ATTACK_KICK, Command{ &skills[(int)SKILL_KIND::ATTACK_KICK] }));
 
 	// 아래키와 일반 공격을 누르면 원거리 공격으로
-	mCommands[SKILL_KIND::DOWN].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_WEAK] }));
-	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
-	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
-	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
-	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::ATTACK_WEAK].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	mCommands[SKILL_KIND::DOWN].mCombo.insert(make_pair(SKILL_KIND::RIGHT, Command{ &skills[(int)SKILL_KIND::RIGHT] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::RIGHT].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::RIGHT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::RIGHT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::RIGHT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+
+	mCommands[SKILL_KIND::DOWN].mCombo.insert(make_pair(SKILL_KIND::LEFT, Command{ &skills[(int)SKILL_KIND::LEFT] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::LEFT].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::LEFT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_STRONG] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::LEFT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_WEAK, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+	mCommands[SKILL_KIND::DOWN].mCombo[SKILL_KIND::LEFT].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo[SKILL_KIND::ATTACK_STRONG].mCombo.insert(make_pair(SKILL_KIND::ATTACK_STRONG, Command{ &skills[(int)SKILL_KIND::ATTACK_RANGE] }));
+
 	lpCharacter->RefreshImage();
 }
 

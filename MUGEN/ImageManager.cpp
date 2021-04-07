@@ -220,19 +220,19 @@ HRESULT ImageManager::Init()
 	this->mImage["UI_Time"]->Init("Image/UI/Number/UI_Time.bmp", 1200, 120, 10, 1, 10, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_Chang", new Image()));
-	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215/2, 136/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_Chang", new Image()));
-	this->mImage["UI_Player2_Chang"]->Init("Image/UI/Player/UI_Player2_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_Chang"]->Init("Image/UI/Player/UI_Player2_Chang.bmp", 215/2, 136/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_DIO", new Image()));
-	this->mImage["UI_Player1_DIO"]->Init("Image/UI/Player/UI_Player1_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_DIO"]->Init("Image/UI/Player/UI_Player1_DIO.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_DIO", new Image()));
-	this->mImage["UI_Player2_DIO"]->Init("Image/UI/Player/UI_Player2_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_DIO"]->Init("Image/UI/Player/UI_Player2_DIO.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_KING", new Image()));
-	this->mImage["UI_Player1_KING"]->Init("Image/UI/Player/UI_Player1_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_KING"]->Init("Image/UI/Player/UI_Player1_KING.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_KING", new Image()));
-	this->mImage["UI_Player2_KING"]->Init("Image/UI/Player/UI_Player2_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_KING"]->Init("Image/UI/Player/UI_Player2_KING.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 #pragma endregion
 

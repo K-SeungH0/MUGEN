@@ -106,6 +106,7 @@ public:
 	inline POINTFLOAT GetPos() { return pos; }
 	inline RECT GetHitRect() { return hitRc; }
 	inline PLAYER_TYPE GetPlayerType() { return type; }
+	inline string GetPlayerName() { return name; }
 
 protected:
 	// INI파일 로드

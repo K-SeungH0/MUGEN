@@ -15,7 +15,9 @@ private:
 	Image* UI_Time;
 	Image* UI_Player1;
 	Image* UI_Player2;
+	Image* KO;
 
+	int count = 0;
 	int elapsedTime;
 	int frame;
 	int time = 60;

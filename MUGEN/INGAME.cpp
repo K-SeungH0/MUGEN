@@ -27,15 +27,6 @@ HRESULT InGame::Init()
 	lpKOImg = ImageManager::GetLpInstance()->GetImage("KO");
 	UI_Time = ImageManager::GetLpInstance()->GetImage("UI_Time");
 
-	//Character* lpDIO = new DIO();
-	//lpDIO->Init();
-
-	//Character* lpKING = new King();
-	//lpKING->Init();
-
-	//Character* lpChang = new Chang();
-	//lpChang->Init();
-
 	lpBuffer = new Image();
 	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
 
@@ -48,35 +39,35 @@ HRESULT InGame::Init()
 	lpController_P1->SetController(PLAYER_TYPE::P1, lpCharacter_P1);
 	lpController_P2->SetController(PLAYER_TYPE::P2, lpCharacter_P2);
 
-	//lpController_P1 = new Controller();
-	//lpController_P1->Init();
-	//switch ((int)lpCharacter_P1)
-	//{
-	//case 0:
-	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpChang);
-	//	break;
-	//case 1:
-	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpDIO);
-	//	break;
-	//case 2:
-	//	lpController_P1->SetController(PLAYER_TYPE::P1, lpKING);
-	//	break;
-	//}
 
-	//lpController_P2 = new Controller();
-	//lpController_P2->Init();
-	//switch ((int)lpCharacter_P2)
-	//{
-	//case 0:
-	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpChang);
-	//	break;
-	//case 1:
-	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpDIO);
-	//	break;
-	//case 2:
-	//	lpController_P2->SetController(PLAYER_TYPE::P2, lpKING);
-	//	break;
-	//}
+
+if ("Chang" == lpCharacter_P1->GetPlayerName())
+{
+	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_Chang");
+}
+
+if ("DIO" == lpCharacter_P1->GetPlayerName())
+{
+	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_DIO");
+}
+if ("KING" == lpCharacter_P1->GetPlayerName())
+{
+	UI_Player1 = ImageManager::GetLpInstance()->GetImage("UI_Player1_KING");
+}
+if ("Chang" == lpCharacter_P2->GetPlayerName())
+{
+	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_Chang");
+}
+
+if ("DIO" == lpCharacter_P2->GetPlayerName())
+{
+	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_DIO");
+}
+
+if ("KING" == lpCharacter_P2->GetPlayerName())
+{
+	UI_Player2 = ImageManager::GetLpInstance()->GetImage("UI_Player2_KING");
+}
 
 	return S_OK;
 }
@@ -111,14 +102,8 @@ void InGame::Update()
 		else
 			frame = 0;
 	}
-	if (elapsedTime % 70 == 0)
-	{
-		if(time !=0)
-			time--;
-	}
-	lpController_P1->GetPlayerType();
 
-	
+	lpController_P1->GetPlayerType();
 	ColliderManager::GetLpInstance()->Update();
 
 	lpController_P1->Update();
@@ -136,6 +121,32 @@ void InGame::Update()
 
 	IsCollision(lpController_P1->GetLpCharacter(), lpController_P2->GetLpCharacter());
 	IsCollision(lpController_P2->GetLpCharacter(), lpController_P1->GetLpCharacter());
+
+	if(time != 0)
+	{
+		if (elapsedTime % 70 == 0)
+		{
+			time--;
+			if (lpCharacter_P1->GetHp() == 0 || lpCharacter_P2->GetHp() == 0)
+			{
+				KO = ImageManager::GetLpInstance()->GetImage("KO");
+				count++;
+				if (count == 10)
+					{
+						KO = nullptr;
+						count -= 10;
+						SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
+					}
+			}
+		}
+
+	}
+	else
+	{
+		time += 60;
+		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
+	}
+	
 }
 
 void InGame::Render(HDC hdc)
@@ -157,11 +168,9 @@ void InGame::Render(HDC hdc)
 	
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2 - 100 * 1200 / WINSIZE_WIDTH, 50 * 600 / WINSIZE_HEIGHT, time / 10);
 	if (UI_Time)UI_Time->Render(hBackDC, WINSIZE_WIDTH / 2, 50 * 600 / WINSIZE_HEIGHT, time % 10);
-	if (lpCharacter_P1->GetHp() == 0 || lpCharacter_P2->GetHp() == 0)
-	{
-		lpKOImg->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);
-		SceneManager::GetLpInstance()->LoadScene(SceneManager::SCENE_STATE::TITLE);
-	}
+	if (KO)KO->Render(hBackDC, WINSIZE_WIDTH / 2 - 500 * 1200 / WINSIZE_WIDTH, WINSIZE_HEIGHT / 2 - 300 * 600 / WINSIZE_WIDTH, frame);;
+	if (UI_Player1)UI_Player1->Render(hBackDC, 21, 25);
+	if (UI_Player2)UI_Player2->Render(hBackDC, WINSIZE_WIDTH - 145, 25);
 	// 충돌체 렌더
 	ColliderManager::GetLpInstance()->Render(hBackDC);
 	

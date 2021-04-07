@@ -55,6 +55,6 @@ void SceneManager::Render(HDC hdc)
 void SceneManager::LoadScene(SCENE_STATE loadScene)
 {
 	currentScene = loadScene;
-	if (currentScene == SCENE_STATE::INGAME)
+	if (currentScene == SCENE_STATE::TITLE)
 		scenes[(int)currentScene]->Load();
 }

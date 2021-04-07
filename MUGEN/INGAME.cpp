@@ -19,7 +19,7 @@ InGame::~InGame()
 HRESULT InGame::Init()
 {
 
-
+	Load();
 	Player1_HPUI = ImageManager::GetLpInstance()->GetImage("Player1_HPUI");
 	Player2_HPUI = ImageManager::GetLpInstance()->GetImage("Player2_HPUI");
 	Player1_HP = ImageManager::GetLpInstance()->GetImage("HP");
@@ -77,10 +77,6 @@ HRESULT InGame::Init()
 		break;
 	}
 
-	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
-	{
-		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
-	}
 
 	return S_OK;
 }
@@ -151,13 +147,12 @@ void InGame::Render(HDC hdc)
 	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_03")->Render(hBackDC, 212, WINSIZE_HEIGHT - 134, (frame % 12) / 2);
 	ImageManager::GetLpInstance()->GetImage("BACK_IMAGE_04")->Render(hBackDC, WINSIZE_WIDTH / 2 - 55, WINSIZE_HEIGHT / 2 + 105, (frame % 36) / 2);
 
-	lpBgImg->Render(hBackDC);
 	lpController_P1->Render(hBackDC);
 	lpController_P2->Render(hBackDC);
 	if (Player1_HPUI)Player1_HPUI->Render(hBackDC, 0, 0);
 	if (Player2_HPUI)Player2_HPUI->Render(hBackDC, WINSIZE_WIDTH - 385 * 1200 / WINSIZE_WIDTH, 0);
-	if (Player1_DelayHP)Player1_DelayHP->Render(hBackDC, { 93, 43}, lpCharacter_P1->GetHp() / MAX_HP,1);
-	if (Player2_DelayHP)Player2_DelayHP->Render(hBackDC, { WINSIZE_WIDTH-109, 43 }, -lpCharacter_P2->GetHp() / MAX_HP,1);
+	if (Player1_DelayHP)Player1_DelayHP->Render(hBackDC, { 93, 43}, float(lpCharacter_P1->GetHp() / MAX_HP),1);
+	if (Player2_DelayHP)Player2_DelayHP->Render(hBackDC, { WINSIZE_WIDTH-109, 43 }, float(-lpCharacter_P2->GetHp() / MAX_HP),1);
 	if (Player1_HP)Player1_HP->Render(hBackDC, {93 , 43 }, float(lpCharacter_P1->GetHp()) / MAX_HP,1);
 	if (Player2_HP)Player2_HP->Render(hBackDC, { WINSIZE_WIDTH - 109, 43}, float(-lpCharacter_P2->GetHp()) / MAX_HP,1);
 	

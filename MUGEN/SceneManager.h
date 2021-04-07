@@ -19,7 +19,7 @@ private:
 	GameScene* scenes[(int)SCENE_STATE::NONE];
 	SCENE_STATE currentScene;
 	Image* loadingScene;
-
+	int imageAlpha;
 public:
 	SceneManager();
 	~SceneManager();
@@ -28,4 +28,5 @@ public:
 	void Update();
 	void Render(HDC hdc);
 	void LoadScene(SCENE_STATE loadScene);
+	void LoadingScene();
 };

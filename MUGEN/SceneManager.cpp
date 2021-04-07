@@ -26,6 +26,7 @@ HRESULT SceneManager::Init()
 			break;
 		}
 	}
+	imageAlpha = 250;
 	loadingScene = new Image();
 	currentScene = SCENE_STATE::TITLE;
 	LoadScene(SCENE_STATE::TITLE);
@@ -47,6 +48,7 @@ void SceneManager::Update()
 
 void SceneManager::Render(HDC hdc)
 {
+	loadingScene->Render(hdc, imageAlpha, NULL);
 	scenes[(int)currentScene]->Render(hdc);
 }
 
@@ -58,4 +60,8 @@ void SceneManager::LoadScene(SCENE_STATE loadScene)
 	}
 	currentScene = loadScene;
 	scenes[(int)currentScene]->Init();
+}
+
+void SceneManager::LoadingScene()
+{
 }

@@ -276,9 +276,9 @@ HRESULT ImageManager::Init()
 	this->mImage.insert(make_pair("KING_SELECTION", new Image()));
 	this->mImage["KING_SELECTION"]->Init("Image/UI/TITLE/KING_SELECTION.bmp", 158, 126, 1, 1, 1, false);
 	this->mImage.insert(make_pair("TITLE", new Image()));
-	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2 - 30, WINSIZE_HEIGHT - 37, 2, 1, 2, false);
+	this->mImage["TITLE"]->Init("Image/UI/TITLE/TITLE.bmp", WINSIZE_WIDTH * 2, WINSIZE_HEIGHT, 2, 1, 2, false);
 	this->mImage.insert(make_pair("SELCT", new Image()));
-	this->mImage["SELCT"]->Init("Image/UI/TITLE/SELCT.bmp", WINSIZE_WIDTH - 15, WINSIZE_HEIGHT - 37, 1, 1, 1, false);
+	this->mImage["SELCT"]->Init("Image/UI/TITLE/SELCT.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT, 1, 1, 1, false);
 	this->mImage.insert(make_pair("LOADING", new Image()));
 	this->mImage["LOADING"]->Init("Image/UI/TITLE/LOADING.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT, 1, 1, 1, false);
 	this->mImage.insert(make_pair("SELECT_1P", new Image()));

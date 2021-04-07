@@ -46,7 +46,7 @@ HRESULT Title::Init()
 				selectableCharacters[i].name = GameData::CHARACTER_NAME::KING;
 				break;
 		}
-		selectableCharacters[i].pos = { i * 240 + 160, 395 };
+		selectableCharacters[i].pos = { i * 240 + 160, 420 };
 		selectableCharacters[i].isSelected = false;
 	}
 
@@ -172,7 +172,7 @@ void Title::Render(HDC hdc)
 				}
 				else
 				{
-					selectPlayers[i].lpSelectedCharacterImage->Render(hBackDC, i * 800 + 115, 150, selectPlayers[i].lpSelectedCharacterImage->GetImageInfo()->currentFrame);
+					selectPlayers[i].lpSelectedCharacterImage->Render(hBackDC, i * 810 + 115, 180, selectPlayers[i].lpSelectedCharacterImage->GetImageInfo()->currentFrame);
 				}
 			}
 			for (int i = 0; i < (int)GameData::CHARACTER_NAME::NONE; i++)

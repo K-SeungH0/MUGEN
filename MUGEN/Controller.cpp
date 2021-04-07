@@ -30,75 +30,40 @@ void Controller::Update()
 {
 	if (lpCharacter && lpCharacter->IsAlive())
 	{
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::LEFT]))
+		for (auto& pair : mSkillKey)
 		{
-			CommandInput(SKILL_KIND::LEFT);
-		}
-		else if (KeyManager::GetLpInstance()->IsOnceKeyUp(mSkillKey[SKILL_KIND::LEFT]))
-		{
-			lpCharacter->Stay();
-		}
-		else if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::LEFT]))
-		{
-			if (skills[(int)SKILL_KIND::LEFT].lpfnCmd) skills[(int)SKILL_KIND::LEFT].lpfnCmd(*lpCharacter, skills[(int)SKILL_KIND::LEFT].priority);
-		}
-
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::RIGHT]))
-		{
-			CommandInput(SKILL_KIND::RIGHT);
-		}
-		else if (KeyManager::GetLpInstance()->IsOnceKeyUp(mSkillKey[SKILL_KIND::RIGHT]))
-		{
-			lpCharacter->Stay();
-		}
-		else if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::RIGHT]))
-		{
-			if (skills[(int)SKILL_KIND::RIGHT].lpfnCmd) skills[(int)SKILL_KIND::RIGHT].lpfnCmd(*lpCharacter, skills[(int)SKILL_KIND::RIGHT].priority);
-		}
-
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::DOWN]))
-		{
-			CommandInput(SKILL_KIND::DOWN);
-		}
-		else if (KeyManager::GetLpInstance()->IsOnceKeyUp(mSkillKey[SKILL_KIND::DOWN]))
-		{
-			lpCharacter->Stay();
-		}
-		else if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::DOWN]))
-		{
-			if (skills[(int)SKILL_KIND::DOWN].lpfnCmd) skills[(int)SKILL_KIND::DOWN].lpfnCmd(*lpCharacter, skills[(int)SKILL_KIND::DOWN].priority);
-		}
-
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::UP]))
-		{
-			CommandInput(SKILL_KIND::UP);
-		}
-		else if (KeyManager::GetLpInstance()->IsOnceKeyUp(mSkillKey[SKILL_KIND::UP]))
-		{
-			lpCharacter->Stay();
-		}
-		else if (KeyManager::GetLpInstance()->IsStayKeyDown(mSkillKey[SKILL_KIND::UP]))
-		{
-			if (skills[(int)SKILL_KIND::UP].lpfnCmd) skills[(int)SKILL_KIND::UP].lpfnCmd(*lpCharacter, skills[(int)SKILL_KIND::UP].priority);
-		}
-
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::ATTACK_WEAK]))
-		{
-			CommandInput(SKILL_KIND::ATTACK_WEAK);
-		}
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::ATTACK_STRONG]))
-		{
-			CommandInput(SKILL_KIND::ATTACK_STRONG);
-		}
-		if (KeyManager::GetLpInstance()->IsOnceKeyDown(mSkillKey[SKILL_KIND::ATTACK_KICK]))
-		{
-			CommandInput(SKILL_KIND::ATTACK_KICK);
+			switch (pair.first)
+			{
+			case Controller::SKILL_KIND::LEFT:
+			case Controller::SKILL_KIND::RIGHT:
+			case Controller::SKILL_KIND::DOWN:
+			case Controller::SKILL_KIND::UP:
+				if (KeyManager::GetLpInstance()->IsOnceKeyDown(pair.second))
+				{
+					CommandInput(pair.first);
+				}
+				else if (KeyManager::GetLpInstance()->IsOnceKeyUp(pair.second))
+				{
+					lpCharacter->Stay();
+				}
+				else if (KeyManager::GetLpInstance()->IsStayKeyDown(pair.second))
+				{
+					if (skills[(int)pair.first].lpfnCmd) skills[(int)pair.first].lpfnCmd(*lpCharacter, skills[(int)pair.first].priority);
+				}
+				break;
+			case Controller::SKILL_KIND::ATTACK_WEAK:
+			case Controller::SKILL_KIND::ATTACK_STRONG:
+			case Controller::SKILL_KIND::ATTACK_KICK:
+				if (KeyManager::GetLpInstance()->IsOnceKeyDown(pair.second))
+				{
+					CommandInput(pair.first);
+				}
+				break;
+			}
 		}
 	}
-
 	if (lpCharacter) lpCharacter->Update();
 	
-
 	if (elapsedTime++ > 50)
 	{
 		// 0.5초 정도 커맨드 입력이 안되었다면 이전 커맨드 초기화
@@ -141,7 +106,7 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 	case PLAYER_TYPE::P1:
 		// 1P 초기위치지정
 		this->lpCharacter->SetDirection(CHARACTER_DIRECTION::RIGHT);
-		this->lpCharacter->SetPos({ 100, WINSIZE_HEIGHT - 40 });
+		this->lpCharacter->SetPos({ 100, WINSIZE_HEIGHT - 20 });
 		// W A S D // H J K
 		mSkillKey.insert(make_pair(SKILL_KIND::LEFT, 'A'));
 		mSkillKey.insert(make_pair(SKILL_KIND::RIGHT, 'D'));
@@ -154,7 +119,7 @@ void Controller::SetController(PLAYER_TYPE type, Character* lpCharacter)
 	case PLAYER_TYPE::P2:
 		// 2P 초기위치 지정
 		this->lpCharacter->SetDirection(CHARACTER_DIRECTION::LEFT);
-		this->lpCharacter->SetPos({ WINSIZE_WIDTH - 100, WINSIZE_HEIGHT - 40 });
+		this->lpCharacter->SetPos({ WINSIZE_WIDTH - 100, WINSIZE_HEIGHT - 20 });
 		// 방향키 // 숫자키패드 1 2 3
 		mSkillKey.insert(make_pair(SKILL_KIND::LEFT, VK_LEFT));
 		mSkillKey.insert(make_pair(SKILL_KIND::RIGHT, VK_RIGHT));

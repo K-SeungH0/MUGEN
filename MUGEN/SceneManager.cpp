@@ -14,15 +14,6 @@ SceneManager::~SceneManager()
 
 HRESULT SceneManager::Init()
 {
-	lpBuffer = new Image();
-	lpBuffer->Init(WINSIZE_WIDTH, WINSIZE_HEIGHT);
-
-	lpBgImg = new Image();
-	if (FAILED(lpBgImg->Init("Image/UI/Battle/bgImage.bmp", WINSIZE_WIDTH, WINSIZE_HEIGHT)))
-	{
-		MessageBox(g_hWnd, "배경 로드 실패", "Error", MB_OK);
-	}
-
 	for (int i = 0; i < (int)SCENE_STATE::NONE; i++)
 	{
 		switch (i)
@@ -40,6 +31,14 @@ HRESULT SceneManager::Init()
     return S_OK;
 }
 
+void SceneManager::Release()
+{
+	for (int i = 0; i < (int)SCENE_STATE::NONE; i++)
+	{
+		delete scenes[i];
+	}
+}
+
 void SceneManager::Update()
 {
 	scenes[(int)currentScene]->Update();
@@ -47,9 +46,7 @@ void SceneManager::Update()
 
 void SceneManager::Render(HDC hdc)
 {
-	HDC hBackDC = lpBuffer->GetMemDC();
-	scenes[(int)currentScene]->Render(hBackDC);
-	lpBuffer->Render(hdc);
+	scenes[(int)currentScene]->Render(hdc);
 }
 
 void SceneManager::LoadScene(SCENE_STATE loadScene)

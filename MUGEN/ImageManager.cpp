@@ -220,19 +220,19 @@ HRESULT ImageManager::Init()
 	this->mImage["UI_Time"]->Init("Image/UI/Number/UI_Time.bmp", 1200, 120, 10, 1, 10, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_Chang", new Image()));
-	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_Chang"]->Init("Image/UI/Player/UI_Player1_Chang.bmp", 215/2, 136/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_Chang", new Image()));
-	this->mImage["UI_Player2_Chang"]->Init("Image/UI/Player/UI_Player2_Chang.bmp", 215, 136, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_Chang"]->Init("Image/UI/Player/UI_Player2_Chang.bmp", 215/2, 136/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_DIO", new Image()));
-	this->mImage["UI_Player1_DIO"]->Init("Image/UI/Player/UI_Player1_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_DIO"]->Init("Image/UI/Player/UI_Player1_DIO.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_DIO", new Image()));
-	this->mImage["UI_Player2_DIO"]->Init("Image/UI/Player/UI_Player2_DIO.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_DIO"]->Init("Image/UI/Player/UI_Player2_DIO.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 	this->mImage.insert(make_pair("UI_Player1_KING", new Image()));
-	this->mImage["UI_Player1_KING"]->Init("Image/UI/Player/UI_Player1_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player1_KING"]->Init("Image/UI/Player/UI_Player1_KING.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 	this->mImage.insert(make_pair("UI_Player2_KING", new Image()));
-	this->mImage["UI_Player2_KING"]->Init("Image/UI/Player/UI_Player2_KING.bmp", 215, 143, 1, 1, 1, true, RGB(255, 0, 255));
+	this->mImage["UI_Player2_KING"]->Init("Image/UI/Player/UI_Player2_KING.bmp", 215/2, 143/2, 1, 1, 1, true, RGB(255, 0, 255));
 
 #pragma endregion
 
@@ -266,6 +266,11 @@ HRESULT ImageManager::Init()
 	this->mImage["KING_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
 	this->mImage.insert(make_pair("KING_RIGHT_HIT_EFFECT", new Image()));
 	this->mImage["KING_RIGHT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT1.bmp", 528 * 2, 56 * 2, 11, 1, 11, true, RGB(24, 82, 33));
+
+	this->mImage.insert(make_pair("Chang_LEFT_HIT_EFFECT", new Image()));
+	this->mImage["Chang_LEFT_HIT_EFFECT"]->Init("Image/UI/Effects/EFFECT_HIT2.bmp", 648 * 2, 80 * 2, 9, 1, 9, true, RGB(24, 82, 33));
+	this->mImage.insert(make_pair("Chang_RIGHT_HIT_EFFECT", new Image()));
+	this->mImage["Chang_RIGHT_HIT_EFFECT"]->Reverse("Chang_LEFT_HIT_EFFECT");
 #pragma endregion
 
 #pragma region Title Image Load

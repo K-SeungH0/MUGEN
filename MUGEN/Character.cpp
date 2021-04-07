@@ -1,6 +1,6 @@
 #include "Character.h"
 #include "Image.h"
-
+#include "FileManager.h"
 void Character::Init()
 {
 	priority = -1;

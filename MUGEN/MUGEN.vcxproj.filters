@@ -164,9 +164,6 @@
     <ClInclude Include="GameScene.h">
       <Filter>소스 파일\MEGEN\GameScene\Default</Filter>
     </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>소스 파일\MEGEN\GameScene\GameUI</Filter>
-    </ClInclude>
     <ClInclude Include="GameData.h">
       <Filter>소스 파일\MEGEN\GameData</Filter>
     </ClInclude>

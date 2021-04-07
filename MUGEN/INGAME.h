@@ -20,8 +20,7 @@ private:
 	int frame;
 	int time = 60;
 
-	Controller* lpPlayer1;
-	Controller* lpPlayer2;
+	bool IsCollision(Character* attacker, Character* defender);
 
 
 	// ±è½ÂÈ£ Ãß°¡
@@ -37,10 +36,5 @@ public:
 	void Release();
 	void Update();
 	void Render(HDC hdc);
-	// ±è½ÂÈ£ Ãß°¡
-	void Load();
-private:
-	bool IsCollision(Character* attacker, Character* defender);
-
 };
 

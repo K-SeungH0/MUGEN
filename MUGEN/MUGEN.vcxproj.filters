@@ -58,6 +58,12 @@
     <Filter Include="소스 파일\MEGEN\GameScene\Title">
       <UniqueIdentifier>{a6b46494-b541-471c-973c-2f6b658c73d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\MEGEN\GameUI">
+      <UniqueIdentifier>{ff3e17d0-8bb2-4f3a-aa1d-be3af89c64f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\MEGEN\GameUI\Default">
+      <UniqueIdentifier>{baee00b6-1297-4ed1-b143-6a440f2382ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -117,6 +123,9 @@
     <ClCompile Include="FileManager.cpp">
       <Filter>소스 파일\Engine\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="UInGameHpBar.cpp">
+      <Filter>소스 파일\MEGEN\GameUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mugen.h">
@@ -172,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="FileManager.h">
       <Filter>소스 파일\Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>소스 파일\MEGEN\GameUI\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="UInGameHpBar.h">
+      <Filter>소스 파일\MEGEN\GameUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -16,13 +16,6 @@ HRESULT MainGame::Init()
 
 void MainGame::Release()
 {
-	// 메인에 필요?
-	//lpBgImg->Release();
-	//delete lpBgImg;
-	//
-	//lpBuffer->Release();
-	//delete lpBuffer;
-
 	GameData::GetLpInstance()->ReleaseSingleton();
 	KeyManager::GetLpInstance()->ReleaseSingleton();
 	ImageManager::GetLpInstance()->ReleaseSingleton();
@@ -30,8 +23,6 @@ void MainGame::Release()
 
 void MainGame::Update()
 {
-	//if (g_hWnd != GetForegroundWindow()) return;
-
 	SceneManager::GetLpInstance()->Update();
 
 	InvalidateRect(g_hWnd, NULL, false);

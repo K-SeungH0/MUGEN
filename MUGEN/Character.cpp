@@ -45,45 +45,48 @@ void Character::Update()
 
 		if (motions[(int)state].mAtkInfos.find(frame) != motions[(int)state].mAtkInfos.end())
 		{
-			// 공격할 위치가 존재 하다면 공격!
-			POINTFLOAT atkPos;
-			switch (motions[(int)state].mAtkInfos[frame][0].type)
+			for (auto atkInfo : motions[(int)state].mAtkInfos[frame])
 			{
-			case ATTACK_TYPE::MELEE:
-				if (dir == CHARACTER_DIRECTION::LEFT) atkPos = { pos.x - motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
-				else atkPos = { pos.x + motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
-				ColliderManager::GetLpInstance()->Create(type, atkPos,
-													motions[(int)state].mAtkInfos[frame][0].width,
-													motions[(int)state].mAtkInfos[frame][0].height,
-													motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
-													10);
-				break;
-			case ATTACK_TYPE::RANGE:
-				if (dir == CHARACTER_DIRECTION::LEFT)
+				// 공격할 위치가 존재 하다면 공격!
+				POINTFLOAT atkPos;
+				switch (motions[(int)state].mAtkInfos[frame][0].type)
 				{
-					atkPos = { pos.x - motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
-					ColliderManager::GetLpInstance()->Fire(
-									type, atkPos, 
-									motions[(int)state].mAtkInfos[frame][0].width,
-									motions[(int)state].mAtkInfos[frame][0].height,
-									5, PI,
-									motions[(int)state].mAtkInfos[frame][0].imageKey[(int)dir],
-									motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
-									10);
+				case ATTACK_TYPE::MELEE:
+					if (dir == CHARACTER_DIRECTION::LEFT) atkPos = { pos.x - atkInfo.offsetPos.x, pos.y + atkInfo.offsetPos.y };
+					else atkPos = { pos.x + atkInfo.offsetPos.x, pos.y + atkInfo.offsetPos.y };
+					ColliderManager::GetLpInstance()->Create(type, atkPos,
+														atkInfo.width,
+														atkInfo.height,
+														atkInfo.hitEffectKey[(int)dir],
+														atkInfo.damage);
+					break;
+				case ATTACK_TYPE::RANGE:
+					if (dir == CHARACTER_DIRECTION::LEFT)
+					{
+						atkPos = { pos.x - atkInfo.offsetPos.x, pos.y + atkInfo.offsetPos.y };
+						ColliderManager::GetLpInstance()->Fire(
+										type, atkPos, 
+										atkInfo.width,
+										atkInfo.height,
+										7, PI,
+										atkInfo.imageKey[(int)dir],
+										atkInfo.hitEffectKey[(int)dir],
+										atkInfo.damage);
+					}
+					else
+					{
+						atkPos = { pos.x + atkInfo.offsetPos.x, pos.y + atkInfo.offsetPos.y };
+						ColliderManager::GetLpInstance()->Fire(
+							type, atkPos,
+							atkInfo.width,
+							atkInfo.height,
+							7, 0,
+							atkInfo.imageKey[(int)dir],
+							atkInfo.hitEffectKey[(int)dir],
+							atkInfo.damage);
+					}
+					break;
 				}
-				else
-				{
-					atkPos = { pos.x + motions[(int)state].mAtkInfos[frame][0].offsetPos.x, pos.y + motions[(int)state].mAtkInfos[frame][0].offsetPos.y };
-					ColliderManager::GetLpInstance()->Fire(
-						type, atkPos,
-						motions[(int)state].mAtkInfos[frame][0].width,
-						motions[(int)state].mAtkInfos[frame][0].height,
-						5, 0,
-						motions[(int)state].mAtkInfos[frame][0].imageKey[(int)dir],
-						motions[(int)state].mAtkInfos[frame][0].hitEffectKey[(int)dir],
-						10);
-				}
-				break;
 			}
 		}
 	}

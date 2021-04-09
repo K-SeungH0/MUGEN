@@ -18,7 +18,7 @@ void DIO::Init()
 	// 캐릭터 상태
 	state = CHARACTER_STATE::IDLE;
 	// 캐릭터 체력
-	hp = 100;
+	hp = MAX_HP;
 	// 캐릭터 위치
 	pos = { 0, 0 };
 	// 캐릭터 이름
@@ -33,4 +33,10 @@ void DIO::Init()
 
 	lpImage = ImageManager::GetLpInstance()->GetImage(GetKey(name, dir, state));
 	hitRc = GetRectOffset(pos, motions[(int)state].offsetHitPos, motions[(int)state].width, motions[(int)state].height);
+}
+
+void DIO::FinalAttack(int priority)
+{
+	this->priority = priority;
+
 }

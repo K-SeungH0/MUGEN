@@ -34,6 +34,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="UInGameHpBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColliderManager.h" />
@@ -43,6 +44,7 @@
     <ClInclude Include="GameData.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="Chang.h" />
     <ClInclude Include="InGame.h" />
@@ -51,6 +53,7 @@
     <ClInclude Include="Mugen.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="UInGameHpBar.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

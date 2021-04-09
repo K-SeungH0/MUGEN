@@ -18,6 +18,7 @@ public:
 private:
 	GameScene* scenes[(int)SCENE_STATE::NONE];
 	SCENE_STATE currentScene;
+
 	Image* lpBuffer;
 	Image* lpLoadingImage;
 	HDC lastHdc;
@@ -27,6 +28,7 @@ private:
 public:
 	SceneManager();
 	~SceneManager();
+
 	HRESULT Init();
 	void Release();
 	void Update();

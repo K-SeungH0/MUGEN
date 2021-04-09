@@ -87,12 +87,13 @@ public:
 	void Guard();
 
 	// 커맨드
-	void LeftMove(int priority);
-	void RightMove(int priority);
-	void WeakAttack(int priority);
-	void StrongAttack(int priority);
-	void KickAttack(int priority);
-	void RangeAttack(int priority);
+	virtual void LeftMove(int priority);
+	virtual void RightMove(int priority);
+	virtual void WeakAttack(int priority);
+	virtual void StrongAttack(int priority);
+	virtual void KickAttack(int priority);
+	virtual void RangeAttack(int priority);
+	virtual void FinalAttack(int priority) {};
 
 	// 바라보는 방향으로 이동
 	void Translate(POINTFLOAT delta);
